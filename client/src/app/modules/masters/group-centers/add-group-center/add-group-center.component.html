@@ -1,0 +1,154 @@
+<div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog">
+  <div>
+    <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTopTitle">ADD/ Edit Center's</h5>
+        <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="autocomplete-container col-md-12 mb-3">
+            <label class="form-label" for="longitude">Select Location From Google</label>
+            <input type="text" id="autocomplete" class="form-control form-control-sm" placeholder="Enter a location" />
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="center_name">Center Name</label>
+            <input type="text" id="center_name" class="form-control form-control-sm" autocomplete="false"
+              formControlName="center_name" [ngClass]="{ 'is-invalid': submitted && f['center_name'].errors }" />
+            @if (submitted && f['center_name'].errors) {
+            <div class="invalid-feedback">
+              @if (f['center_name'].errors['required']) {
+              <div>Center Name is required</div>
+              }
+            </div>
+            }
+
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="basic-default-phone">Contact Person</label>
+            <input type="text" id="contact_name" class="form-control form-control-sm" autocomplete="false"
+              formControlName="contact_name" [maxlength]="150"
+              [ngClass]="{ 'is-invalid': submitted && f['contact_name'].errors }" />
+            @if (submitted && f['contact_name'].errors) {
+            <div class="invalid-feedback">
+              @if (f['contact_name'].errors['required']) {
+              <div>Mobile Number is required</div>
+              } @if (f['contact_name'].errors['contact_name']) {
+              <div>Mobile Number should be 10 digits</div>
+              }
+            </div>
+            }
+          </div>
+
+
+
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="mobile_no">Mobile Number</label>
+            <input type="text" id="mobile_no" class="form-control form-control-sm" autocomplete="false"
+              formControlName="mobile_no" maxlength="10" minlength="10"
+              [ngClass]="{ 'is-invalid': submitted && f['mobile_no'].errors }" />
+            @if (submitted && f['mobile_no'].errors) {
+            <div class="invalid-feedback">
+              @if (f['mobile_no'].errors['required']) {
+              <div>Mobile Number is required</div>
+              }
+            </div>
+            }
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input type="text" id="email" class="form-control form-control-sm" autocomplete="false"
+              formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+            @if (submitted && f['email'].errors) {
+            <div class="invalid-feedback">
+              @if (f['email'].errors['required']) {
+              <div>Email is required</div>
+              } @if (f['email'].errors['email']) {
+              <div>Email is invalid</div>
+              }
+            </div>
+            }
+
+          </div>
+        </div>
+        <div class="row">
+          <div class="mb-12">
+            <label class="form-label" for="basic-default-message">Address</label>
+            <textarea type="text" id="address" class="form-control form-control-sm" autocomplete="false"
+              formControlName="address" maxlength="1000" minlength="10"
+              [ngClass]="{ 'is-invalid': submitted && f['address'].errors }"></textarea>
+            @if (submitted && f['address'].errors) {
+            <div class="invalid-feedback">
+              @if (f['address'].errors['required']) {
+              <div>Address is required</div>
+              }
+            </div>
+            }
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="state">State</label>
+            <select id="state" class="form-control" formControlName="state" (ngModelChange)="onStateChanged($event)"
+              [ngClass]="{ 'is-invalid': submitted && f['state'].errors }">
+
+              <option *ngFor="let item of states_list;" value="{{item.id}}">{{item.name}}</option>
+            </select>
+            @if (submitted && f['state'].errors) {
+            <div class="invalid-feedback">
+              @if (f['state'].errors['required']) {
+              <div>Mobile Number is required</div>
+              }
+            </div>
+            }
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="city">City</label>
+            <input type="text" id="city" class="form-control form-control-sm" autocomplete="false"
+              formControlName="city" [ngClass]="{ 'is-invalid': submitted && f['city'].errors }" />
+            @if (submitted && f['city'].errors) {
+            <div class="invalid-feedback">
+              @if (f['city'].errors['required']) {
+              <div>Company Name is required</div>
+              }
+            </div>
+            }
+
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="pincode">Pincode</label>
+            <input type="text" id="pincode" class="form-control form-control-sm" autocomplete="false"
+              formControlName="pincode" maxlength="6" minlength="6"
+              [ngClass]="{ 'is-invalid': submitted && f['pincode'].errors }" />
+            @if (submitted && f['pincode'].errors) {
+            <div class="invalid-feedback">
+              @if (f['pincode'].errors['required']) {
+              <div>Pincode is required</div>
+              }
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+        <button type="submit" class="btn btn-primary">{{buttonTitle}}</button>
+      </div>
+    </form>
+  </div>
+</div>

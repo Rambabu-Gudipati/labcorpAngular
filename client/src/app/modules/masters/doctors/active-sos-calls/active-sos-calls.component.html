@@ -1,0 +1,85 @@
+<div class="card">
+    <h5 class="card-header">Doctors's List</h5>
+    <div class="card-body">
+        <div class="table-responsive text-nowrap">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th><a href="javascript:void(0);" (click)="sortBy('doctor_name')">Doctor Name
+                                {{sortIcon('doctor_name')}}</a></th>
+                        <th><a href="javascript:void(0);" (click)="sortBy('email')">Email {{sortIcon('email')}}</a></th>
+                        <th><a href="javascript:void(0);" (click)="sortBy('mobile_number')">Mobile No.
+                                {{sortIcon('mobile_number')}}</a></th>
+                        <th><a href="javascript:void(0);" (click)="sortBy('regn_no')">Regn. No
+                                {{sortIcon('regn_no')}}</a></th>
+                        <th><a href="javascript:void(0);" (click)="sortBy('qualification')">Qualification
+                                {{sortIcon('qualification')}}</a></th>
+                        <th><a href="javascript:void(0);" (click)="sortBy('status')">Status {{sortIcon('status')}}</a>
+                        </th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of pageOfItems; let idx = index">
+                        <td>{{idx+1}}</td>
+                        <td>{{item.doctor_name}}</td>
+                        <td>{{item.email}}</td>
+                        <td>{{item.mobile_number}}</td>
+                        <td>{{item.regn_no}}</td>
+                        <td>{{item.qualification}}</td>
+                        <td *ngIf="item.status=='Active'"><span
+                                class="badge bg-label-primary me-1">{{item.status}}</span></td>
+                        <td *ngIf="item.status=='In Active' "><span
+                                class="badge bg-label-danger me-1">{{item.status}}</span></td>
+                        <td *ngIf="item.status=='' || item.status=='Pending' || item.status==null"><span
+                                class="badge bg-label-warning me-1">Pending</span></td>
+                        <td>
+                            <div style="display: flex;">
+                                <a href="javascript:void(0);" class="dropdown-item-no-text"><i
+                                        class="bx bx-edit-alt me-1"></i></a>
+                                <a href="javascript:void(0);" (click)="confirm(deleteModel,item.id)"
+                                    class="dropdown-item-no-text"><i class="bx bx-trash me-1"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr *ngIf="loading">
+                        <td colspan="5" class="text-center py-5">
+                            <span class="spinner-border spinner-border-lg align-center"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card-footer pb-0 pt-3">
+        <pagination [items]="items" (changePage)="onChangePage($event)"></pagination>
+    </div>
+</div>
+
+
+<!-- removeItemModal -->
+<ng-template #deleteModel let-modal>
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"
+                (click)="modal.dismiss('Cross click')"></button>
+        </div>
+        <div class="modal-body">
+            <div class="mt-2 text-center">
+                <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
+                    colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px" />
+                <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+                    <h4>Are you Sure ?</h4>
+                    <p class="text-muted mx-4 mb-0">Are you Sure You want to Remove this Product ?</p>
+                </div>
+            </div>
+            <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal"
+                    (click)="modal.close('Close click')">Close</button>
+                <button type="button" class="btn w-sm btn-danger " id="delete-product" (click)="deleteData(deleteId)"
+                    (click)="modal.close('Close click')">Yes, Delete It!</button>
+            </div>
+        </div>
+    </div><!-- /.modal-content -->
+</ng-template>

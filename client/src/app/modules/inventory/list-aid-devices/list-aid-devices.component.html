@@ -1,0 +1,255 @@
+<div class="card">
+  <div class="row">
+    <div class="col-md-6">
+      <h5 class="card-header">Aid List</h5>
+    </div>
+    
+    <div class="col-md-6 right-align">
+      
+      <button style="float: right;" class="btn add-new btn-primary mb-3 mb-md-0" tabindex="0" aria-controls="DataTables_Table_0" type="button" (click)="addUser()"><span>Add
+          Add Aid</span></button>
+    </div>
+  </div>
+  <!-- <h5 class="card-header">Aid's List</h5>
+  <div class="card-body">
+
+
+
+    <div class="col-sm-12 col-md-12">
+      <div
+        class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-md-end justify-content-center flex-wrap me-1">
+
+        <div class="dt-buttons btn-group flex-wrap"><button class="btn add-new btn-primary mb-3 mb-md-0" tabindex="0"
+            aria-controls="DataTables_Table_0" type="button" (click)="addUser()"><span>Add
+              Aid</span></button> </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="table-responsive text-nowrap">
+    <p-table class="table table-bordered" #dt1 [value]="items" dataKey="id" [rowHover]="true" [showCurrentPageReport]="true" [loading]="loading" [paginator]="true"
+     [rows]="limit" 
+    [totalRecords]="totalPages" [lazy]="true" (onLazyLoad)="onPageChange($event)"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+      [globalFilterFields]="['serial_no', 'brand_name', 'aid_device_id', 'model_no', 'manufacturer_name']">
+      <ng-template pTemplate="caption">
+        <div class="flex justify-content-between">
+          <div class="container">
+            <button type="button"  class="btn btn-primary mb-3"  (click)="toggleFilter()">Advanced Search</button>
+          
+            <div *ngIf="showFilters" class="row">
+              <div class="col-md-2">
+                <label for="username">Manufacturer Name</label>
+                <select [(ngModel)]="searchManufacturername" class="form-control" id="status">
+                  <option *ngFor="let item of manufacturers_list;" [value]="item.id">{{ item.name }}</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="username">Branch Name</label>
+                <select [(ngModel)]="searchBranchname" class="form-control" id="status">
+                  <option *ngFor="let item of brands_list;" [value]="item.id">{{ item.name }}</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="mobile_no">Aid Device Id</label>
+                <input type="text" [(ngModel)]="searchAidDeviceid" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <label for="email">Model No</label>
+                <input type="text" [(ngModel)]="searchModelno" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <label for="mobile_no">Serial No</label>
+                <input type="text" [(ngModel)]="searchSerialno" class="form-control" />
+              </div>
+             
+              <!-- <div class="col-md-2">
+                <label for="status">Status</label>
+                <select [(ngModel)]="searchStatus" class="form-control" id="status">
+                  <option *ngFor="let item of statuses;" [value]="item.id">{{ item.label }}</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="user_type">User Type</label>
+                <select [(ngModel)]="searchUsertype" class="form-control" id="user_type">
+                  <option *ngFor="let item of user_types;" [value]="item.id">{{ item.name }}</option>
+                </select>
+              </div> -->
+              <div class="col-md-2 align-self-end">
+                <button type="button" (click)="onSearch()" class="btn btn-primary">Search</button> &nbsp;
+                <button type="button" class="btn btn-primary" (click)="clear()">Clear</button>
+              </div>
+            </div>
+          </div>
+          <!-- <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" (onClick)="clear()" />
+          <p-iconField iconPosition="left" style="float: right;">
+            <p-inputIcon>
+              <i class="pi pi-search"></i>
+            </p-inputIcon>
+            <input pInputText type="text" [(ngModel)]="searchValue" (input)="filterGlobal($event)"
+              placeholder="Keyboard Search" />
+          </p-iconField> -->
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <!-- <tr>
+          <th pSortableColumn="manufacturer_name">
+            Manufacturer Name<p-sortIcon field="manufacturer_name" />
+          </th>
+       
+          <th pSortableColumn="brand_name">
+            Brand Name <p-sortIcon field="brand_name" />
+          </th>
+          <th pSortableColumn="aid_device_id">
+            Aid Device Id <p-sortIcon field="aid_device_id" />
+          </th>
+          <th pSortableColumn="model_no">
+            Model No <p-sortIcon field="model_no" />
+          </th>
+          <th pSortableColumn="serial_no">
+            Serial No<p-sortIcon field="serial_no" />
+          </th>
+          <th pSortableColumn="warranty_expiry_date">
+            Expire Date <p-sortIcon field="warranty_expiry_date" />
+          </th>
+          <th>
+            Action
+          </th>
+        </tr> -->
+        <tr>
+          <th (click)="onSort('manufacturer_name')">
+            Manufacturer Name <i [ngClass]="getSortIcon('manufacturer_name')"></i>
+          </th>
+          <th (click)="onSort('brand_name')">
+            Brand Name <i [ngClass]="getSortIcon('brand_name')"></i>
+          </th>
+          <th (click)="onSort('aid_device_id')">
+            Aid Device Id<i [ngClass]="getSortIcon('aid_device_id')"></i>
+          </th>
+          
+          <th (click)="onSort('model_no')">
+            Model No<i [ngClass]="getSortIcon('model_no')"></i>
+          </th>
+          <th (click)="onSort('serial_no')">
+            Serial No<i [ngClass]="getSortIcon('serial_no')"></i>
+          </th>
+          <th (click)="onSort('warranty_expiry_date')">
+            Expire Date <i [ngClass]="getSortIcon('warranty_expiry_date')"></i>
+          </th>
+          <!-- <th (click)="onSort('status')">
+            Status <i [ngClass]="getSortIcon('status')"></i>
+          </th> -->
+          <th>Action</th>
+        </tr>
+        <!-- <tr>
+          <th>
+            <p-columnFilter
+              type="text"
+              field="serial_no"
+              placeholder="Search by Number"
+              ariaLabel="Filter Name"
+            />
+          </th>
+          <th>
+            <p-columnFilter
+              type="text"
+              field="brand_name"
+              placeholder="Search by Name"
+              ariaLabel="Filter Country"
+            />
+          </th>
+          <th>
+            <p-columnFilter
+              type="text"
+              field="aid_device_id"
+              placeholder="Search by Id"
+              ariaLabel="Filter Country"
+            />
+          </th>
+          <th>
+            <p-columnFilter
+              type="text"
+              field="model_no"
+              placeholder="Search by Number"
+              ariaLabel="Filter Country"
+            />
+          </th>
+          <th>
+            <p-columnFilter
+              type="text"
+              field="manufacturer_name"
+              placeholder="Search by Name"
+              ariaLabel="Filter Country"
+            />
+          </th>
+          <th>
+            <p-columnFilter
+              type="text"
+              field="warranty_expiry_date"
+              placeholder="Search by Date"
+              ariaLabel="Filter Country"
+            />
+          </th>
+          
+          
+         </tr> -->
+      </ng-template>
+      <ng-template pTemplate="body" let-row>
+        <tr [pSelectableRow]="row">
+          <td>
+            <span class="p-column-title">Country</span>
+            <span class="ml-1 vertical-align-middle">{{ row.manufacturer_name}}</span>
+          </td>
+         
+          <td>
+            <span class="p-column-title">Country</span>
+            <span class="ml-1 vertical-align-middle">{{ row.brand_name}}</span>
+          </td>
+          <td>
+            <span class="p-column-title">Country</span>
+            <span class="ml-1 vertical-align-middle">{{ row.aid_device_id}}</span>
+          </td>
+          <td>
+            <span class="p-column-title">Country</span>
+            <span class="ml-1 vertical-align-middle">{{ row.model_no}}</span>
+          </td>
+          <td>
+            <span class="p-column-title">Name</span>
+            {{ row.serial_no }}
+          </td>
+          <td>
+            <span class="p-column-title">Country</span>
+            <span class="ml-1 vertical-align-middle">{{ row.warranty_expiry_date|date:'dd-MM-yyyy'}}</span>
+          </td>
+          <!-- <td>
+            <span class="p-column-title">Status</span>
+            <p-tag [value]="customer.status" [severity]="getSeverity(customer.status)" />
+          </td> -->
+          <td>
+            <div style="display: flex;">
+              <a href="javascript:void(0);" (click)="onEditClick(row)" class="dropdown-item-no-text"><i
+                  class="fa fa-edit"></i></a>&nbsp;
+              <!-- <a href="javascript:void(0);" (click)="removeData(row)" class="dropdown-item-no-text"><i
+                  class="fa fa-trash"></i></a> -->
+            </div>
+          </td>
+
+        </tr>
+        <!-- <tr *ngIf="loading">
+            <td colspan="5" class="text-center py-5">
+              <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+          </tr> -->
+
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="4">No customers found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+
+
+
+  </div>

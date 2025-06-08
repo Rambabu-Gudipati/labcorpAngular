@@ -1,0 +1,103 @@
+<div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog">
+  <div>
+    <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTopTitle">{{modalHeaderTitle}}</h5>
+        <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="test_name">Test Name</label>
+            <input type="text" id="test_name" class="form-control" autocomplete="false" formControlName="test_name"
+            [class.is-invalid]="form.get('test_name')?.invalid && form.get('test_name')?.touched" />
+            <div *ngIf="form.get('test_name')?.invalid && form.get('test_name')?.touched" class="text-danger">
+            Test Name is required.
+            </div>
+
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="price">Price</label>
+            <input type="number" id="price" class="form-control" autocomplete="false" formControlName="price"
+            [class.is-invalid]="form.get('price')?.invalid && form.get('price')?.touched" />
+            <div *ngIf="form.get('price')?.invalid && form.get('price')?.touched" class="text-danger">
+               Price is required.
+            </div>
+
+          </div>
+
+          <div class="col-md-12">
+            <label class="form-label" for="basic-default-message">Description</label>
+            <input rows="5" cols="5" style="min-height: 75px; font-size: small;" type="text" id="test_description"
+              class="form-control" autocomplete="false" formControlName="test_description" maxlength="1000"
+              minlength="10"   [class.is-invalid]="form.get('test_description')?.invalid && form.get('test_description')?.touched" />
+              <div *ngIf="form.get('test_description')?.invalid && form.get('test_description')?.touched" class="text-danger">
+              Description is required.
+              </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="test_category">Category</label>
+            <select id="test_category" class="form-select" formControlName="test_category"
+              (ngModelChange)="onStateChanged($event)"
+              [class.is-invalid]="form.get('test_category')?.invalid && form.get('test_category')?.touched">
+
+              <option *ngFor="let item of category_list;" value="{{item.id}}">{{item.name}}</option>
+            </select>
+            <div *ngIf="form.get('test_category')?.invalid && form.get('test_category')?.touched" class="text-danger">
+            Category is required.
+              </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="test_sub_category">Sub Category</label>
+            <select id="test_sub_category" class="form-select" formControlName="test_sub_category"
+            [class.is-invalid]="form.get('test_sub_category')?.invalid && form.get('test_sub_category')?.touched">
+
+              <option *ngFor="let item of subcategory_list;" value="{{item.id}}">{{item.name}}</option>
+            </select>
+            <div *ngIf="form.get('test_sub_category')?.invalid && form.get('test_sub_category')?.touched" class="text-danger">
+             Sub Category is required.
+                </div>
+          </div>
+          <div class="col-md-6 mb-3">
+            <div style="display: flex;">
+              <label class="form-check-label" style="margin-right: 10px;">Sample Collection At Home Available</label>
+              <input type="checkbox" class="input-group-text" id="sample_collection_in_home"
+                formControlName="sample_collection_in_home">
+            </div>
+          </div>
+
+
+          <div class="col-md-6 mb-3">
+            <div style="display: flex;">
+              <label class="form-check-label" style="margin-right: 10px;" for="exampleCheck2">Is Fasting
+                Required</label>
+              <input type="checkbox" class="input-group-text" id="fasting" formControlName="fasting">
+            </div>
+          </div>
+
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="report_duration">Reports Delivery Duration</label>
+            <input type="text" id="report_duration" class="form-control" placeholder="Ex: 2 Hours" autocomplete="false"
+              formControlName="report_duration"
+              [class.is-invalid]="form.get('report_duration')?.invalid && form.get('report_duration')?.touched" />
+              <div *ngIf="form.get('report_duration')?.invalid && form.get('report_duration')?.touched" class="text-danger">
+             Report Duration is required.
+              </div>
+          </div>
+
+
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+        <button type="submit" class="btn btn-primary">{{buttonTitle}}</button>
+      </div>
+    </form>
+  </div>
+</div>

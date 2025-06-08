@@ -1,0 +1,47 @@
+<div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog">
+    <div>
+      <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTopTitle">{{modalHeaderTitle}}</h5>
+          <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="basic-default-phone">Sample Collection Done</label> &nbsp;
+              <label>
+                <input type="radio" formControlName="status" value="3" /> Yes
+              </label> &nbsp;
+              <label>
+                <input type="radio" formControlName="status" value="6" /> No
+              </label>
+          </div>
+          <div class="col-12">
+            <label for="comments">Comments</label>
+    <textarea
+      id="comments"
+      class="form-control"
+      formControlName="Comments"
+      [ngClass]="{ 'is-invalid': submitted && f['Comments'].errors }"
+    ></textarea>
+    <div *ngIf="submitted && f['Comments'].errors" class="invalid-feedback">
+      <div *ngIf="f['Comments'].errors['required']">Comment is required when Choose "No".</div>
+    </div>
+          </div>
+
+       </div>
+ 
+       
+        <div class="modal-footer">
+         
+            <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+            <button type="Update" class="btn btn-primary">{{buttonTitle}}</button>
+         
+        </div>
+        </div>
+      </form>
+    </div>
+</div>
+   

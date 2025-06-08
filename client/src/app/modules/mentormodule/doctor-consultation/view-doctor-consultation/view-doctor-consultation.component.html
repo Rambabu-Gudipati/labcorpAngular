@@ -1,0 +1,181 @@
+<div class="card">
+   <div class="card-body">
+        <h4>Order Details:</h4>
+    <div class="row">
+     
+        
+       <div  class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Order Number : &nbsp;</span> 
+        <span style="font-weight: bold; color: #272626;">{{items?.userOrderDetails?.order_id }}</span>
+       
+     </div>
+       <div  class="col-md-3 mb-2 mb-2" >
+        <span style="color: rgb(66, 65, 65);">Order Date  : &nbsp;</span> 
+        <span style="font-weight: bold; color: #272626;">{{items?.userOrderDetails?.order_date|date:'dd-MM-yyyy hh:mm:ss' }} </span>
+           
+       </div>
+      
+       <div  class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);"> Order By  : &nbsp;</span> 
+        <span style="font-weight: bold; color: #272626;">{{items?.userOrderDetails?.username }}</span>
+        
+     </div>
+     <div  class="col-md-3 mb-2 mb-2">
+      <span style="color: rgb(66, 65, 65);"> Ordered Mobile no : &nbsp;</span> 
+      <span style="font-weight: bold; color: #272626;">{{items?.userOrderDetails?.mobile_no }}</span>
+      
+     </div>
+       <div  class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Amount : &nbsp;</span> 
+        <span style="font-weight: bold; color: #272626;">{{items?.userOrderDetails?.amount }}</span>
+           
+       </div>
+       <div  class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Order Status : &nbsp;</span> 
+        <span style="font-weight: bold; color: #272626;">{{items?.userOrderDetails?.order_status }}</span>
+       
+      </div>
+     
+     
+      
+   </div>
+</div>
+</div>
+<div class="card">
+   <div class="card-body">
+    <h4>Patient Details:</h4>
+    <div class="row">
+       
+       <div  class="col-3">
+        <span style="color: rgb(66, 65, 65);">Patient Name : &nbsp;</span> 
+        <span style="font-weight: bold; color: #272626;">{{items?.bookingFor?.username}}</span>
+       </div>
+       <div  class="col-3">
+        <span style="color: rgb(66, 65, 65);">Age : &nbsp;</span> 
+        <span style="font-weight: bold; color: #272626;">{{items?.bookingFor?.age }}</span>
+       
+    </div>
+   
+    <div  class="col-3">
+      <span style="color: rgb(66, 65, 65);">Gender : &nbsp;</span> 
+      <span style="font-weight: bold; color: #272626;"> {{items?.bookingFor?.gender }}</span>
+    
+  </div>
+ 
+  <div  class="col-3">
+    <span style="color: rgb(66, 65, 65);">Mobile No : &nbsp;</span> 
+    <span style="font-weight: bold; color: #272626;">{{items?.bookingFor?.mobile_no }}</span>
+    
+  </div>
+  <div  class="col-3">
+    <span style="color: rgb(66, 65, 65);">Appointment Date : &nbsp;</span> 
+    <span style="font-weight: bold; color: #272626;"> {{items?.data?.appointment_date }}</span>
+  
+</div>
+
+<div  class="col-3">
+  <span style="color: rgb(66, 65, 65);">Appointment Slot : &nbsp;</span> 
+  <span style="font-weight: bold; color: #272626;">{{items?.data?.appointment_time_slot_name }}</span>
+  
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+   <div class="card-body">
+ <h4>Doctor Details</h4>
+    <div class="row">
+        <div  class="col-3">
+          <span style="color: rgb(66, 65, 65);"> Doctor Name  : &nbsp;</span> 
+          <span style="font-weight: bold; color: #272626;">{{items?.data?.doctor_name }}</span>
+           
+        </div>
+        <div  class="col-3">
+          <span style="color: rgb(66, 65, 65);">Doctor Mobile No  : &nbsp;</span> 
+          <span style="font-weight: bold; color: #272626;">{{items?.data?.doctor_mobile_no }}</span>
+        
+     </div>
+     <div  class="col-3">
+      <span style="color: rgb(66, 65, 65);">Consultation Type : &nbsp;</span> 
+      <span style="font-weight: bold; color: #272626;">{{items?.data?.consultation_type_name }}</span>
+       
+    </div>
+    <div  class="col-3">
+      <span style="color: rgb(66, 65, 65);">Status : &nbsp;</span> 
+      <span style="font-weight: bold; color: #272626;">{{items?.data?.status_name }}</span>
+     
+  </div>
+  <!-- <div  class="col-3">
+       <h5 class="card-title"> Gender : {{items?.bookingFor?.gender }}
+       </h5>
+   </div>
+  
+   <div  class="col-3">
+    <span style="color: rgb(66, 65, 65);">Consulatation Type : &nbsp;</span> 
+        <span style="font-weight: bold; color: #272626;">{{items?.data?.consultation_type_name }}</span>
+   
+    </div>
+
+     <div  class="col-3">
+        <span style="color: rgb(66, 65, 65);">Status : &nbsp;</span> 
+        <span style="font-weight: bold; color: #272626;">{{items?.data?.status_name }}</span>
+   
+      </div>
+      <div  class="col-5">
+       <span style="color: rgb(66, 65, 65);"> Address : &nbsp;</span> 
+        <span style="font-weight: bold; color: #272626;"> {{items?.bookingFor?.address }}</span>
+  
+     </div> -->
+      
+</div>
+</div>
+</div>
+
+   
+
+   
+   <div class="card-body">
+     
+         
+          
+           <div class="col-sm-12 col-md-12">
+            <div *ngIf="items?.userOrderDetails?.order_status_id == 5" class="col-12 text-center" >
+              <h4 style="color:red">Payment Not Completed!</h4>
+            </div>
+            <!-- <div *ngIf="items?.userOrderDetails?.order_status_id == 4" class="col-12 text-center" >
+              <h4 style="color:red">Cancelled The Test</h4>
+           </div> -->
+             <div 
+               class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-md-end justify-content-center flex-wrap me-1">
+               <div class="dt-buttons btn-group flex-wrap">
+                <button class="btn add-new btn-primary mb-3 mb-md-0 mr-3" tabindex="0" style="
+                   background-color: #df9535;
+                   border-color: #f3a641;"
+                   aria-controls="DataTables_Table_0" type="button" [disabled]="isButtonsDisabled" [disabled]="!isNotifyEnabled(items?.data?.appointment_date, items?.data?.status)" (click)="Notify()" ><span>Notify
+                     </span></button>
+                <button class="btn add-new btn-primary mb-3 mb-md-0 mr-3" tabindex="0" style="
+               background-color: #4a954a;
+               border-color: #519e51;"
+               aria-controls="DataTables_Table_0" type="button" [disabled]="isButtonsDisabled || items?.data?.status_name !='Pending'"(click)="bookAppointment()"><span>Book Appointment
+                 </span></button>
+                 <button class="btn add-new btn-primary mb-3 mb-md-0 mr-3" tabindex="0"
+                 aria-controls="DataTables_Table_0" type="button" [disabled]="isButtonsDisabled || items?.data?.status_name =='Pending'"  (click)="addRescheduled()"><span>Rescheduled
+                   </span></button>
+                   <button class="btn add-new btn-primary mb-3 mb-md-0 mr-3" tabindex="0" style="
+                   background-color: #e74640;
+                   border-color: #f54242;"
+                   aria-controls="DataTables_Table_0" type="button" [disabled]="isButtonsDisabled"  (click)="cancelOrder()"><span>Cancel
+                     </span></button>
+                     
+                </div>
+             
+              
+            
+         </div>
+         </div>
+         </div>
+          
+      
+   
+    
+

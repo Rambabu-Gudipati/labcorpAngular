@@ -1,0 +1,89 @@
+<div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog">
+  <div>
+    <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTopTitle">{{modalHeaderTitle}}</h5>
+        <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="manufacturer_id">Manufacturer Name</label>
+
+            <select id="manufacturer_id" class="form-control" formControlName="manufacturer_id"
+              (ngModelChange)="onStateChanged($event)"
+              [class.is-invalid]="form.get('manufacturer_id')?.invalid && form.get('manufacturer_id')?.touched">
+
+              <option *ngFor="let item of manufacturers_list;" value="{{item.id}}">{{item.name}}</option>
+            </select>
+            <div *ngIf="form.get('manufacturer_id')?.invalid && form.get('manufacturer_id')?.touched" class="text-danger">
+           Manufacturer Id is required.
+             </div>
+
+          </div>
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="brand_id">Brand Name</label>
+
+            <select id="brand_id" class="form-control" formControlName="brand_id"
+              (ngModelChange)="onStateChanged($event)"  [class.is-invalid]="form.get('brand_id')?.invalid && form.get('brand_id')?.touched">
+
+              <option *ngFor="let item of brands_list;" value="{{item.id}}">{{item.name}}</option>
+            </select>
+            <div *ngIf="form.get('brand_id')?.invalid && form.get('brand_id')?.touched" class="text-danger">
+              Brand Id is required.
+            </div>
+          </div>
+
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="aid_device_id">Aid Device Id</label>
+            <input type="text" id="aid_device_id" class="form-control form-control-sm" autocomplete="false"
+              formControlName="aid_device_id" [maxlength]="150"
+              [class.is-invalid]="form.get('aid_device_id')?.invalid && form.get('aid_device_id')?.touched" />
+              <div *ngIf="form.get('aid_device_id')?.invalid && form.get('aid_device_id')?.touched" class="text-danger">
+                Aid Device Id is required.
+              </div>
+          </div>
+         
+
+        </div>
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="model_no">Model No</label>
+            <input type="text" id="model_no" class="form-control form-control-sm" autocomplete="false"
+              formControlName="model_no" maxlength="10" minlength="10"
+              [class.is-invalid]="form.get('model_no')?.invalid && form.get('model_no')?.touched" />
+              <div *ngIf="form.get('model_no')?.invalid && form.get('model_no')?.touched" class="text-danger">
+               Model No is required.
+              </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="serial_no">Serial No</label>
+            <input type="text" id="serial_no" class="form-control form-control-sm" autocomplete="false"
+              formControlName="serial_no"  [class.is-invalid]="form.get('serial_no')?.invalid && form.get('serial_no')?.touched" />
+              <div *ngIf="form.get('serial_no')?.invalid && form.get('serial_no')?.touched" class="text-danger">
+           Serial No is required.
+              </div>
+
+
+          </div>
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="warranty_expiry_date">Expiry Date</label>
+            <input type="date" id="warranty_expiry_date" class="form-control form-control-sm" autocomplete="false"
+              formControlName="warranty_expiry_date"
+              [class.is-invalid]="form.get('warranty_expiry_date')?.invalid && form.get('warranty_expiry_date')?.touched" />
+              <div *ngIf="form.get('warranty_expiry_date')?.invalid && form.get('warranty_expiry_date')?.touched" class="text-danger">
+            Expiry Date is required.
+              </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+        <button type="submit" class="btn btn-primary">{{buttonTitle}}</button>
+      </div>
+    </form>
+  </div>
+</div>

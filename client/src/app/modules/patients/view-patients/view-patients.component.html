@@ -1,0 +1,81 @@
+<div class="card">
+  <div class="card-body">
+    <h4>Patient Details:</h4>
+    <div class="row">
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Patient Name : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{patient_data?.username}}</span>
+
+      </div>
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Age : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{patient_data?.age}}</span>
+
+      </div>
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Gender: &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{patient_data?.gender}}</span>
+
+      </div>
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Mobile No : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{patient_data?.mobile_no}}</span>
+
+      </div>
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Address: &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{patient_data?.address}}</span>
+
+      </div>
+     
+    </div>
+  </div>
+</div>
+
+<div class="card" >
+  <div class="card-body">
+ <div class="row" class="col-12"style="padding: 20px; " >
+  <div class="profile-tabs">
+    <ul class="nav nav-tabs nav-tabs-bottom">
+      <li class="nav-item"><a class="nav-link active" href="#bottom-tab1" data-toggle="tab">Health Data</a></li>
+      <li class="nav-item"><a class="nav-link " href="#bottom-tab2" data-toggle="tab">Lab Orders</a></li>
+      <li class="nav-item"><a class="nav-link" href="#bottom-tab3" data-toggle="tab">Wellness Packages</a></li>
+      <li class="nav-item"><a class="nav-link" href="#bottom-tab4" data-toggle="tab">Doctor Consultation</a></li>
+      <li class="nav-item"><a class="nav-link " href="#bottom-tab5" data-toggle="tab">Yearly Screening</a></li>
+      <li class="nav-item"><a class="nav-link" href="#bottom-tab6" data-toggle="tab">Health Reports</a></li>
+      <li class="nav-item"><a class="nav-link" href="#bottom-tab7" data-toggle="tab">Prescription</a></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane show active" id="bottom-tab1">
+        <app-health-data></app-health-data>
+       </div>
+      <div class="tab-pane " id="bottom-tab2">
+         <app-lab-orders></app-lab-orders>
+
+      </div>
+     
+      <div class="tab-pane" id="bottom-tab3">
+        Tab content 2
+      </div>
+      <div class="tab-pane " id="bottom-tab4">
+     <app-doctor-cosult></app-doctor-cosult>
+
+      </div>
+      <div class="tab-pane" id="bottom-tab5">
+        Tab content 4
+      </div>
+      <div class="tab-pane" id="bottom-tab6">
+        Tab content 5
+      </div>
+      <div class="tab-pane" id="bottom-tab7">
+        Tab content 3
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+

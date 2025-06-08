@@ -1,0 +1,457 @@
+/* You can add global styles to this file, and also import other style files */
+@import '../node_modules/ngx-toastr/toastr';
+
+.avatar>img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+
+.rounded-circle {
+    border-radius: 50% !important;
+}
+
+img {
+    vertical-align: middle;
+    border-style: none;
+}
+
+
+.call-wrapper {
+    position: relative;
+    height: calc(100vh - 145px);
+}
+
+.call-main-row {
+    bottom: 0;
+    left: 0;
+    //overflow: auto;
+    padding-bottom: inherit;
+    padding-top: inherit;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.call-view {
+    height: 100%;
+    float: none;
+    padding: 0;
+    position: static;
+    vertical-align: top;
+}
+
+.fixed-header {
+    background-color: #fff;
+    border-bottom: 1px solid #f0f0f0;
+    padding: 10px 15px;
+}
+
+.fixed-header .navbar {
+    border: 0 none;
+    margin: 0;
+    min-height: auto;
+    padding: 0;
+}
+
+.call-icons .call-items .call-item a {
+    color: #777;
+    border: 1px solid #ddd;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 20px;
+}
+
+.call-contents {
+    //display: table-row;
+    height: 100%;
+}
+
+.call-content-wrap {
+    height: 100%;
+    position: relative;
+    width: 100%;
+}
+
+.user-video {
+    bottom: 0;
+    left: 0;
+    overflow: auto;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 10;
+}
+
+.my-video {
+    position: absolute;
+    z-index: 99;
+    bottom: 20px;
+    right: 20px;
+}
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+}
+
+.call-footer {
+    background-color: #fff;
+    border-top: 1px solid #f0f0f0;
+    padding: 5px;
+}
+
+.call-icons {
+    text-align: center;
+    position: relative;
+}
+
+// .call-duration {
+//     display: inline-block;
+//     font-size: 30px;
+//     margin-top: 4px;
+//     position: absolute;
+//     left: 0;
+// }
+
+.call-icons .call-items {
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: inline-block;
+}
+
+.call-icons .call-items .call-item {
+    display: inline-block;
+    text-align: center;
+    margin-right: 5px;
+}
+
+.end-call {
+    position: absolute;
+    top: 7px;
+    right: 0;
+    background: #f62d51;
+    border: 1px solid #f62d51;
+    color: white;
+}
+
+.end-call a {
+    background-color: #f62d51;
+    border-radius: 50px;
+    color: #fff;
+    display: inline-block;
+    line-height: 10px;
+    padding: 8px 25px;
+    text-transform: uppercase;
+}
+
+.float-left {
+    float: left !important;
+}
+
+.user-img {
+    display: inline-block;
+    position: relative;
+    margin-right: 10px;
+}
+
+.voice-call-avatar {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    -ms-flex: 2;
+    flex: 2;
+}
+
+.form-control {
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0.469rem 0.75rem;
+    border-color: #eaeaea;
+    font-size: 14px;
+    min-height: 40px;
+}
+
+.form-control-sm {
+    height: calc(1.8125rem + 2px);
+    padding: .25rem .5rem;
+    font-size: .875rem;
+    line-height: 1.5;
+    border-radius: .2rem;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    height: calc(2.25rem + 2px);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+input,
+button {
+    outline: none;
+}
+
+input,
+button,
+a {
+    transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    -ms-transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+}
+
+.red {
+    border-color: red;
+}
+
+.was-validated .form-control:invalid,
+.form-control.is-invalid {
+    border-color: #ff3e1d;
+}
+
+.invalid-feedback {
+    display: none;
+    width: 100%;
+    margin-top: 0.3rem;
+    font-size: 85%;
+    color: #ff3e1d;
+}
+
+.form-select:focus {
+    border-color: rgba(249, 249, 255, 0.54);
+    outline: 0;
+    box-shadow: 0 0 0.25rem 0.05rem rgba(105, 108, 255, 0.1);
+}
+
+.form-select {
+    background-clip: padding-box;
+}
+
+.form-select {
+    display: block;
+    width: 100%;
+    padding: 0.4375rem 1.875rem 0.4375rem 0.875rem;
+    -moz-padding-start: calc(0.875rem - 3px);
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 1.53;
+    color: #697a8d;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='rgba%2867, 89, 113, 0.6%29' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 0.875rem center;
+    background-size: 17px 12px;
+    border: 1px solid #d9dee3;
+    border-radius: 0.375rem;
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    appearance: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .form-select {
+        transition: none;
+    }
+}
+
+.form-select[multiple],
+.form-select[size]:not([size="1"]) {
+    padding-right: 0.875rem;
+    background-image: none;
+}
+
+.form-select:disabled {
+    color: #697a8d;
+    background-color: #eceef1;
+}
+
+.form-select:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #697a8d;
+}
+
+.form-select-sm {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.625rem;
+    font-size: 0.75rem;
+    border-radius: 0.25rem;
+}
+
+.form-select-lg {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 1.25rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+}
+
+.form-check {
+    display: inline-flex;
+    min-height: 1.434375rem;
+    padding-left: 1.7em;
+    margin-bottom: 0.125rem;
+}
+
+.form-check .form-check-input {
+    float: left;
+    margin-left: -1.7em;
+}
+
+.form-check-input {
+    width: 1.2em;
+    height: 1.2em;
+    margin-top: 0.165em;
+    vertical-align: top;
+    background-color: #fff;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    border: 1px solid #d9dee3;
+    appearance: none;
+    color-adjust: exact;
+}
+
+.form-check-input[type=checkbox] {
+    border-radius: 0.25em;
+}
+
+.form-check-input[type=radio] {
+    border-radius: 50%;
+}
+
+.form-check-input:active {
+    filter: brightness(90%);
+}
+
+.form-check-input:focus {
+    border-color: rgba(249, 249, 255, 0.54);
+    outline: 0;
+    box-shadow: 0 0 0.25rem 0.05rem rgba(105, 108, 255, 0.1);
+}
+
+.form-check-input:checked {
+    background-color: rgba(105, 108, 255, 0.08);
+    border-color: rgba(105, 108, 255, 0.08);
+}
+
+.form-check-input:checked[type=checkbox] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 10l3 3l6-6'/%3e%3c/svg%3e");
+}
+
+.form-check-input:checked[type=radio] {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='1.5' fill='%23fff'/%3e%3c/svg%3e");
+}
+
+.form-check-input[type=checkbox]:indeterminate {
+    background-color: rgba(105, 108, 255, 0.08);
+    border-color: rgba(105, 108, 255, 0.08);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3e%3cpath fill='none' stroke='%23fff' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M6 10h8'/%3e%3c/svg%3e");
+}
+
+.form-check-input:disabled {
+    pointer-events: none;
+    filter: none;
+    opacity: 0.5;
+}
+
+.form-check-input[disabled]~.form-check-label,
+.form-check-input:disabled~.form-check-label {
+    opacity: 0.5;
+}
+
+.form-switch {
+    padding-left: 2.5em;
+}
+
+.form-switch .form-check-input {
+    width: 2em;
+    margin-left: -2.5em;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'%3e%3ccircle r='3' fill='rgba%2867, 89, 113, 0.3%29'/%3e%3c/svg%3e");
+    background-position: left center;
+    border-radius: 2em;
+    transition: background-position 0.15s ease-in-out;
+}
+
+.btn-close {
+    background-color: #ff4c4c;
+    /* Red background */
+    border: none;
+    /* No border */
+    border-radius: 50%;
+    /* Circular button */
+    width: 40px;
+    /* Button width */
+    height: 40px;
+    /* Button height */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="white" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>');
+    background-size: 60%;
+    /* Size of the SVG */
+    background-position: center;
+    /* Center the SVG */
+    background-repeat: no-repeat;
+    /* Prevent repeating */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    transition: background-color 0.3s;
+    /* Smooth background color transition */
+    display: flex;
+    /* Use flexbox for centering */
+    align-items: center;
+    /* Center vertically */
+    justify-content: center;
+
+    background-repeat: no-repeat;
+}
+
+.btn-close:hover {
+    background-color: #ff1c1c;
+    /* Darker red on hover */
+}
+
+.btn-close:focus {
+    outline: none;
+    /* Remove default focus outline */
+    box-shadow: 0 0 0 3px rgba(255, 76, 76, 0.5);
+    /* Custom focus outline */
+}
+
+.custom-notification {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.v-call-footer {
+    background-color: #212032;
+    border-top: 1px solid grey;
+    padding: 5px;
+}

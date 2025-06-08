@@ -1,0 +1,173 @@
+<div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog">
+    <div>
+      <form [formGroup]="form" class="modal-content" (ngSubmit)="onUpdate()">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTopTitle">{{modalHeaderTitle}}</h5>
+          <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label" for="username">Doctor Name</label>
+              <input type="text" id="username" class="form-control form-control-sm" autocomplete="false" 
+                formControlName="username"   [class.is-invalid]="form.get('username')?.invalid && form.get('username')?.touched" [readOnly]="true"/>
+                <div *ngIf="form.get('username')?.invalid && form.get('username')?.touched" class="text-danger">
+                  Username is required.
+                </div>
+  
+            </div>
+           
+            <div class="col-md-4 mb-3">
+              <label class="form-label" for="specialization_id">Specilization</label>
+              <select id="specialization_id" class="form-control" formControlName="specialization_id"
+              [class.is-invalid]="form.get('specialization_id')?.invalid && form.get('specialization_id')?.touched" >
+  
+                <option *ngFor="let item of specialization_types;" value="{{item.id}}">{{item.name}}</option>
+              </select>
+              <div *ngIf="form.get('specialization_id')?.invalid && form.get('specialization_id')?.touched" class="text-danger">
+             Specialization is required.
+              </div>
+  
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label" for="years_of_experience">Years Of Experience</label>
+                <input type="text" id="years_of_experience" class="form-control form-control-sm" autocomplete="false"
+                  formControlName="years_of_experience"[class.is-invalid]="form.get('years_of_experience')?.invalid && form.get('years_of_experience')?.touched" />
+                  <div *ngIf="form.get('years_of_experience')?.invalid && form.get('years_of_experience')?.touched" class="text-danger">
+                   Experience is required.
+                  </div>
+    
+            </div>
+        </div>
+            <div class="row">
+            <div class="col-md-4 mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input type="text" id="email" class="form-control form-control-sm" autocomplete="false"
+                  formControlName="email" [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched" [readOnly]="true" />
+                  <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-danger">
+                    Email is required.
+                  </div>
+    
+              </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label" for="dob"> Date of Birth</label>
+               <input type="date" id="dob" class="form-control form-control-sm" autocomplete="false"
+                  formControlName="dob" [max]="maxDate" dateFormat="dd-MM-yyyy"
+                  [class.is-invalid]="form.get('dob')?.invalid && form.get('dob')?.touched" />
+                  <div *ngIf="form.get('dob')?.invalid && form.get('dob')?.touched" class="text-danger">
+                    Date of Birth is required.
+                  </div>
+            </div>
+        
+            <div class="col-md-4 mb-3">
+                <label class="form-label" for="mobile_no">Mobile Number</label>
+                <input type="text" id="mobile_no" class="form-control form-control-sm" autocomplete="false"
+                  formControlName="mobile_no" maxlength="10" minlength="10"
+                  [class.is-invalid]="form.get('mobile_no')?.invalid && form.get('mobile_no')?.touched" [readOnly]="true"/>
+                  <div *ngIf="form.get('mobile_no')?.invalid && form.get('mobile_no')?.touched" class="text-danger">
+                   Mobile No is required.
+                  </div>
+            </div>
+        </div>
+          <div class="row">
+            
+            <div class="col-md-4 mb-3">
+                <label class="form-label" for="gender">Gender</label>
+                <select id="gender" class="form-control" formControlName="gender" (change)="onGenderChange($event)"
+                [(ngModel)]="selectedGender" [class.is-invalid]="form.get('gender')?.invalid && form.get('gender')?.touched">
+  
+                <option *ngFor="let option of genderOptions" [value]="option.value">
+                    {{ option.label }}
+                  </option>
+              </select>
+              <div *ngIf="form.get('gender')?.invalid && form.get('gender')?.touched" class="text-danger">
+               Gender is required.
+               </div>
+    
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label" for="registration_no">Registration No</label>
+                <input type="text" id="registration_no" class="form-control form-control-sm" autocomplete="false"
+                  formControlName="registration_no" [class.is-invalid]="form.get('registration_no')?.invalid && form.get('registration_no')?.touched" />
+                  <div *ngIf="form.get('registration_no')?.invalid && form.get('registration_no')?.touched" class="text-danger">
+                    Registration No is required.
+                  </div>
+    
+            </div>
+              
+           
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="qualification">Qualification</label>
+            <input type="text" id="qualification" class="form-control form-control-sm" autocomplete="false"
+              formControlName="qualification" [class.is-invalid]="form.get('qualification')?.invalid && form.get('qualification')?.touched" />
+              <div *ngIf="form.get('qualification')?.invalid && form.get('qualification')?.touched" class="text-danger">
+                Qualification is required.
+              </div>
+
+          </div>
+        </div>
+      
+       <!-- <div class="row">
+        <div class="col-12">
+            <label class="form-label" for="profile_pic">Profile Pic</label>
+            <input type="text" id="profile_pic" class="form-control form-control-sm" autocomplete="false"
+              formControlName="profile_pic" [ngClass]="{ 'is-invalid': submitted && f['profile_pic'].errors }" />
+            @if (submitted && f['profile_pic'].errors) {
+            <div class="invalid-feedback">
+              @if (f['profile_pic'].errors['required']) {
+              <div>Pic is required</div>
+              }
+            </div>
+            }
+
+        </div>
+       </div> -->
+         
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label" for="state">State</label>
+              <select id="state" class="form-control" formControlName="state" (ngModelChange)="onStateChanged($event)"
+              [class.is-invalid]="form.get('state')?.invalid && form.get('state')?.touched">
+  
+                <option *ngFor="let item of states_list;" value="{{item.id}}">{{item.name}}</option>
+              </select>
+              <div *ngIf="form.get('state')?.invalid && form.get('state')?.touched" class="text-danger">
+              State is required.
+                </div>
+            </div>
+  
+            <div class="col-md-4 mb-3">
+              <label class="form-label" for="city">City</label>
+              <select id="city" class="form-control" formControlName="city"
+              [class.is-invalid]="form.get('city')?.invalid && form.get('city')?.touched">
+  
+                <option *ngFor="let item of city_list;" value="{{item.id}}">{{item.name}}</option>
+              </select>
+              <div *ngIf="form.get('city')?.invalid && form.get('city')?.touched" class="text-danger">
+              City is required.
+              </div>
+            </div>
+  
+            <div class="col-md-4 mb-3">
+              <label class="form-label" for="pincode">Pincode</label>
+              <input type="text" id="pincode" class="form-control form-control-sm" autocomplete="false"
+                formControlName="pincode" maxlength="6" minlength="6"
+                [class.is-invalid]="form.get('pincode')?.invalid && form.get('pincode')?.touched" />
+                <div *ngIf="form.get('pincode')?.invalid && form.get('pincode')?.touched" class="text-danger">
+                  Pincode is required.
+                </div>
+            </div>
+          </div>
+       </div>
+ 
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+          <button type="Update" class="btn btn-primary">{{buttonTitle}}</button>
+        </div>
+        
+      </form>
+    </div>
+</div>
+   

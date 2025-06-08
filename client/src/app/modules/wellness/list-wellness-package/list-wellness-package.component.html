@@ -1,0 +1,190 @@
+
+<div class="card">
+    
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class="card-header">Wellness Package List</h4>
+      </div>
+      
+     
+    </div>
+      <div class="table-responsive text-nowrap">
+        <p-table class="table table-bordered" #dt1 [value]="items" dataKey="id" [rowHover]="true"
+        [showCurrentPageReport]="true" [loading]="loading" [paginator]="true" [rows]="limit" [totalRecords]="totalPages" [lazy]="true" (onLazyLoad)="onPageChange($event)"
+     [loading]="loading" [paginator]="true"
+       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+        [globalFilterFields]="['username', 'mobile_no',  'title','amount','State']">
+        <ng-template pTemplate="caption">
+            <div class="flex justify-content-between">
+                <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" (onClick)="clear()" />
+                <p-iconField iconPosition="left" style="float: right;">
+                  <p-inputIcon>
+                    <i class="pi pi-search"></i>
+                  </p-inputIcon>
+                  <input pInputText type="text" [(ngModel)]="searchValue" (input)="filterGlobal($event)"
+                    placeholder="Keyboard Search" />
+                </p-iconField>
+              </div>
+            </ng-template>
+        <ng-template pTemplate="header">
+          <!-- <tr>
+            
+            <th pSortableColumn="username">
+               Name<p-sortIcon field="username" />
+            </th>
+           
+           
+            <th pSortableColumn="mobile_no">
+             Mobile Number <p-sortIcon field="mobile_no" />
+            </th>
+            <th pSortableColumn="title">
+            Package Name <p-sortIcon field="title" />
+            </th>
+            <th pSortableColumn="amount">
+                Amount <p-sortIcon field="amount" />
+              </th>
+            <th pSortableColumn="status">
+             Order Status <p-sortIcon field="status" />
+            </th>
+            <th pSortableColumn="payment_status">
+               Payment Status <p-sortIcon field="payment_status" />
+               </th>
+               <th>Action</th>
+          </tr> -->
+          <tr>
+            <th (click)="onSort('username')">
+             User Name <i [ngClass]="getSortIcon('username')"></i>
+            </th>
+            <th (click)="onSort('mobile_no')">
+              Mobile No <i [ngClass]="getSortIcon('mobile_no')"></i>
+            </th>
+            <th (click)="onSort('title')">
+              Package Name <i [ngClass]="getSortIcon('title')"></i>
+             </th>
+             <th (click)="onSort('amount')">
+              Amount <i [ngClass]="getSortIcon('amount')"></i>
+             </th>
+            <th (click)="onSort('status_name')">
+              Order Status<i [ngClass]="getSortIcon('status_name')"></i>
+            </th>
+            <th (click)="onSort('payment_status')">
+              Payment Status<i [ngClass]="getSortIcon('payment_status')"></i>
+            </th>
+           
+            <th>Action</th>
+          </tr>
+          <!-- <tr>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="username"
+                placeholder="Search by Name"
+                ariaLabel="Filter Name"
+              />
+            </th>
+            
+            
+            <th>
+              <p-columnFilter
+                type="text"
+                field="mobile_no"
+                placeholder="Search by Number"
+                ariaLabel="Filter Country"
+              />
+            </th>
+            <th>
+                <p-columnFilter
+                  type="text"
+                  field="title"
+                  placeholder="Search by Gender"
+                  ariaLabel="Filter Country"
+                />
+              </th>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="amount"
+                placeholder="Search by Amount"
+                ariaLabel="Filter Country"
+              />
+            </th>
+            <th>
+                <p-columnFilter field="order_status" matchMode="equals" [showMenu]="false">
+                  <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                    <p-dropdown [ngModel]="value" [options]="orderstatus" (onChange)="filter($event.value)" placeholder="Select One" [showClear]="true">
+                      <ng-template let-option pTemplate="item">
+                        <p-tag [value]="option.value" />
+                      </ng-template>
+                    </p-dropdown>
+                  </ng-template>
+                </p-columnFilter>
+              </th>
+              <th>
+                <p-columnFilter field="payment_status" matchMode="equals" [showMenu]="false">
+                  <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                    <p-dropdown [ngModel]="value" [options]="paymentstatus" (onChange)="filter($event.value)" placeholder="Select One" [showClear]="true">
+                      <ng-template let-option pTemplate="item">
+                        <p-tag [value]="option.value" [severity]="getPaymentstatus(option.label)" />
+                      </ng-template>
+                    </p-dropdown>
+                  </ng-template>
+                </p-columnFilter>
+              </th>
+            
+           </tr> -->
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+          <tr [pSelectableRow]="row">
+            <td >
+              <span class="p-column-title">Name</span>
+              {{ row.username }}
+            </td>
+            <td>
+              <span class="p-column-title">Mobile No</span>
+              <span class="ml-1 vertical-align-middle">{{ row.mobile_no}}</span>
+            </td>
+            <td>
+              <span class="p-column-title">Title</span>
+              <span class="ml-1 vertical-align-middle">{{ row.package_details.title}}</span>
+            </td>
+            <td>
+                <span class="p-column-title">Amount</span>
+                <span class="ml-1 vertical-align-middle">{{ row.amount}}</span>
+              </td>
+            
+            <td>
+              <span class="p-column-title">Status</span>
+              <span class="ml-1 vertical-align-middle">{{ row.status_name}}</span>
+            </td>
+             <td>
+                <span class="p-column-title">Status</span>
+                <p-tag [value]="row.payment_status" [severity]="getPaymentstatus(row.payment_status)" />
+              </td>
+            <td>
+              <div style="display: flex;">
+                <!-- <a href="javascript:void(0);" (click)="onEditClick(row)" class="dropdown-item-no-text"><i class="fa fa-edit"></i></a>&nbsp; -->
+                <!-- <a href="javascript:void(0);"  (click)="removeData(row)"class="dropdown-item-no-text"><i class="fa fa-trash"></i></a> -->
+                <a href="javascript:void(0);" class="custom-badge status-green" (click)="viewPackagedetails(row.id)">View</a>
+              </div>
+            </td>
+           
+          </tr>
+            <!-- <tr *ngIf="loading">
+              <td colspan="5" class="text-center py-5">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+              </td>
+            </tr> -->
+         
+          </ng-template>
+     
+          <ng-template pTemplate="emptymessage">
+            <tr>
+              <td colspan="4">No customers found.</td>
+            </tr>
+          </ng-template>
+        </p-table>
+         
+          
+        </div>
+      </div>
+    

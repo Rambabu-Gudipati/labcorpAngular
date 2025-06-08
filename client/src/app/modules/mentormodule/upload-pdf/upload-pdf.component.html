@@ -1,0 +1,24 @@
+
+
+<div >
+  <div class="card-body" >
+    <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+  <div class="modal-header" style="display: flex; float: right;">
+    <h5 class="modal-title" >Upload Report in PDF Format</h5>
+    <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+      aria-label="Close"></button>
+  </div>
+<div>
+       
+      <input type="file" (change)="onFileChange($event)" accept=".pdf" />
+       </div>
+        <div class="card-footer" style="align-content: baseline;">
+          <div style="display: flex; float: right;">
+            <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button> &nbsp;
+          <button type="submit" class="btn btn-primary">{{buttonTitle}}</button>
+        </div>
+      </div>
+   
+  </form>
+</div>
+  

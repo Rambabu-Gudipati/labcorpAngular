@@ -1,0 +1,205 @@
+<div class="header">
+  <div class="header-left">
+    <a href="index.html" class="logo">
+      <img src="https://res.cloudinary.com/dwmbbz3pv/image/upload/v1749394651/labcorplogo_vvvm7t.jpg" width="35" height="35" alt=""> <span>Labcorp</span>
+    </a>
+  </div>
+  <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+  <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+  <ul class="nav user-menu float-right">
+    <li class="nav-item dropdown d-none d-sm-block">
+      <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge badge-pill bg-danger float-right">3</span></a>
+      <div class="dropdown-menu notifications">
+        <div class="topnav-dropdown-header">
+          <span>Notifications</span>
+        </div>
+        <div class="drop-scroll">
+          <ul class="notification-list">
+            <li class="notification-message">
+              <a href="activities.html">
+                <div class="media">
+                  <span class="avatar">
+                    <img alt="John Doe" src="assets/img/user.jpg" class="img-fluid">
+                  </span>
+                  <div class="media-body">
+                    <p class="noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
+                    <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="activities.html">
+                <div class="media">
+                  <span class="avatar">V</span>
+                  <div class="media-body">
+                    <p class="noti-details"><span class="noti-title">Tarah Shropshire</span> changed the task name <span class="noti-title">Appointment booking with payment gateway</span></p>
+                    <p class="noti-time"><span class="notification-time">6 mins ago</span></p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="activities.html">
+                <div class="media">
+                  <span class="avatar">L</span>
+                  <div class="media-body">
+                    <p class="noti-details"><span class="noti-title">Misty Tison</span> added <span class="noti-title">Domenic Houston</span> and <span class="noti-title">Claire Mapes</span> to
+                      project <span class="noti-title">Doctor available module</span></p>
+                    <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="activities.html">
+                <div class="media">
+                  <span class="avatar">G</span>
+                  <div class="media-body">
+                    <p class="noti-details"><span class="noti-title">Rolland Webber</span> completed task <span class="noti-title">Patient and Doctor video conferencing</span></p>
+                    <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
+                  </div>
+                </div>
+              </a>
+            </li>
+            <li class="notification-message">
+              <a href="activities.html">
+                <div class="media">
+                  <span class="avatar">V</span>
+                  <div class="media-body">
+                    <p class="noti-details"><span class="noti-title">Bernardo Galaviz</span> added new task <span class="noti-title">Private chat module</span></p>
+                    <p class="noti-time"><span class="notification-time">2 days ago</span></p>
+                  </div>
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="topnav-dropdown-footer">
+          <a href="activities.html">View all Notifications</a>
+        </div>
+      </div>
+    </li>
+    <!-- <li class="nav-item dropdown d-none d-sm-block">
+      <a href="javascript:void(0);" id="open_msg_box" class="hasnotifications nav-link"><i class="fa fa-comment-o"></i>
+        <span class="badge badge-pill bg-danger float-right">8</span></a>
+    </li> -->
+    <li class="nav-item dropdown has-arrow">
+      <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+        <span class="user-img">
+          <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
+          <span class="status online"></span>
+        </span>
+        <span>{{this.userProfile.doctor_name}}</span>
+      </a>
+      <div class="dropdown-menu">
+        <!-- <a class="dropdown-item" href="profile.html">My Profile</a>
+        <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+        <a class="dropdown-item" href="settings.html">Settings</a> -->
+        <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Logout</a>
+      </div>
+    </li>
+  </ul>
+  <div class="dropdown mobile-user-menu float-right">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+    <div class="dropdown-menu dropdown-menu-right">
+      <!-- <a class="dropdown-item" href="profile.html">My Profile</a>
+      <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+      <a class="dropdown-item" href="settings.html">Settings</a> -->
+      <a class="dropdown-item" href="javascript:void(0)" (click)="logout()">Logout</a>
+    </div>
+  </div>
+</div>
+
+<!--  
+<nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
+  id="layout-navbar">
+  <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
+    <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
+      <i class="bx bx-menu bx-sm"></i>
+    </a>
+  </div>
+
+  <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
+   
+    <div class="navbar-nav align-items-center">
+      <div class="nav-item d-flex align-items-center">
+        <span class="app-brand-logo demo">
+          <svg width="95" height="84" viewBox="0 0 95 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M69.1597 0.290039C64.0407 0.290039 59.3656 1.90934 55.239 5.0957C51.2691 8.15148 48.6573 12.0691 47.0903 14.8899C45.5493 12.043 42.9114 8.15148 38.9415 5.0957C34.8149 1.90934 30.1399 0.290039 25.0208 0.290039C10.7605 0.290039 0 11.9647 0 27.4264C0 40.7986 8.59273 50.8017 22.4351 63.1293C22.618 51.5853 21.8083 36.1236 21.8083 36.1236C21.521 33.6424 21.2598 31.1873 20.9987 28.7061C20.8419 27.1129 20.8158 25.4414 21.1292 23.8743C21.3121 23.0647 22.3307 21.9939 23.1142 21.8894C23.8716 21.7588 25.0208 22.5162 25.5954 23.2214C26.3267 24.1094 26.7184 25.3108 27.1624 26.4339C29.4086 32.1537 32.5427 37.2989 36.7215 41.8172C42.1279 47.6415 48.6312 48.7645 55.7875 45.1603C61.5334 42.2612 66.339 38.213 70.7529 33.5901C71.9282 32.3626 73.1558 30.3515 75.1668 31.6313C77.3346 33.0156 75.7414 34.9483 74.984 36.3847C69.8649 45.9177 63.5967 54.6149 56.0748 62.3458C49.2319 69.6587 42.9375 73.9943 37.6618 76.2665C40.0385 78.3037 42.5719 80.4715 45.1314 82.7176C45.6799 83.1877 46.359 83.4489 47.0641 83.4489C47.7693 83.4489 48.4745 83.1877 48.9969 82.7176C53.0712 79.1656 56.9628 75.8225 60.4103 72.8973C80.7038 55.5813 94.1283 44.1678 94.1283 27.4525C94.1283 11.9908 83.3678 0.316152 69.1075 0.316152L69.1597 0.290039ZM48.3439 40.0935C43.042 40.0151 38.7587 35.7318 38.7065 30.4299C38.6542 24.8929 43.042 20.5835 48.6573 20.6357C54.1943 20.688 58.1903 24.8146 58.1642 30.5083C58.1642 35.993 53.8548 40.1718 48.3178 40.0935H48.3439Z"
+              fill="url(#paint0_linear_920_57)" />
+            <defs>
+              <linearGradient id="paint0_linear_920_57" x1="0" y1="41.8433" x2="94.1544" y2="41.8433"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#ED1C27" />
+                <stop offset="1" stop-color="#A71E21" />
+              </linearGradient>
+            </defs>
+          </svg>
+
+        </span>
+        <span class="app-brand-text demo menu-text fw-bolder ms-2">Labcorp Admin Portal</span>
+      </div>
+    </div> 
+
+    <ul class="navbar-nav flex-row align-items-center ms-auto">
+      
+      <li class="nav-item navbar-dropdown dropdown-user dropdown">
+        <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
+          <div class="avatar avatar-online">
+            <img src="{{profileUrl}}" alt class="w-px-40 h-auto rounded-circle" />
+          </div>
+        </a>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li>
+            <a class="dropdown-item" href="#">
+              <div class="d-flex">
+                <div class="flex-shrink-0 me-3">
+                  <div class="avatar avatar-online">
+                    <img src="{{profileUrl}}" alt class="w-px-40 h-auto rounded-circle" />
+                  </div>
+                </div>
+                <div class="flex-grow-1">
+                  <span class="fw-semibold d-block">{{userProfile.doctor_name}}</span>
+                  <small class="text-muted">{{userProfile.role}}</small>
+                </div>
+              </div>
+            </a>
+          </li>
+          <li>
+            <div class="dropdown-divider"></div>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">
+              <i class="bx bx-user me-2"></i>
+              <span class="align-middle">My Profile</span>
+            </a>
+          </li>
+
+          <li>
+            <div class="dropdown-divider"></div>
+          </li>
+          <li>
+            <a class="dropdown-item" href="#">
+              <i class="bx bx-cog me-2"></i>
+              <span class="align-middle">Settings</span>
+            </a>
+          </li>
+
+          <li>
+            <div class="dropdown-divider"></div>
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="logout()">
+              <i class="bx bx-power-off me-2"></i>
+              <span class="align-middle">Log Out</span>
+            </a>
+          </li>
+        </ul>
+      </li> 
+    </ul>
+  </div>
+</nav>
+
+  -->

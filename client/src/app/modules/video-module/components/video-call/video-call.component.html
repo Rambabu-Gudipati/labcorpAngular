@@ -1,0 +1,232 @@
+<div *ngIf="showJoinScreen">
+  <app-join-screen [participantName]="participantName" [meetingId]="meetingId" [isCreatedMeetingClicked]="isCreatedMeetingClicked" [isJoinedMeetingClicked]="isJoinedMeetingClicked" [showMeetingIdError]="showMeetingIdError"
+    [showParticipantNameError]="showParticipantNameError" (createMeeting)="createMeeting()" (joinMeeting)="joinMeeting()" (startMeeting)="startMeeting()" (changeName)="changeName($event)" (validateMeeting)="validateMeeting($event)"></app-join-screen>
+</div>
+
+<div class="container-xxl flex-grow-1 container-p-y">
+  <div class="chat-main-row">
+    <div class="chat-main-wrapper">
+      <div class="col-lg-12 message-view chat-view">
+        <div class="chat-window">
+          <div class="fixed-header" style="margin-top: 54px;">
+            <div class="navbar">
+
+              <div class="card-box profile-header" style="width: 100%;">
+
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="profile-view">
+                      <div class="profile-img-wrap">
+                        <div class="profile-img">
+                          <a href="#"><img class="avatar" src="assets/img/doctor-03.jpg" alt=""></a>
+                        </div>
+                      </div>
+                      <div class="profile-basic">
+                        <div class="row">
+                          <div class="col-md-3">
+                            <div class="profile-info-left">
+                              <strong class="title">{{sosInfo?.patient_info?.patient_name}}</strong>
+                              <div class="staff-id"> <strong> Gender </strong>: {{sosInfo?.patient_info?.gender ==1
+                                ?'Male' :
+                                'Female'}}
+                                &nbsp; &nbsp; <strong>Age </strong>:
+                                {{sosInfo?.patient_info?.age}}</div>
+
+                              <div class="text">{{sosInfo?.patient_info?.address}}</div>
+                              <div class="row">
+                                <div class="staff-msg"><a (click)="loadSOSData()" class="btn btn-primary">Refresh Data</a>
+                                </div>&nbsp;
+                                <div class="staff-msg"><a class="btn btn-primary" (click)="loadPatientMap()">View Location</a>
+                              </div>
+                            </div>
+                            </div>
+                          </div>
+                          <div class="col-md-3 profile-info-left">
+                            <strong class="title">Hospital Details</strong>
+                            <div class="profile-info-left" *ngIf="sosInfo?.hospital_info?.id == 0">
+                              <strong class="user-name m-t-0 mb-0">Hospital Info</strong>
+                              <strong class="user-name m-t-5 mb-0">Not Yet Assigned</strong>
+                              <!-- <div class="staff-msg"><a (click)="loadAddDoctorPopup(addDoctorModal)" class="btn btn-primary">Send
+                                  Message</a>
+                              </div> -->
+                            </div>
+
+                            <ul class="personal-info" *ngIf="sosInfo?.hospital_info?.id > 0">
+                              <li>
+                                <strong style="color: blue;">{{sosInfo.hospital_info.name}}</strong>
+                                <div class="text">{{sosInfo.hospital_info.contact_no}}</div>
+                                <div class="text">{{sosInfo.hospital_info.contact_person}}</div>
+                                <div class="text">{{sosInfo.hospital_info.address}}</div>
+                              </li>
+
+                              <!-- <li>
+                                
+                                <span class="text"><a href="">{{sosInfo.hospital_info.name}}</a></span>
+                              </li>
+                              <li>
+                               
+                                <span class="text">{{sosInfo.hospital_info.contact_no}}</span>
+                              </li>
+                              <li>
+                                
+                                <span class="text">{{sosInfo.hospital_info.contact_person}}</span>
+                              </li>
+                              <li>
+                               
+                                <span class="text">{{sosInfo.hospital_info.address}}</span>
+                              </li> -->
+
+                            </ul>
+                          </div>
+                          <div class="col-md-3">
+                            <strong class="title">Ambulance Details</strong>
+                            <div class="profile-info-left" *ngIf="sosInfo?.ambulance_info?.id == 0">
+                              <h3 class="user-name m-t-0 mb-0">Not Yet Assigned</h3>
+                              <div class="staff-msg"><a class="btn btn-primary" (click)="trackAmbulance()">Track
+                                  Ambulance</a>
+                              </div>
+                            </div>
+
+                            <ul class="personal-info" *ngIf="sosInfo?.ambulance_info?.id > 0">
+                              <li>
+                                <strong style="color: red;">{{sosInfo.ambulance_info.ambulance_no}}</strong>
+                                <span><a style="color: blue;" class="btn btn-sm" (click)="trackAmbulance()">Track
+                                    Ambulance</a>
+                                </span>
+                                <div class="text">{{sosInfo.ambulance_info.driver_name}}</div>
+                                <div class="text">{{sosInfo.ambulance_info.mobile_no}}</div>
+                              </li>
+                              <!-- <li>
+                                <span class="title">Ambulance Details</span>
+                              </li>
+                              <li>
+                                 
+                                <span class="text"><a href="">{{sosInfo.ambulance_info.ambulance_no}}</a></span>
+                              </li>
+                              <li>
+                                 
+                                <span class="text">{{sosInfo.ambulance_info.driver_name}}</span>
+                              </li>
+                              <li>
+                                
+                                <span class="text">{{sosInfo.ambulance_info.mobile_no}}</span>
+                              </li> -->
+
+
+                            </ul>
+                          </div>
+                          <div class="col-md-3">
+                            <div class="profile-info-left">
+                              <strong class="title">Doctor Details</strong>
+                              <div class="title"><strong> Doctor Name </strong>:{{sosInfo?.emergency_doctor_name}}</div>
+                              <!-- <div class="staff-id"> <strong> Gender </strong>: {{sosInfo?.patient_info?.gender ==1
+                                ?'Male' :
+                                'Female'}}
+                                &nbsp; &nbsp; <strong>Age </strong>:
+                                {{sosInfo?.patient_info?.age}}</div> -->
+
+                              <div class="text">{{sosInfo?.emergency_physician_name}}</div>
+                              <div class="staff-msg"><a (click)="loadAddDoctorPopup(addDoctorModal)" class="btn btn-primary">Send
+                                Message</a>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="chat-contents">
+            <div class="chat-content-wrap">
+              <div class="user-video">
+                <div style="display: flex;" #participantGridContainer id="participant-grid-container">
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="chat-footer">
+            <div class="call-icons">
+              <span class="call-duration">{{ minutes }}:{{ seconds | number: '2.0' }}</span>
+              <ul class="call-items">
+                <li class="call-item" *ngIf="disableWebcamBtn">
+                  <a href="javascript.void(0)" title="" (click)="disableWebcam($event)" data-placement="top" data-toggle="tooltip" data-original-title="Enable Video">
+                    <i class="fa fa-video-camera camera-slash"></i>
+                  </a>
+                </li>
+
+
+                <li class="call-item" *ngIf="enableWebcamBtn">
+                  <a style="cursor: pointer;" (click)="enableWebcam($event)" title="" data-placement="top" data-toggle="tooltip" data-original-title="Enable Video">
+                    <i class="fa fa-video-camera camera"></i>
+                  </a>
+                </li>
+                <li class="call-item" *ngIf="disableMicBtn">
+                  <a style="cursor: pointer;" (click)="muteMic($event)" title="" data-placement="top" data-toggle="tooltip" data-original-title="Mute Audio">
+                    <i class="fa fa-microphone microphone"></i>
+                  </a>
+                </li>
+                <li class="call-item" *ngIf="enableMicBtn">
+                  <a (click)="unmuteMic($event)" style="cursor: pointer;" title="" data-placement="top" data-toggle="tooltip" data-original-title="Mute Audio">
+                    <i class="fa fa fa-microphone-slash"></i>
+                  </a>
+                </li>
+
+              </ul>
+              <div class="end-call">
+                <a style="cursor: pointer;" (click)="leaveMeeting()">
+                  End Call
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<ng-template #addDoctorModal let-modal>
+  <div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog">
+    <div >
+      <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmitDoctor()">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTopTitle">ADD Doctor To Call</h5>
+          <!-- <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> -->
+          <button type="button" class="btn-close" (click)="modal.close()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label class="form-label" for="basic-default-fullname">Select Doctor</label>
+            <select id="defaultSelect" class="form-control" formControlName="doctor_id" [ngClass]="{ 'is-invalid': submitted && f['doctor_id'].errors }">
+
+              <option *ngFor="let item of doctors;" value="{{item.id}}">{{item.username}}</option>
+            </select>
+            @if (submitted && f['doctor_id'].errors) {
+            <div class="invalid-feedback">
+              @if (f['doctor_id'].errors['required'] || f['doctor_id'].errors['doctor_id']) {
+              <div>Select User Type</div>
+              }
+            </div>
+            }
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button"  class="btn btn-outline-secondary" (click)="modal.close()" >Close</button>
+          <button type="submit" class="btn btn-primary">Send Join Call Request</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</ng-template>

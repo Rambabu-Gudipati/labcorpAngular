@@ -1,0 +1,190 @@
+<div class="card">
+  <div class="row">
+    <div class="col-md-6">
+      <h5 class="card-header">Ambulance List</h5>
+    </div>
+    
+   
+  </div>
+    <div class="table-responsive text-nowrap">
+      <p-table class="table table-bordered" #dt1 [value]="items" dataKey="id" [rowHover]="true"  [showCurrentPageReport]="true" 
+      [loading]="loading" [paginator]="true" [rows]="limit" 
+      [totalRecords]="totalPages" [lazy]="true" (onLazyLoad)="onPageChange($event)"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+      [globalFilterFields]="['ambulance_number', 'ambulance_type', 'driver_name', 'contact_number', 'status']">
+      <ng-template pTemplate="caption">
+        <div class="flex justify-content-between">
+          <div class="container">
+            <button type="button"  class="btn btn-primary mb-3"  (click)="toggleFilter()">Advanced Search</button>
+          
+            <div *ngIf="showFilters" class="row">
+              <div class="col-md-2">
+                <label for="username">Doctor Name</label>
+                <input type="text" [(ngModel)]="searchUsername" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <label for="email">Email</label>
+                <input type="text" [(ngModel)]="searchEmail" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <label for="mobile_no">Mobile No</label>
+                <input type="text" [(ngModel)]="searchPhoneno" class="form-control" />
+              </div>
+              <!-- <div class="col-md-2">
+                <label for="status">Status</label>
+                <select [(ngModel)]="searchStatus" class="form-control" id="status">
+                  <option *ngFor="let item of statuses;" [value]="item.id">{{ item.label }}</option>
+                </select>
+              </div>
+              <div class="col-md-2">
+                <label for="user_type">User Type</label>
+                <select [(ngModel)]="searchUsertype" class="form-control" id="user_type">
+                  <option *ngFor="let item of user_types;" [value]="item.id">{{ item.name }}</option>
+                </select>
+              </div> -->
+              <div class="col-md-2 align-self-end">
+                <button type="button" (click)="onSearch()" class="btn btn-primary">Search</button> &nbsp;
+                <button type="button" class="btn btn-primary" (click)="clear()">Clear</button>
+              </div>
+            </div>
+          </div> 
+          <!-- <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" (onClick)="clear()" />
+          <p-iconField iconPosition="left" style="float: right;">
+            <p-inputIcon>
+              <i class="pi pi-search"></i>
+            </p-inputIcon>
+            <input pInputText type="text" [(ngModel)]="searchValue" (input)="filterGlobal($event)"
+              placeholder="Keyboard Search" />
+          </p-iconField> -->
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <!-- <tr>
+          <th pSortableColumn="ambulance_number">
+            Ambulance Number<p-sortIcon field="ambulance_number" />
+          </th>
+          <th pSortableColumn="ambulance_type">
+           Ambulance Type<p-sortIcon field="ambulance_type" />
+          </th>
+          <th pSortableColumn="driver_name">
+           Driver Name<p-sortIcon field="driver_name" />
+          </th>
+          <th pSortableColumn="contact_number">
+          Contact Number <p-sortIcon field="contact_number" />
+          </th>
+          <th pSortableColumn="duty_status">
+            Status <p-sortIcon field="duty_status" />
+          </th>
+      
+        </tr> -->
+        <tr>
+          <th (click)="onSort('ambulance_number')">
+            Ambulance Number<i [ngClass]="getSortIcon('ambulance_number')"></i>
+          </th>
+          <th (click)="onSort('ambulance_type')">
+            Ambulance Type<i [ngClass]="getSortIcon('ambulance_type')"></i>
+          </th>
+          <th (click)="onSort('driver_name')">
+            Driver Name <i [ngClass]="getSortIcon('driver_name')"></i>
+          </th>
+        
+          <th (click)="onSort('contact_number')">
+            Contact Number  <i [ngClass]="getSortIcon('contact_number')"></i>
+          </th>
+          <th (click)="onSort('duty_status')">
+             Duty Status <i [ngClass]="getSortIcon('duty_status')"></i>
+          </th>
+      
+        </tr>
+
+        <!-- <tr>
+          <th>
+            <p-columnFilter
+              type="text"
+              field="ambulance_number"
+              placeholder="Search by Number"
+              ariaLabel="Filter Number"
+            />
+          </th>
+          <th>
+            <p-columnFilter
+              type="text"
+              field="ambulance_type"
+              placeholder="Search by Type"
+              ariaLabel="Filter Type"
+            />
+          </th>
+          <th>
+            <p-columnFilter
+              type="text"
+              field="driver_name"
+              placeholder="Search by Name"
+              ariaLabel="Filter Name"
+            />
+          </th>
+          <th>
+            <p-columnFilter
+              type="text"
+              field="contact_number"
+              placeholder="Search by No"
+              ariaLabel="Filter Number"
+            />
+          </th>
+          
+          <th>
+            <p-columnFilter
+              type="text"
+              field="status"
+              placeholder="Search by Status"
+              ariaLabel="Filter Status"
+            />
+          </th>
+         </tr> -->
+      </ng-template>
+      <ng-template pTemplate="body" let-row>
+        <tr [pSelectableRow]="row">
+          <td>
+            <span class="p-column-title">Ambulance Number</span>
+            {{ row.ambulance_number }}
+          </td>
+          <td>
+            <span class="p-column-title">Ambulance Type</span>
+            <span class="ml-1 vertical-align-middle">{{ row.ambulance_type}}</span>
+          </td>
+          <td>
+            <span class="p-column-title">Driver Name</span>
+            <span class="ml-1 vertical-align-middle">{{ row.driver_name}}</span>
+          </td>
+          <td>
+            <span class="p-column-title">Contact Number</span>
+            <span class="ml-1 vertical-align-middle">{{ row.contact_number}}</span>
+          </td>
+         
+          <td>
+            <span class="p-column-title">Status</span>
+            <p-tag [value]="row.duty_status" [severity]="getSeverity(row.duty_status)" />
+          </td>
+          <!-- <td>
+            <div style="display: flex;">
+           <a href="javascript:void(0);" (click)="onEditClick(row)" class="dropdown-item-no-text"><i class="fa fa-edit"></i></a>&nbsp; 
+           <a href="javascript:void(0);"  (click)="removeData(row)"class="dropdown-item-no-text"><i class="fa fa-trash"></i></a> 
+            </div>
+          </td> -->
+         
+        </tr>
+          <!-- <tr *ngIf="loading">
+            <td colspan="5" class="text-center py-5">
+              <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+          </tr> -->
+       
+      </ng-template>
+   
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="4">No customers found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>  
+</div>

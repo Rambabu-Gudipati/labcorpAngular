@@ -1,0 +1,234 @@
+<!-- <p>list-mentor-mapping-users works!</p> -->
+<div class="card">
+    <h4 class="card-header">Not Mapped Users To Mentor</h4>
+    <div class="card-body">
+  
+      
+       
+        <div class="col-sm-12 col-md-12">
+          <div
+            class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-md-end justify-content-center flex-wrap me-1">
+  
+            <!-- <div class="dt-buttons btn-group flex-wrap"><button class="btn add-new btn-primary mb-3 mb-md-0" tabindex="0"
+                aria-controls="DataTables_Table_0" type="button" (click)="addUser()"><span>Add
+                  Advertisers</span></button> </div> -->
+          </div>
+        </div>
+      </div>
+      <div class="table-responsive text-nowrap">
+        <p-table class="table table-bordered" #dt1 [value]="items" dataKey="id" [rowHover]="true"
+        [showCurrentPageReport]="true" [loading]="loading" [paginator]="true"
+        [rows]="limit"
+        [totalRecords]="totalPages"  [lazy]="true" (onLazyLoad)="onPageChange($event)"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+        [globalFilterFields]="['username', 'age', 'mobile_no',  'gender','city','status']">
+        <ng-template pTemplate="caption">
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label class="form-label" for="username">Selected Mentors</label>
+           
+              <!-- {{careMentorId}} -->
+              <select class="form-control"  [(ngModel)]="careMentorId">
+               <option *ngFor="let item of mentor_users_list;" value="{{item.id}}">{{item.username}}</option>
+             </select>
+            </div>
+            <div class="flex justify-content-between" style="padding-top: 33px">
+            
+            <div class="container">
+              <button type="button"  class="btn btn-primary mb-3"  (click)="toggleFilter()">Advanced Search</button>
+            
+              <div *ngIf="showFilters" class="row" style="min-width: 1205px;">
+                <div class="col-md-2">
+                  <label for="username">Customer Name</label>
+                  <input type="text" [(ngModel)]="searchUsername" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                  <label for="email">Email</label>
+                  <input type="text" [(ngModel)]="searchEmail" class="form-control" />
+                </div>
+                <div class="col-md-2">
+                  <label for="mobile_no">Mobile No</label>
+                  <input type="text" [(ngModel)]="searchPhoneno" class="form-control" />
+                </div>
+                <!-- <div class="col-md-2">
+                  <label for="status">Status</label>
+                  <select [(ngModel)]="searchStatus" class="form-control" id="status">
+                    <option *ngFor="let item of statuses;" [value]="item.id">{{ item.label }}</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <label for="user_type">User Type</label>
+                  <select [(ngModel)]="searchUsertype" class="form-control" id="user_type">
+                    <option *ngFor="let item of user_types;" [value]="item.id">{{ item.name }}</option>
+                  </select>
+                </div> -->
+                <div class="col-md-2 align-self-end">
+                  <button type="button" (click)="onSearch()" class="btn btn-primary">Search</button> &nbsp;
+                  <button type="button" class="btn btn-primary" (click)="clear()">Clear</button>
+                </div>
+              </div>
+            </div>
+          </div>
+            <!-- <p-iconField iconPosition="left" style="float: right;">
+                <p-inputIcon>
+                  <i class="pi pi-search"></i>
+                </p-inputIcon>
+                <input pInputText type="text" [(ngModel)]="searchValue" (input)="filterGlobal($event)"
+                  placeholder="Keyboard Search" />
+              </p-iconField> -->
+           
+        </div>
+    </ng-template>    
+        <ng-template pTemplate="header">
+          <!-- <tr>
+            <th>#</th>
+            <th pSortableColumn="username">
+               Name<p-sortIcon field="username" />
+            </th>
+            <th pSortableColumn="email">
+              Email<p-sortIcon field="email" />
+             </th>
+            <th pSortableColumn="age">
+             Age<p-sortIcon field="age" />
+            </th>
+            <th pSortableColumn="mobile_no">
+             Mobile Number <p-sortIcon field="mobile_no" />
+            </th>
+            <th pSortableColumn="gender">
+            Gender <p-sortIcon field="gender" />
+            </th>
+            
+            <th pSortableColumn="city">
+             City <p-sortIcon field="city" />
+            </th>
+        
+          </tr> -->
+          <tr>
+            <th>#</th>
+            <th (click)="onSort('username')">
+              Doctor Name <i [ngClass]="getSortIcon('username')"></i>
+            </th>
+            <th (click)="onSort('email')">
+              Email Id <i [ngClass]="getSortIcon('email')"></i>
+            </th>
+            <th (click)="onSort('age')">
+           Age <i [ngClass]="getSortIcon('age')"></i>
+            </th>
+            <th (click)="onSort('mobile_no')">
+              Mobile No <i [ngClass]="getSortIcon('mobile_no')"></i>
+            </th>
+            
+            <th (click)="onSort('gender')">
+              Gender <i [ngClass]="getSortIcon('gender')"></i>
+            </th>
+            <th (click)="onSort('city')">
+              City <i [ngClass]="getSortIcon('city')"></i>
+            </th>
+          </tr>
+
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+          <tr [pSelectableRow]="row">
+          
+            <td >
+                  <input class="form-checked-input" style="margin-left: 10px;"
+                  type="checkbox"
+                 
+                  [value]="row.id" 
+                  name="{{row.id}}"
+                  (change)="onMentorChecked($event,row.id)"
+                  />
+                  
+              </td>  
+                
+         
+            <td >
+              <span class="p-column-title">Name</span>
+              
+              {{ row.username }}
+            </td>
+            <td>
+              <span class="p-column-title">Email</span>
+              <span class="ml-1 vertical-align-middle">{{ row.email}}</span>
+            </td>
+            <td>
+              <span class="p-column-title">Age</span>
+              <span class="ml-1 vertical-align-middle">{{ row.age}}</span>
+            </td>
+            <td>
+              <span class="p-column-title">Mobile No</span>
+              <span class="ml-1 vertical-align-middle">{{ row.mobile_no}}</span>
+            </td>
+            <td>
+              <span class="p-column-title">Gender</span>
+              <span class="ml-1 vertical-align-middle">{{ row.gender}}</span>
+            </td>
+           
+            <td>
+              <span class="p-column-title">City</span>
+              <span class="ml-1 vertical-align-middle">{{ row.city}}</span>
+            </td>
+            <!-- <td>
+              <span class="p-column-title">Status</span>
+              <p-tag [value]="row.status" [severity]="getSeverity(row.status)" />
+            </td> -->
+            <!-- <td>
+              <div style="display: flex;">
+            <a href="javascript:void(0);" (click)="onEditClick(row)" class="dropdown-item-no-text"><i class="fa fa-edit"></i></a>&nbsp; 
+               <a href="javascript:void(0);"  (click)="removeData(row)"class="dropdown-item-no-text"><i class="fa fa-trash"></i></a>
+              </div>
+            </td> -->
+           
+          </tr>
+            <tr *ngIf="loading">
+              <td colspan="5" class="text-center py-5">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+              </td>
+            </tr>
+         
+        </ng-template>
+     
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4">No customers found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+       <div class="modal-footer">
+        <!-- <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button> -->
+        <button (click)="submit()" class="btn btn-primary">{{buttonTitle}}</button>
+      </div>
+        
+      </div>
+    </div>
+    
+  
+  
+  
+  <!-- removeItemModal -->
+  <ng-template #deleteModel let-modal>
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="btn-close"
+          (click)="modal.dismiss('Cross click')"></button>
+      </div>
+      <div class="modal-body">
+        <div class="mt-2 text-center">
+          <lord-icon src="https://cdn.lordicon.com/gsqxdxog.json" trigger="loop"
+            colors="primary:#f7b84b,secondary:#f06548" style="width:100px;height:100px" />
+          <div class="mt-4 pt-2 fs-15 mx-4 mx-sm-5">
+            <h4>Are you Sure ?</h4>
+            <p class="text-muted mx-4 mb-0">Are you Sure You want to Remove this Product ?</p>
+          </div>
+        </div>
+        <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+          <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal"
+            (click)="modal.close('Close click')">Close</button>
+          <button type="button" class="btn w-sm btn-danger " id="delete-product" (click)="deleteData(deleteId)"
+            (click)="modal.close('Close click')">Yes, Delete It!</button>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </ng-template>
+  
+  

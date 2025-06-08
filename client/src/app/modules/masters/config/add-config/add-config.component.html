@@ -1,0 +1,59 @@
+<div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog">
+    <div>
+      <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTopTitle">{{modalHeaderTitle}}</h5>
+          <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            
+  
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="object_type">Charge Name</label>
+  
+              <select id="object_type" class="form-control" formControlName="object_type"
+              [class.is-invalid]="form.get('object_type')?.invalid && form.get('object_type')?.touched">
+  
+                <option *ngFor="let item of list_configuration;" value="{{item.id}}">{{item.name}}</option>
+              </select>
+              <div *ngIf="form.get('object_type')?.invalid && form.get('object_type')?.touched" class="text-danger">
+                Charge Name is required.
+              </div>
+  
+            </div>
+  
+       
+            <div class="col-md-6 mb-3">
+                <label class="form-label" for="amount">Amount</label>
+                <input type="text" id="amount" class="form-control form-control-sm" autocomplete="false"
+                  formControlName="amount" 
+                  [class.is-invalid]="form.get('amount')?.invalid && form.get('amount')?.touched" />
+                  <div *ngIf="form.get('amount')?.invalid && form.get('amount')?.touched" class="text-danger">
+                    Amount is required.
+                  </div>
+
+            </div>
+              
+              
+            
+  
+  
+           
+           
+            <!-- <div class="table-responsive text-nowrap"> -->
+           
+          </div>
+  
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+          <button type="submit" class="btn btn-primary">{{buttonTitle}}</button>
+        </div>
+  
+        <!-- </div> -->
+      </form>
+  
+  
+    </div>

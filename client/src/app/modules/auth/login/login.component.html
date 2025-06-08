@@ -1,0 +1,113 @@
+<div class="main-wrapper account-wrapper">
+  <div class="account-page">
+    <div class="account-center">
+      <div class="account-box">
+        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+          <div class="account-logo">
+            <a href="index.html"><img src="https://res.cloudinary.com/dwmbbz3pv/image/upload/v1749394651/labcorplogo_vvvm7t.jpg" alt=""></a>
+          </div>
+          <div class="text-center register-link">
+            <h4>Welcome Back</h4>
+          </div>
+          <div class="form-group">
+            <label for="emailOrPhoneNumber" class="form-label">Email</label>
+            <input type="text" formControlName="emailOrPhoneNumber" class="form-control form-control-sm" [class.is-invalid]="form.get('emailOrPhoneNumber')?.invalid && form.get('emailOrPhoneNumber')?.touched" />
+            <div *ngIf="form.get('emailOrPhoneNumber')?.invalid && form.get('emailOrPhoneNumber')?.touched" class="text-danger">
+              Email is required.
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Password</label>
+            <input type="password" formControlName="password" class="form-control form-control-sm"[class.is-invalid]="form.get('password')?.invalid && form.get('password')?.touched" />
+            <div *ngIf="form.get('password')?.invalid && form.get('password')?.touched" class="text-danger">
+            Password is required.
+            </div>
+          </div>
+          <!-- <div class="form-group text-right">
+            <a href="forgot-password.html">Forgot your password?</a>
+          </div> -->
+          <div class="form-group text-center">
+            <button type="submit" class="btn btn-primary account-btn">Login</button>
+          </div>
+          <!-- <div class="text-center register-link">
+            Don’t have an account? <a href="register.html">Register Now</a>
+          </div> -->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- <div class="container-xxl" style="background: url('../../../../assets/img/login-bg.jpg');  background-attachment: fixed;
+  background-size: 100% 100%;  background-repeat: no-repeat, repeat;">
+  <div class="authentication-wrapper authentication-basic container-p-y">
+    <div class="authentication-inner">
+     
+      <div class="card">
+        <div class="card-body">
+       
+          <div class="app-brand justify-content-center">
+            <a href="index.html" class="app-brand-link gap-2">
+              <span class="app-brand-logo demo">
+                <svg width="95" height="84" viewBox="0 0 95 84" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M69.1597 0.290039C64.0407 0.290039 59.3656 1.90934 55.239 5.0957C51.2691 8.15148 48.6573 12.0691 47.0903 14.8899C45.5493 12.043 42.9114 8.15148 38.9415 5.0957C34.8149 1.90934 30.1399 0.290039 25.0208 0.290039C10.7605 0.290039 0 11.9647 0 27.4264C0 40.7986 8.59273 50.8017 22.4351 63.1293C22.618 51.5853 21.8083 36.1236 21.8083 36.1236C21.521 33.6424 21.2598 31.1873 20.9987 28.7061C20.8419 27.1129 20.8158 25.4414 21.1292 23.8743C21.3121 23.0647 22.3307 21.9939 23.1142 21.8894C23.8716 21.7588 25.0208 22.5162 25.5954 23.2214C26.3267 24.1094 26.7184 25.3108 27.1624 26.4339C29.4086 32.1537 32.5427 37.2989 36.7215 41.8172C42.1279 47.6415 48.6312 48.7645 55.7875 45.1603C61.5334 42.2612 66.339 38.213 70.7529 33.5901C71.9282 32.3626 73.1558 30.3515 75.1668 31.6313C77.3346 33.0156 75.7414 34.9483 74.984 36.3847C69.8649 45.9177 63.5967 54.6149 56.0748 62.3458C49.2319 69.6587 42.9375 73.9943 37.6618 76.2665C40.0385 78.3037 42.5719 80.4715 45.1314 82.7176C45.6799 83.1877 46.359 83.4489 47.0641 83.4489C47.7693 83.4489 48.4745 83.1877 48.9969 82.7176C53.0712 79.1656 56.9628 75.8225 60.4103 72.8973C80.7038 55.5813 94.1283 44.1678 94.1283 27.4525C94.1283 11.9908 83.3678 0.316152 69.1075 0.316152L69.1597 0.290039ZM48.3439 40.0935C43.042 40.0151 38.7587 35.7318 38.7065 30.4299C38.6542 24.8929 43.042 20.5835 48.6573 20.6357C54.1943 20.688 58.1903 24.8146 58.1642 30.5083C58.1642 35.993 53.8548 40.1718 48.3178 40.0935H48.3439Z"
+                    fill="url(#paint0_linear_920_57)" />
+                  <defs>
+                    <linearGradient id="paint0_linear_920_57" x1="0" y1="41.8433" x2="94.1544" y2="41.8433"
+                      gradientUnits="userSpaceOnUse">
+                      <stop stop-color="#ED1C27" />
+                      <stop offset="1" stop-color="#A71E21" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </span>
+              <span class="app-brand-text demo text-body fw-bolder">Labcorp</span>
+            </a>
+          </div>
+         
+          <h4 class="mb-2">Welcome to Labcorp! 👋</h4>
+          <p class="mb-4">Please sign-in to your account </p>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="emailOrPhoneNumber" class="form-label">Email</label>
+              <input type="text" formControlName="emailOrPhoneNumber" class="form-control form-control-sm"
+                [ngClass]="{ 'is-invalid': submitted && f['emailOrPhoneNumber'].errors }" />
+              @if (submitted && f['emailOrPhoneNumber'].errors) {
+              <div class="invalid-feedback">
+                @if (f['emailOrPhoneNumber'].errors['required']) {
+                <div>Email is required</div>
+                } 
+              </div>
+              }
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" formControlName="password" class="form-control form-control-sm"
+                [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+              @if (submitted && f['password'].errors) {
+              <div class="invalid-feedback">
+                @if (f['password'].errors['required']) {
+                <div>Password is required</div>
+                } @if (f['password'].errors['minlength']) {
+                <div>Password must be at least 6 characters</div>
+                } @if (f['password'].errors['maxlength']) {
+                <div>Username must not exceed 40 characters</div>
+                }
+              </div>
+              }
+            </div> 
+            <div class="mb-3 pt-4">
+              <button class="btn btn-primary d-grid w-100" type="submit">Sign in</button>
+            </div>
+          </form>
+
+
+        </div>
+      </div> 
+    </div>
+  </div>
+</div> -->

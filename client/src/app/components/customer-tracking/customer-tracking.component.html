@@ -1,0 +1,83 @@
+
+<div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog">
+  <div>
+
+    <div class="modal-header">
+      <h5 class="modal-title" id="modalTopTitle">SOS Details</h5>
+      <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+        aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+        <!-- Left Side: Patient Information -->
+        <div class="col-md-4">
+          <h5 class="card-title">Patient Information</h5>
+          <div class="row">
+            <div class="col-md-3">
+              <img src="https://ui-avatars.com/api/?name=Devaraju+Ratnala" alt="">
+            </div>
+            <div class="col-md-9">
+              <ul class="list-unstyled">
+                <li></li>
+                <li><strong>Name: </strong> <label class="form-label">{{sosData.patient_info
+                    .patient_name}}</label></li>
+                <li><strong>Age: </strong> <label class="form-label">{{sosData.patient_info
+                    .age}}</label> <strong>&nbsp;&nbsp;&nbsp;
+                    Gender:
+                  </strong> <label class="form-label">{{sosData.patient_info
+                    .gender}}</label></li>
+                <li><strong>Phone:</strong> <label class="form-label">{{sosData.patient_info
+                    .mobile_no}}</label> </li>
+
+              </ul>
+            </div>
+            <div class="col-md-12">
+              <strong>Address:</strong> <label class="form-label">{{sosData.patient_info
+                .address}}</label>
+              <strong>City:</strong> <label class="form-label">{{sosData.patient_info
+                .city}}-{{sosData.patient_info
+                .pincode}}</label>
+            </div>
+          </div>
+
+          <div class="col-md-12 mt-5">
+            <h5 class="card-title">SOS Information</h5>
+            <div class="row">
+              <div class="col-md-12">
+                <ul class="list-unstyled">
+                  <li><strong>SOS Id: </strong> John Doe</li>
+                  <li class="mt-1"><strong>Emergency Phgysician: </strong> <label
+                      class="form-label">{{sosData.emergency_physician_name}}</label></li>
+                  <li class="mt-1"><strong>Emergency Doctor: </strong> <label
+                      class="form-label">{{sosData.emergency_doctor_name}}</label></li>
+                  <li class="mt-1"><strong>Call Start At: </strong> <label class="form-label">{{sosData.call_start_at
+                      |date: 'dd-MM-yyyy HH:mm:ss'}}</label></li>
+                  <li class="mt-1"><strong>Call Ended At: </strong> <label
+                      class="form-label">{{sosData.patient_info|date: 'dd-MM-yyyy HH:mm:ss'}}</label></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Google Map -->
+        <div class="col-md-8">
+          <div class="map-container">
+            <google-map [center]="center" width="auto" [zoom]="zoom">
+
+              <map-marker [position]="center" [options]="markerOptions" />
+
+            </google-map>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary">Close</button>
+      <button type="submit" class="btn btn-primary">Assign Ambulance</button>
+    </div> -->
+
+  </div>
+</div>

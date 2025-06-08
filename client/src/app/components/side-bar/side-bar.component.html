@@ -1,0 +1,361 @@
+<!-- <div class="sidebar" id="sidebar">
+  <div class="sidebar-inner slimscroll">
+    <div id="sidebar-menu" class="sidebar-menu">
+      <ul class="menu">
+        
+        <li *ngFor="let menu of menus" class="menu-item">
+          <a 
+            *ngIf="!menu.subMenus" 
+            [routerLink]="menu.route" 
+            routerLinkActive="active-link" 
+            class="menu-link">
+            <i [class]="menu.icon"></i>
+            <span>{{ menu.label }}</span>
+          </a>
+    
+          <div *ngIf="menu.subMenus" (click)="toggleSubMenu(menu)" class="menu-link submenu-title">
+            <i [class]="menu.icon"></i>
+            <span>{{ menu.label }}</span>
+            <span class="menu-arrow">{{ menu.isExpanded ? '-' : '+' }}</span>
+          </div>
+    
+          
+          <ul *ngIf="menu.isExpanded" class="submenu">
+            <li *ngFor="let subMenu of menu.subMenus" class="submenu-item">
+              <a 
+                [routerLink]="subMenu.route" 
+                routerLinkActive="active-link" 
+                class="submenu-link">
+                {{ subMenu.label }}
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul> -->
+<!-- <ul>
+   
+        <li>
+          <a href="/" class="menu-link" *ngIf="userRole=='Admin'">
+            <i class="fa fa-dashboard"></i>
+            <span data-i18n="Analytics">Dashboard</span>
+          </a>
+        </li>
+
+
+        <li class="submenu" *ngIf="userRole=='Admin'">
+          <a style="cursor: pointer;"><i class="fa fa-user"></i> <span> Masters </span> <span class="menu-arrow"></span></a>
+          <ul style="display: none;">
+            <li>
+              <a [routerLink]="['/masters/users']" style="cursor: pointer;" class="menu-link" *ngIf="userRole=='Admin'">
+
+                <span>User Management</span>
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['masters/hospitals']" style="cursor: pointer;" class="menu-link" *ngIf="userRole=='Admin'">
+
+                <span>Hospitals</span>
+              </a>
+            </li>
+            <li *ngIf="userRole=='Admin'">
+              <a [routerLink]="['masters/doctors']" class="menu-link">
+
+                <span>Doctors</span>
+              </a>
+            </li>
+            <li>
+              <a [routerLink]="['masters/ambulance']" class="menu-link" *ngIf="userRole=='Admin'">
+
+                <span>Ambulance</span>
+              </a>
+            </li>
+            <li *ngIf="userRole=='Admin'">
+              <a [routerLink]="['masters/careTeam']" class="menu-link">
+
+                <span>Care Team</span>
+              </a>
+            </li>
+            <li *ngIf="userRole=='Admin'">
+              <a [routerLink]="['masters/careDoctor']" class="menu-link">
+
+                <span>Care Doctor</span>
+              </a>
+            </li>
+            <li *ngIf="userRole=='Admin'">
+              <a [routerLink]="['masters/careMentor']" class="menu-link">
+
+                <span>Care Mentor</span>
+              </a>
+            </li>
+            <li *ngIf="userRole=='Admin'">
+              <a [routerLink]="['masters/mentorMapping']" class="menu-link">
+
+                <span>Mentor Mapping Users</span>
+              </a>
+            </li>
+            <li *ngIf="userRole=='Admin'">
+              <a [routerLink]="['masters/lab']" class="menu-link">
+
+                <span>Diagnostic Labs</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li *ngIf="userRole=='Admin'">
+          <a [routerLink]="['masters/group-users']" class="menu-link">
+            <i class="fa fa-users" aria-hidden="true"></i>
+            <span>Group Users</span>
+          </a>
+        </li>
+        <li *ngIf="userRole=='Admin'">
+          <a [routerLink]="['masters/group-center-users']" class="menu-link">
+            <i class="fa fa-sitemap" aria-hidden="true"></i>
+            <span>Group Center Users</span>
+          </a>
+        </li>
+        <li *ngIf="userRole=='Group User Admin'">
+          <a [routerLink]="['masters/group-centers']" class="menu-link">
+            <i class="fa fa-sitemap" aria-hidden="true"></i>
+            <span>Add Centers</span>
+          </a>
+        </li>
+        <li *ngIf="userRole=='Admin'">
+          <a [routerLink]="['advertiser/list-advertiser']" class="menu-link">
+            <i class="fa fa-picture-o" aria-hidden="true"></i>
+            <span>Advertiser's</span>
+          </a>
+        </li>
+        <li class="submenu" *ngIf="userRole=='Admin'">
+          <a style="cursor: pointer;"><i class="fa fa-microchip" aria-hidden="true"></i> <span> Inventory </span> <span class="menu-arrow"></span></a>
+          <ul style="display: none;">
+            <li *ngIf="userRole=='Admin'">
+              <a [routerLink]="['inventory/list-aid-device']" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-ambulance"></i>
+                <span>AID Devices</span>
+              </a>
+            </li>
+            <li *ngIf="userRole=='Admin'">
+              <a [routerLink]="['inventory/list-ecg']" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-ambulance"></i>
+                <span>ECG Devices</span>
+              </a>
+            </li>
+            <li *ngIf="userRole=='Admin'">
+              <a [routerLink]="['inventory/list-aid-issue']" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-ambulance"></i>
+                <span>AID Issue</span>
+              </a>
+            </li>
+            <li *ngIf="userRole=='Admin'">
+              <a [routerLink]="['inventory/list-ecg-issue']" class="menu-link">
+                <i class="menu-icon tf-icons bx bxs-ambulance"></i>
+                <span>ECG Issue</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="submenu">
+          <a style="cursor: pointer;"><i class="fa fa-user"></i> <span> Laboratory </span> <span class="menu-arrow"></span></a>
+          <ul>
+            <li *ngIf="userRole=='Admin'">
+              <a [routerLink]="['lab/lab-test']" class="menu-link">
+
+                <span>List Lab Tests</span>
+              </a>
+            </li>
+
+          </ul>
+        </li>
+
+        <li class="submenu">
+          <a style="cursor: pointer;"><i class="fa fa-table" aria-hidden="true"></i> <span> Reports </span>
+            <span class="menu-arrow"></span></a>
+          <ul style="display: none;">
+            <li *ngIf="userRole=='Admin'">
+              <a [routerLink]="['inventory/list-aid-issue']" class="menu-link">
+
+                <span>SOS Reports</span>
+              </a>
+            </li>
+            <li *ngIf="userRole=='Admin'">
+              <a [routerLink]="['inventory/list-aid-issue']" class="menu-link">
+
+                <span>ECG Reports</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+
+      <ul>
+        <li *ngIf="userRole=='Care Mentor'">
+          <a [routerLink]="['/mentormodule/dashboard']" style="cursor: pointer;" class="menu-link">
+            <i class="fa fa-dashboard"></i>
+            <span data-i18n="Analytics">Care Dashboard</span>
+          </a>
+        </li>
+        <li *ngIf="userRole=='Care Mentor'">
+          <a [routerLink]="['/mentormodule/dashboard']" style="cursor: pointer;" class="menu-link">
+
+            <span data-i18n="Analytics">Lab Tests</span>
+          </a>
+        </li>
+        <li *ngIf="userRole=='Care Mentor'">
+          <a [routerLink]="['/mentormodule/doctorconsultation']" style="cursor: pointer;" class="menu-link">
+
+            <span data-i18n="Analytics">Doctor Consultations</span>
+          </a>
+        </li>
+        <li *ngIf="userRole=='Care Mentor'">
+          <a [routerLink]="['/mentormodule/list-wellness']" href="javascript.void(0)" class="menu-link">
+
+            <span data-i18n="Analytics">Yearly Screening</span>
+          </a>
+        </li>
+        <li *ngIf="userRole=='Care Mentor'">
+          <a [routerLink]="['/wellness/list-wellness']" href="javascript.void(0)" class="menu-link">
+
+            <span data-i18n="Analytics">Wellness Packages</span>
+          </a>
+        </li>
+        <li *ngIf="userRole=='Care Mentor'">
+          <a [routerLink]="['/mentormodule/health-details']" href="javascript.void(0)"  class="menu-link"
+          >
+           
+            <span data-i18n="Analytics">Health Details</span>
+          </a>
+        </li>
+        <li *ngIf="userRole=='Care Mentor'">
+          <a [routerLink]="['/mentormodule/mappingusers']" href="javascript.void(0)"  class="menu-link"
+          >
+           
+            <span data-i18n="Analytics">Mapping Users</span>
+          </a>
+        </li>
+      </ul> -->
+<!-- </div>
+  </div>
+</div> -->
+
+<div class="sidebar">
+  <!-- Optional Header -->
+
+  <ul class="menu" *ngIf="userRole === 'Admin'">
+    <li *ngFor="let menu of menus" class="menu-item">
+      <!-- Link for menus without submenus -->
+      <a *ngIf="!menu.subMenus" [routerLink]="menu.route" routerLinkActive="active-link" class="menu-link" [ngClass]="{'active-link': activeMenu === menu.route}" (click)="setActiveMenu(menu)">
+        <i [class]="menu.icon"></i>
+        <span>{{ menu.label }}</span>
+      </a>
+
+      <!-- Expandable Submenu -->
+      <div *ngIf="menu.subMenus" (click)="toggleSubMenu(menu)" class="menu-link submenu-title" [ngClass]="{'active-link': menu.isExpanded}">
+        <i [class]="menu.icon"></i>
+        <span>{{ menu.label }}</span>
+        <span [class]="'menu-arrow' + (menu.isExpanded ? ' expanded' : '')">></span>
+      </div>
+
+      <!-- Submenus -->
+      <ul *ngIf="menu.isExpanded" class="submenu">
+        <li *ngFor="let subMenu of menu.subMenus" class="submenu-item">
+          <a [routerLink]="subMenu.route" routerLinkActive="active-link" class="submenu-link" [ngClass]="{'active-link': activeSubMenu === subMenu.route}" (click)="setActiveSubMenu(menu, subMenu)">
+            <span>{{ subMenu.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+  <ul class="menu" *ngIf="userRole=='Care Mentor'">
+    <!-- Top-level menu -->
+    <li *ngFor="let menu of mentors" class="menu-item">
+      <!-- Link for menus without submenus -->
+      <a *ngIf="!menu.subMenus" [routerLink]="menu.route" routerLinkActive="active-link" class="menu-link" [ngClass]="{'active-link': activeMenu === menu.route}" (click)="setActiveMenu(menu)">
+        <i [class]="menu.icon"></i>
+        <span>{{ menu.label }}</span>
+      </a>
+
+      <!-- Expandable Submenu -->
+      <!-- <div *ngIf="menu.subMenus" (click)="toggleSubMenu(menu)" class="menu-link submenu-title">
+        <i [class]="menu.icon"></i>
+        <span>{{ menu.label }}</span>
+        <span [class]="'menu-arrow' + (menu.isExpanded ? ' expanded' : '')">></span>
+      </div> -->
+
+      <!-- Submenus -->
+      <!-- <ul *ngIf="menu.isExpanded" class="submenu">
+        <li *ngFor="let subMenu of menu.subMenus" class="submenu-item">
+          <a 
+            [routerLink]="subMenu.route" 
+            routerLinkActive="active-link" 
+            class="submenu-link">
+            {{ subMenu.label }}
+          </a>
+        </li>
+      </ul> -->
+    </li>
+  </ul>
+  <ul class="menu" *ngIf="userRole=='Doctor'">
+    <!-- Top-level menu -->
+    <li *ngFor="let menu of doctors" class="menu-item">
+      <!-- Link for menus without submenus -->
+      <a *ngIf="!menu.subMenus" [routerLink]="menu.route" routerLinkActive="active-link" class="menu-link" [ngClass]="{'active-link': activeMenu === menu.route}" (click)="setActiveMenu(menu)">
+        <i [class]="menu.icon"></i>
+        <span>{{ menu.label }}</span>
+      </a>
+  
+
+      <!-- Expandable Submenu -->
+      <!-- <div *ngIf="menu.subMenus" (click)="toggleSubMenu(menu)" class="menu-link submenu-title">
+        <i [class]="menu.icon"></i>
+        <span>{{ menu.label }}</span>
+        <span [class]="'menu-arrow' + (menu.isExpanded ? ' expanded' : '')">></span>
+      </div> -->
+
+      <!-- Submenus -->
+      <!-- <ul *ngIf="menu.isExpanded" class="submenu">
+        <li *ngFor="let subMenu of menu.subMenus" class="submenu-item">
+          <a 
+            [routerLink]="subMenu.route" 
+            routerLinkActive="active-link" 
+            class="submenu-link">
+            {{ subMenu.label }}
+          </a>
+        </li>
+      </ul> -->
+    </li>
+  </ul>
+  <ul class="menu" *ngIf="userRole=='Care Team'">
+    <!-- Top-level menu -->
+    <li *ngFor="let menu of careteam" class="menu-item">
+      <!-- Link for menus without submenus -->
+      <a 
+      *ngIf="!menu.subMenus" 
+      [routerLink]="menu.route" 
+      routerLinkActive="active-link" 
+      class="menu-link"
+      [ngClass]="{'active-link': isActive(menu.route)}"
+      (click)="setActiveMenu(menu.route)">
+      <i [class]="menu.icon"></i>
+      <span>{{ menu.label }}</span>
+    </a>
+
+      <!-- Expandable Submenu -->
+      <div *ngIf="menu.subMenus" (click)="toggleSubMenu(menu)" class="menu-link submenu-title" [ngClass]="{'active-link': menu.isExpanded}">
+        <i [class]="menu.icon"></i>
+        <span>{{ menu.label }}</span>
+        <span [class]="'menu-arrow' + (menu.isExpanded ? ' expanded' : '')">></span>
+      </div>
+
+      <!-- Submenus -->
+      <ul *ngIf="menu.isExpanded" class="submenu">
+        <li *ngFor="let subMenu of menu.subMenus" class="submenu-item">
+          <a [routerLink]="subMenu.route" routerLinkActive="active-link" class="submenu-link" [ngClass]="{'active-link': activeSubMenu === subMenu.route}" (click)="setActiveSubMenu(menu, subMenu)">
+            <span>{{ subMenu.label }}</span>
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>

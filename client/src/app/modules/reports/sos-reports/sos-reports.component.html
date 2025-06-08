@@ -1,0 +1,391 @@
+<!-- <div class="row">
+
+    <div class="col-lg-12 col-xxl-12 mb-4 order-3 order-xxl-1">
+      <div class="card h-100">
+        <div class="card-header d-flex align-items-center justify-content-between">
+
+          <h5 class="card-title d-inline-block">Active SOS Cases</h5><br>
+
+          <div class="date-picker-wrapper d-flex align-items-center">
+            
+            <div class="me-2">
+              <label for="fromDate" class="form-label mb-0">From Date:</label>
+              <input
+                type="date"
+                id="fromDate"
+                class="form-control"
+                [max]="maxDate"
+                [(ngModel)]="report_from_date"
+              />
+            </div> &nbsp;
+          
+           
+            <div class="me-2">
+              <label for="toDate" class="form-label mb-0">To Date:</label>
+              <input
+                type="date"
+                id="toDate"
+                class="form-control"
+                [max]="maxDate"
+                [(ngModel)]="report_to_date"
+              />
+            </div> &nbsp;
+          
+            <div class="me-2">
+              <button 
+                class="btn btn-primary"
+                (click)="onDateChange()"
+                [disabled]="!report_from_date || !report_to_date">
+                Get Data
+              </button>
+            </div>
+          </div>
+
+        </div>
+ <div class="table-responsive text-nowrap">
+
+          <p-table class="table table-bordered" #dt1 [value]="data" dataKey="id" [rowHover]="true" [showCurrentPageReport]="true"
+          [loading]="loading" [paginator]="true" [rows]="pageSize" 
+          [totalRecords]="collectionSize" [lazy]="true" (onLazyLoad)="changePage()"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0" [globalFilterFields]="['username', 'email', 'mobile_no','registration_no','qualification', 'status']">
+            <ng-template pTemplate="caption">
+              <div class="flex justify-content-between">
+                <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" (onClick)="clear()" />
+                <p-iconField iconPosition="left" style="float: right;">
+                  <p-inputIcon>
+                    <i class="pi pi-search"></i>
+                  </p-inputIcon>
+                  <input pInputText type="text" [(ngModel)]="searchValue" (input)="filterGlobal($event)" placeholder="Keyboard Search" />
+                </p-iconField>
+              </div>
+            </ng-template>
+            <ng-template pTemplate="header">
+              <tr>
+                <th pSortableColumn="id">
+                  SOS Id<p-sortIcon field="id" />
+                </th>
+                <th pSortableColumn="sos_date">
+                  SOS Date<p-sortIcon field="sos_date" />
+                </th>
+                <th pSortableColumn="mobile_no">
+                  Patient Name<p-sortIcon field="mobile_no" />
+                </th>
+                <th pSortableColumn="registration_no">
+                  Hospital Details <p-sortIcon field="mobile_no" />
+                </th>
+                <th pSortableColumn="qualification">
+                  Ambulance Details <p-sortIcon field="qualification" />
+                </th>
+               
+                <th>Action</th> 
+              </tr>   -->
+              <!-- <tr>
+                <th>
+                  <p-columnFilter type="text" field="username" placeholder="Search by Name" ariaLabel="Filter Name" />
+                </th>
+                <th>
+                  <p-columnFilter type="text" field="email" placeholder="Search by Email" ariaLabel="Filter Country" />
+                </th>
+                <th>
+                  <p-columnFilter type="text" field="mobile_no" placeholder="Search by Mobile No" ariaLabel="Filter Country" />
+                </th>
+                <th>
+                  <p-columnFilter type="text" field="registration_no" placeholder="Search by No" ariaLabel="Filter Country" />
+                </th>
+                <th>
+                  <p-columnFilter type="text" field="qualification" placeholder="Search by Qualification" ariaLabel="Filter Country" />
+                </th>
+                <th>
+                  <p-columnFilter type="text" field="status" placeholder="Search by Status" ariaLabel="Filter Country" />
+                </th>
+              </tr> -->
+    <!-- </ng-template>
+    <ng-template pTemplate="body" let-sos>
+      @for (sos of sosData; track sos;) {
+      <tr >
+      
+        <td>
+          <span class="p-column-title">Sos Id</span>
+          {{ sos.id }}
+        </td>
+        <td>
+          <span class="p-column-title">Sos Date</span>
+          <span class="ml-1 vertical-align-middle">{{ sos.sos_date | date }}</span>
+        </td>
+        <td>
+          <span class="p-column-title">Patient Name</span>
+      
+          <h5 class="time-title p-0">{{ sos.patient_name }}</h5>
+        <p>{{ sos.patient_mobile_no }}</p> 
+              <span class="ml-1 vertical-align-middle">{{ sos.patient_mobile_no }}</span>
+        </td>
+        <td *ngIf="sos.hospital_id == 0 || sos.hospital_id == null">
+          <span class="p-column-title">Country</span>
+       
+          <h5 style="color: red;" class="time-title p-0">Not Yet Assigned</h5>
+
+        </td>
+        <td *ngIf="sos.hospital_id>0">
+          <span class="p-column-title">Country</span>
+     
+          <h5 class="time-title p-0">{{ sos.hosptial_name }}</h5>
+         
+               <p class="ml-1 vertical-align-middle">{{ sos.hosptial_contact_name }} : {{ sos.hospital_contact_no }}</p>
+        </td>
+        <td  *ngIf="sos.ambulance_id>0">
+          <span class="p-column-title">Country</span>
+          <h5 class="time-title p-0">{{ sos.ambulance_number }}</h5>
+          <p class="ml-1 vertical-align-middle">{{ sos.ambulance_driver_name }} : {{ sos.ambulance_contact_no }}</p>
+        
+          <small style="color: blue;">Current Status : {{sos.ambulance_status}}</small>
+        </td>
+        <td *ngIf="sos.ambulance_id == 0 || sos.ambulance_id == null">
+          <span class="p-column-title">Country</span>
+          <h5 style="color: red;" class="time-title p-0">Not Yet Assigned</h5>
+         
+      
+         
+        </td>
+                <td>
+                  <div style="display: flex;">
+                 
+               <a href="javascript:void(0);" class="custom-badge status-green"
+                  (click)="showSOSData(sos.id)">View</a>
+                  </div>
+                </td>
+              </tr>
+            }
+            </ng-template>
+    
+            <ng-template pTemplate="emptymessage">
+              <tr>
+                <td colspan="4">No customers found.</td>
+              </tr>
+            </ng-template>
+          </p-table>
+    </div>
+    </div>
+    </div> 
+    -->
+    
+  <!-- <div class="table-responsive">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th scope="col">SOS Id</th>
+                <th scope="col">SOS Date</th>
+                <th scope="col">Patient Name</th>
+                <th scope="col">Hospital Details</th>
+                <th scope="col">Ambulance Details</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (sos of sosData; track sos;) {
+              <tr>
+                <th scope="row">{{ sos.id }}</th>
+                <td>{{ sos.sos_date | date }}</td>
+                <td>
+                  <h5 class="time-title p-0">{{ sos.patient_name }}</h5>
+                  <p>{{ sos.patient_mobile_no }}</p>
+
+                </td>
+
+
+                <td *ngIf="sos.hospital_id == 0 || sos.hospital_id == null">
+                  <h5 style="color: red;" class="time-title p-0">Not Yet Assigned</h5>
+
+                </td>
+                <td *ngIf="sos.hospital_id>0">
+                  <h5 class="time-title p-0">{{ sos.hosptial_name }}</h5>
+                  <p>{{ sos.hosptial_contact_name }} : {{ sos.hospital_contact_no }}</p>
+                </td>
+
+
+                <td *ngIf="sos.ambulance_id>0">
+                  <h5 class="time-title p-0">{{ sos.ambulance_number }}</h5>
+                  <p>{{ sos.ambulance_driver_name }} : {{ sos.ambulance_contact_no }}</p>
+                  <small style="color: blue;">Current Status : {{sos.ambulance_status}}</small>
+                </td>
+                <td *ngIf="sos.ambulance_id == 0 || sos.ambulance_id == null">
+                  <h5 style="color: red;" class="time-title p-0">Not Yet Assigned</h5>
+
+                </td>
+                <td>
+                  <div style="display: flex;">
+            
+                    <a href="javascript:void(0);" class="custom-badge status-green"
+                      (click)="showSOSData(sos.id)">View</a>
+                  </div>
+                </td>
+    <td><a  (click)="showSOSData(sos.sos_id)"><i
+                      class="bx bx-calendar-edit me-1"></i></a></td> 
+              </tr>
+              }
+            </tbody>
+          </table>
+
+   <div>
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+              (pageChange)="changePage()">
+            </ngb-pagination>
+          </div>
+        </div>
+      </div>
+
+ -->
+
+  <div class="row">
+
+    <div class="col-lg-12 col-xxl-12 mb-4 order-3 order-xxl-1">
+      <div class="card h-100">
+        <div class="card-header d-flex align-items-center justify-content-between">
+
+          <h5 class="card-title d-inline-block">Active SOS Cases</h5><br>
+
+          <div class="date-picker-wrapper d-flex align-items-center">
+            
+            <div class="me-2">
+              <label for="fromDate" class="form-label mb-0">From Date:</label>
+              <input
+                type="date"
+                id="fromDate"
+                class="form-control"
+                [max]="maxDate"
+                [(ngModel)]="report_from_date"
+              />
+            </div> &nbsp;
+          
+           
+            <div class="me-2">
+              <label for="toDate" class="form-label mb-0">To Date:</label>
+              <input
+                type="date"
+                id="toDate"
+                class="form-control"
+                [max]="maxDate"
+                [(ngModel)]="report_to_date"
+              />
+            </div> &nbsp;
+          
+            <div class="me-2">
+              <button 
+                class="btn btn-primary"
+                (click)="onDateChange()"
+                [disabled]="!report_from_date || !report_to_date">
+                Get Data
+              </button>
+            </div>
+            <div *ngIf="errorMessage" style="color: red; margin-top: 10px;">
+              {{ errorMessage }}
+            </div>
+          </div>
+          
+        </div>
+
+  <div class="table-responsive text-nowrap">
+    <p-table class="table table-bordered" #dt1 [value]="data" dataKey="id" [rowHover]="true"  [showCurrentPageReport]="true" [loading]="loading" [paginator]="true" [rows]="limit" 
+    [totalRecords]="totalPages" [lazy]="true" (onLazyLoad)="onPageChange($event)"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+      [globalFilterFields]="['user_name', 'sos_date', 'patient_name', 'status']">
+      <ng-template pTemplate="caption">
+        <div class="flex justify-content-between">
+          <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" (onClick)="clear()" />
+          <p-iconField iconPosition="left" style="float: right;">
+            <p-inputIcon>
+              <i class="pi pi-search"></i>
+            </p-inputIcon>
+            <input pInputText type="text" [(ngModel)]="searchValue" (input)="filterGlobal($event)"
+              placeholder="Keyboard Search" />
+          </p-iconField>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="id">
+          Sos Id <p-sortIcon field="id" />
+          </th>
+          <th pSortableColumn="sos_date">
+           Sos Date <p-sortIcon field="sos_date" />
+          </th>
+          <th pSortableColumn="patient_name">
+           Patient Name <p-sortIcon field="patient_name" />
+          </th>
+          
+          <th pSortableColumn="hosptial_name">
+          Hospital Details <p-sortIcon field="hosptial_name" />
+          </th>
+          <th pSortableColumn="ambulance_number">
+           Ambulance Details <p-sortIcon field="ambulance_number" />
+          </th>
+          <th>Action</th>
+        </tr>
+       
+
+      </ng-template>
+      <ng-template pTemplate="body" let-sos>
+       
+        <tr [pSelectableRow]="sos">
+          <td>
+            <span class="p-column-title">User Name</span>
+            {{ sos.id }}
+          </td>
+          <td>
+            <span class="p-column-title">Email</span>
+            <span class="ml-1 vertical-align-middle">{{ sos.sos_date | date }}</span>
+          </td>
+          <td>
+            <span class="p-column-title">Phone No</span>
+            <h5 class="time-title p-0">{{ sos.patient_name }}</h5>
+            <p>{{ sos.patient_mobile_no }}</p> 
+          </td>
+          <td *ngIf="sos.hospital_id == 0 || sos.hospital_id == null">
+            <span class="p-column-title">Country</span>
+         
+            <h5 style="color: red;" class="time-title p-0">Not Yet Assigned</h5>
+  
+          </td>
+          <td *ngIf="sos.hospital_id>0">
+            <span class="p-column-title">Country</span>
+       
+            <h5 class="time-title p-0">{{ sos.hosptial_name }}</h5>
+           
+                 <p class="ml-1 vertical-align-middle">{{ sos.hosptial_contact_name }} : {{ sos.hospital_contact_no }}</p>
+          </td>
+          <td  *ngIf="sos.ambulance_id>0">
+            <span class="p-column-title">Country</span>
+            <h5 class="time-title p-0">{{ sos.ambulance_number }}</h5>
+            <p class="ml-1 vertical-align-middle">{{ sos.ambulance_driver_name }} : {{ sos.ambulance_contact_no }}</p>
+          
+            <small style="color: blue;">Current Status : {{sos.ambulance_status}}</small>
+          </td>
+          <td *ngIf="sos.ambulance_id == 0 || sos.ambulance_id == null">
+            <span class="p-column-title">Country</span>
+            <h5 style="color: red;" class="time-title p-0">Not Yet Assigned</h5>
+           
+        
+           
+          </td>
+          <td>
+            <div style="display: flex;">
+      
+              <a href="javascript:void(0);" class="custom-badge status-green"
+                (click)="showSOSData(sos.id)">View</a>
+            </div>
+          </td>
+          <!-- <td>
+            <span class="p-column-title">Status</span>
+            <p-tag [value]="customer.status" [severity]="getSeverity(customer.status)" />
+          </td> -->
+        </tr>
+   
+      </ng-template>
+     
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="4">No customers found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+</div>

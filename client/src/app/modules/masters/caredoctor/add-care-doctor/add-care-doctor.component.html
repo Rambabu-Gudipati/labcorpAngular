@@ -1,0 +1,160 @@
+<div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog">
+    <div >
+        <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalTopTitle">{{modalHeaderTitle}}</h5>
+                <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                      <label class="form-label" for="username">Username</label>
+                      <input type="text" id="username" class="form-control form-control-sm" autocomplete="false"
+                        formControlName="username" [class.is-invalid]="form.get('username')?.invalid && form.get('username')?.touched" />
+                        <div *ngIf="form.get('username')?.invalid && form.get('username')?.touched" class="text-danger">
+                          Username is required.
+                        </div>
+          
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label" for="email">Email</label>
+                        <input type="text" id="email" class="form-control form-control-sm" autocomplete="false"
+                          formControlName="email"  [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched" />
+                          <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-danger">
+                            Email is required.
+                          </div>
+            
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <label class="form-label" for="mobile_no">Mobile Number</label>
+                        <input type="text" id="mobile_no" class="form-control form-control-sm" autocomplete="false"
+                          formControlName="mobile_no" maxlength="10" minlength="10"
+                          [class.is-invalid]="form.get('mobile_no')?.invalid && form.get('mobile_no')?.touched" />
+                          <div *ngIf="form.get('mobile_no')?.invalid && form.get('mobile_no')?.touched" class="text-danger">
+                           Mobile No is required.
+                          </div>
+                    </div>
+                  </div>
+                <!-- <div class="mb-3">
+                    <label class="form-label" for="username"> Name</label>
+                    <input type="text" id="username" class="form-control form-control-sm" autocomplete="false"
+                        formControlName="username"
+                        [ngClass]="{ 'is-invalid': submitted && f['username'].errors }" />
+                    @if (submitted && f['username'].errors) {
+                    <div class="invalid-feedback">
+
+                        @if (f['username'].value.length<6) { <div> Name should be minumum 6 digits
+                    </div>}
+                </div>
+                }
+            </div> -->
+
+            <!-- <div class="mb-3">
+                <label class="form-label" for="qualification">Qualification</label>
+                <input type="text" id="qualification" class="form-control form-control-sm" autocomplete="false"
+                    formControlName="qualification"
+                    [ngClass]="{ 'is-invalid': submitted && f['qualification'].errors }" />
+                @if (submitted && f['qualification'].errors) {
+                <div class="invalid-feedback">
+                    @if (f['qualification'].errors['required']) {
+                    <div>qualification is required</div>
+                    }
+                </div>
+                }
+            </div> -->
+<!-- 
+            <div class="mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input type="text" id="email" class="form-control form-control-sm" autocomplete="false"
+                    formControlName="email" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+                @if (submitted && f['email'].errors) {
+                <div class="invalid-feedback">
+                    @if (f['email'].errors['required']) {
+                    <div>Email is required</div>
+                    } @if (f['email'].errors['email']) {
+                    <div>Email is invalid</div>
+                    }
+                </div>
+                }
+
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label" for="basic-default-phone">Mobile No</label>
+                <input type="text" id="mobile_no" class="form-control form-control-sm" autocomplete="false"
+                    formControlName="mobile_no" [maxlength]="10"
+                    [ngClass]="{ 'is-invalid': submitted && f['mobile_no'].errors }" />
+                @if (submitted && f['mobile_no'].errors) {
+                <div class="invalid-feedback">
+                    @if (f['mobile_no'].errors['required']) {
+                    <div>Mobile Number is required</div>
+                    } @if (f['mobile_no'].errors['mobile_no']) {
+                    <div>Mobile Number should be 10 digits</div>
+                    }
+                </div>
+                }
+            </div> -->
+            <!-- <div class="row">
+                <div class="col-md-6 mb-3">
+                    <label class="form-label" for="email">ID Proof Name</label>
+                    <input type="text" id="id_proof_type" class="form-control form-control-sm" autocomplete="false"
+                        formControlName="id_proof_type"
+                        [ngClass]="{ 'is-invalid': submitted && f['id_proof_type'].errors }" />
+                    @if (submitted && f['id_proof_type'].errors) {
+                    <div class="invalid-feedback">
+                        @if (f['id_proof_type'].errors['required']) {
+                        <div>ID proof name is required</div>
+                        }
+                    </div>
+                    }
+
+                </div>
+
+
+                <div class="col-md-6 mb-3">
+                    <label class="form-label" for="basic-default-phone">ID Proof No</label>
+                    <input type="text" id="id_proof_number" class="form-control form-control-sm" autocomplete="false"
+                        formControlName="id_proof_number" [maxlength]="10"
+                        [ngClass]="{ 'is-invalid': submitted && f['id_proof_number'].errors }" />
+                    @if (submitted && f['id_proof_number'].errors) {
+                    <div class="invalid-feedback">
+                        @if (f['id_proof_number'].errors['required']) {
+                        <div>Mobile Number is required</div>
+                        } @if (f['id_proof_number'].errors['id_proof_number']) {
+                        <div>ID proof number should be min. 6 digits</div>
+                        }
+                    </div>
+                    }
+                </div>
+            </div>
+            <div class="col-md-12 mb-3">
+                <label class="form-label" for="basic-default-phone">Address</label>
+                <input type="text" id="address" class="form-control form-control-sm" autocomplete="false"
+                    formControlName="address" [maxlength]="500"
+                    [ngClass]="{ 'is-invalid': submitted && f['address'].errors }" />
+                @if (submitted && f['address'].errors) {
+                <div class="invalid-feedback">
+                    @if (f['address'].errors['required']) {
+                    <div>Address is required</div>
+                    } @if (f['address'].errors['address']) {
+                    <div>Address should be min. 6 digits</div>
+                    }
+                </div>
+                }
+            </div> -->
+ </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+        <button type="submit" class="btn btn-primary"><span *ngIf="isLoading" class="spinner-border spinner-border-sm"
+                role="status" aria-hidden="true"></span>
+            {{ isLoading ? 'Loading...' : buttonTitle }}</button>
+    </div>
+    </form>
+</div>
+</div>
+
+<!-- <button class="btn btn-primary" type="button" disabled>
+    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    Loading...
+</button> -->

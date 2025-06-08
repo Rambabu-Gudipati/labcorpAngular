@@ -1,0 +1,175 @@
+
+
+ <div>
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTopTitle">{{ modalHeaderTitle }}</h5>
+        <button
+          type="button"
+          (click)="dismissModal()"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="form" >
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="test_category">Test Category</label>
+            <select [(ngModel)]="newTests.test_category" required
+              id="test_category"
+              class="form-select"
+              formControlName="test_category"
+              (ngModelChange)="onTestChanged($event)"
+              [class.is-invalid]="form.get('test_category')?.invalid && form.get('test_category')?.touched"
+            >
+              <option *ngFor="let item of category_list" value="{{ item.id }}">
+                {{ item.name }}
+              </option>
+            </select>
+            
+            <div *ngIf="form.get('test_category')?.invalid && form.get('test_category')?.touched" class="text-danger">
+              Test Category is required.
+            </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="test_sub_category"
+              >Sub Category</label
+            >
+            <select  [(ngModel)]="newTests.test_sub_category" required
+              id="test_sub_category"
+              class="form-select"
+            formControlName="test_sub_category"
+           (ngModelChange)="onSubtestChange($event)"
+           [class.is-invalid]="form.get('test_sub_category')?.invalid && form.get('test_sub_category')?.touched"
+            >
+              <option
+                *ngFor="let item of subcategory_list"
+                value="{{ item.id }}"
+              >
+                {{ item.name }}
+              </option>
+            </select>
+           
+          
+         
+            <div *ngIf="form.get('test_sub_category')?.invalid && form.get('test_sub_category')?.touched" class="text-danger">
+              Test Sub Category is required.
+            </div>
+            </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="test_id">Test Name</label>
+            <select [(ngModel)]="newTests.test_name" required
+              id="test_id"
+              class="form-select"
+            (change)="onTestChange($event)" 
+  
+            formControlName="test_id"
+            [class.is-invalid]="form.get('test_id')?.invalid && form.get('test_id')?.touched"  
+            >
+              <option *ngFor="let item of test_names" [value]="item.id">
+                {{ item.test_name }}
+              </option>
+            </select>
+            <div *ngIf="form.get('test_id')?.invalid && form.get('test_id')?.touched" class="text-danger">
+              Test Name is required.
+            </div>
+          
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="due_date">Due Date</label>
+            <input [(ngModel)]="newTests.due_date"
+              type="date"
+              id="due_date"
+            formControlName="due_date"
+              class="form-control"
+              autocomplete="false"
+            
+              [class.is-invalid]="form.get('due_date')?.invalid && form.get('due_date')?.touched"  min="{{currentDate | date:'yyyy-MM-dd'}}"
+            />
+            <div *ngIf="form.get('due_date')?.invalid && form.get('due_date')?.touched" class="text-danger">
+              Due Date is required.
+            </div>
+            </div>
+        </div>
+      </form>
+      </div> 
+     
+        <!-- <h3>Add User</h3>
+      
+        <select [(ngModel)]="newTests.test_category" required   (ngModelChange)="onTestChanged($event)">
+            <option *ngFor="let item of category_list"  value="{{ item .id}}">{{ item.name }}</option>
+          </select>
+        <select [(ngModel)]="newTests.test_sub_category" required   (ngModelChange)="onSubtestChange($event)">
+          <option *ngFor="let item of subcategory_list"  value="{{ item .id}}">{{ item.name }}</option>
+        </select>
+        <select [(ngModel)]="newTests.test_name" required   (ngModelChange)="onTestnameChange($event)">
+            <option *ngFor="let item of test_names"  value="{{ item.id }}">{{ item.test_name}}</option>
+          </select>
+       
+        <input [(ngModel)]="newTests.due_date" placeholder="Email" type="date" required />
+        <button (click)="addTests()">Add User</button>
+      -->
+  
+      <div class="table-responsive">
+        <table class="table mb-0">
+          <thead>
+            <tr>
+              <th>#</th>
+
+              <th scope="col">Test Category</th>
+              <th scope="col">Sub Category</th>
+              <th scope="col">Test Name</th>
+              <th scope="col">Due Date</th>
+
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let test of tests">
+              <td>{{ test.id }}</td>
+              <td>{{ test.test_category }}</td>
+              <td>{{ test.test_sub_category }}</td>
+              <td>{{ test.test_name }}</td>
+              <td>{{ test.due_date }}</td>
+              <td >
+                <div style="display: flex;">
+                  
+                  <!-- <a href="javascript:void(0);"  (click)=" editMedication(medication)" class="dropdown-item-no-text"><i class="fa fa-edit"></i></a>  -->
+                  <a
+                  href="javascript:void(0);"
+                  (click)="deleteTests(test.id)"
+                  class="dropdown-item-no-text"
+                  ><i class="fa fa-trash"></i
+                ></a>
+                </div>
+               
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-outline-secondary"
+          (click)="dismissModal()"
+        >
+          Close
+        </button>
+        <button
+        class="btn add-new btn-primary mb-3 mb-md-0"
+        tabindex="0"
+        type="button"
+        (click)="addTests()"
+      >
+        <span>Add </span>
+      </button>
+        <button  type="button" (click)="onSubmit()"class="btn btn-primary">Save</button>
+      </div>
+

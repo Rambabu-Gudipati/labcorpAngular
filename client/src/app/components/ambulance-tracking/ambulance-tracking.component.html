@@ -1,0 +1,33 @@
+<div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog">
+  <div>
+
+    <div class="modal-header">
+      <h5 class="modal-title" id="modalTopTitle">Ambulance Live Tracking</h5>
+      <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+        aria-label="Close"></button>
+    </div>
+    <div class="modal-body">
+
+      <div class="row">
+
+
+        <!-- Right Side: Google Map -->
+        <div class="col-md-12">
+          <div class="map-container">
+            <google-map [center]="center" [zoom]="zoom" style="height: 500px; width: 100%;">
+              <map-marker *ngFor="let marker of markers" [position]="marker.position"></map-marker>
+              <map-polyline [path]="path"
+                [options]="{ strokeColor: '#FF0000', strokeOpacity: 1.0, strokeWeight: 2 }"></map-polyline>
+            </google-map>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+      <button type="submit" class="btn btn-primary" (click)="trackAmbulance()">Get Latest Location</button>
+    </div> -->
+
+  </div>
+</div>

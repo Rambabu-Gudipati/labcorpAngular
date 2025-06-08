@@ -1,0 +1,64 @@
+<p>add-medication works!</p>
+<div class="table-responsive">
+    <table class="table mb-0">
+      <thead>
+        <tr>
+          <th>#</th>
+           
+          <th scope="col">Medication</th>
+          <th scope="col">Form</th>
+          <th scope="col">Strength/Unit</th>
+          <th scope="col">Frequency</th>
+         
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        
+        
+       
+       <tr *ngFor="let medication of medications" >
+         <td> {{medication.id}}</td>
+         <td >{{ medication.medication }}</td>
+          <td>{{medication.form}}</td>
+          <td>{{medication.unit}}</td>
+          <td>{{medication.frequency}}</td>
+        
+         
+          <td >
+           <div style="display: flex;">
+             
+             <a href="javascript:void(0);"  (click)=" editMedication(medication)" class="dropdown-item-no-text"><i class="fa fa-edit"></i></a> 
+             <a href="javascript:void(0);" (click)="deleteMedication(medication.id)" class="dropdown-item-no-text"><i class="bx bx-trash me-1"></i></a>
+           </div>
+          
+         </td>
+     </tr>
+  </tbody>
+    </table>
+    <div>
+        <h3>Add User</h3>
+        <input [(ngModel)]="newMedication.medication" placeholder="Name" required />
+       
+        <select [(ngModel)]="newMedication.form" required>
+          <option *ngFor="let item of form" [value]="item">{{ item }}</option>
+        </select>
+        <input [(ngModel)]="newMedication.unit" placeholder="Email" type="email" required />
+        <input [(ngModel)]="newMedication.frequency" placeholder="Email" type="email" required />
+        <button (click)="addMedication()">Add User</button>
+      </div>
+    
+      <!-- Edit User Form -->
+      <div *ngIf="editingMedication">
+        <h3>Edit User</h3>
+        <input [(ngModel)]="editingMedication.medication" placeholder="Email" type="email" required />
+        <select [(ngModel)]="editingMedication.form" required>
+          <option *ngFor="let item of form" [value]="item">{{ item }}</option>
+        </select>
+        <input [(ngModel)]="editingMedication.unit" placeholder="Email" type="email" required />
+        <input [(ngModel)]="editingMedication.frequency" placeholder="Email" type="email" required />
+        <button (click)="updateMedication()">Save Changes</button>
+        <button (click)="editingMedication = null">Cancel</button>
+      </div>
+    </div>
+   

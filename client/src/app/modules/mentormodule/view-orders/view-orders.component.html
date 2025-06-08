@@ -1,0 +1,173 @@
+<div class="card">
+  <div class="card-body">
+    <h4>Order Details:</h4>
+    <div class="row">
+
+
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Order Number : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{items?.userOrderDetails?.order_id }}</span>
+
+      </div>
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Order Date : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{items?.userOrderDetails?.order_date|date:'dd-MM-yyyy hh:mm:ss' }} </span>
+
+      </div>
+
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Order By : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;"> {{items?.userOrderDetails?.username }}</span>
+
+      </div>
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Ordered Mobile no : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{items?.userOrderDetails?.mobile_no }}</span>
+
+      </div>
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Amount : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;"> {{items?.userOrderDetails?.amount }}</span>
+
+      </div>
+
+      <div class="col-md-3 mb-2 mb-2">
+
+        <span style="color: rgb(66, 65, 65);">Order Status : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;"> {{items?.userOrderDetails?.order_status }}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-body">
+    <h4>Patient Details:</h4>
+    <div class="row">
+
+      <div class="col-3">
+        <span style="color: rgb(66, 65, 65);">Patient Name : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{items?.bookingFor?.username }}</span>
+
+      </div>
+      <div class="col-3">
+        <span style="color: rgb(66, 65, 65);">Age : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{items?.bookingFor?.age }}</span>
+
+      </div>
+
+      <div class="col-3">
+        <span style="color: rgb(66, 65, 65);">Gender : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;"> {{items?.bookingFor?.gender }}</span>
+
+      </div>
+
+      <div class="col-3">
+        <span style="color: rgb(66, 65, 65);">Mobile No : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{items?.bookingFor?.mobile_no }}</span>
+
+      </div>
+      <div class="col-5">
+        <span style="color: rgb(66, 65, 65);"> Address : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;"> {{items?.bookingFor?.address }}</span>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<div class="table-responsive">
+ 
+  <table class="table mb-0">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>S.No</th>
+        <th scope="col">Test Name</th>
+        <th scope="col">Amount</th>
+        <th scope="col">Sample Collection Person Name</th>
+        <th scope="col">Person Contact No</th>
+        <th scope="col">Sample collection Date</th>
+        <th scope="col">Lab Name</th>
+        <th scope="col">Time Slot</th>
+
+        <th scope="col">Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+
+
+      <tr *ngFor="let item of items.data; let idx = index">
+        <td>
+          <input class="form-checked-input" style="margin-left: 10px;" type="checkbox" [value]="item.diagnostic_booking_id" name="{{item.diagnostic_booking_id}}" (change)="onTestChecked($event,item.diagnostic_booking_id)" />
+        </td>
+        <td>{{idx+1}}</td>
+        <td>{{ item.test_name }}</td>
+        <td>{{item.amount}}</td>
+        <td>{{item.technician_name}}</td>
+        <td>{{item.techinician_contact_no}}</td>
+        <td>{{item.diagnostic_booking_date |date:'dd-MM-yyyy hh:mm:ss'}}</td>
+        <td>{{item.diagnostic_lab_name}}</td>
+        <td>{{item.booking_time_slot_name}}</td>
+        <td>{{item.status}}</td>
+        <td>
+          <div style="display: flex;">
+            <div class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-md-end justify-content-center flex-wrap me-1">
+              <button class="btn add-new btn-primary mb-3 mb-md-0" [style.backgroundColor]="item.booking_status_id === 4 ? '#3c8e7f' : '#3d8888'" [style.borderColor]="item.booking_status_id === 4 ? '#2e6d6d' : '#3c8e7f'"
+                [disabled]="item.booking_status_id !== 3 && item.booking_status_id !== 4" (click)="
+    item.booking_status_id === 4
+      ? viewReport(item.diagnostic_booking_id)
+      : uploadPdf(item.diagnostic_booking_id)
+  ">
+                <span>
+                  {{ item.booking_status_id === 4 ? 'View Report' : 'Upload Report' }}
+                </span>
+              </button>
+
+            </div>
+
+          </div>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="card-body">
+
+
+
+  <div class="col-sm-12 col-md-12">
+    <div *ngIf="items?.userOrderDetails?.order_status_id == 5" class="col-12 text-center" >
+      <h4 style="color:red">Payment Not Completed!</h4>
+    </div>
+    <div *ngIf="items?.userOrderDetails?.order_status_id == 4" class="col-12 text-center" >
+      <h4 style="color:red">Order Cancelled</h4>
+    </div>
+    <div class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-md-end justify-content-center flex-wrap me-1">
+      <div class="dt-buttons btn-group flex-wrap">
+        <button class="btn add-new btn-primary mb-3 mb-md-0 mr-3" tabindex="0" style="    
+                background-color: #0da60da8;
+                border-color: #51c81aa3" aria-controls="DataTables_Table_0" type="button" [disabled]="isButtonsDisabled" [disabled]="checkBookingTimeSlots" (click)="assignLab()"><span>Assign Lab
+          </span></button>
+        <button class="btn add-new btn-primary mb-3 mb-md-0 mr-3" tabindex="0" aria-controls="DataTables_Table_0" type="button" [disabled]="isButtonsDisabled" (click)="rescheduleLab()"><span>Rescedule Lab
+          </span></button>
+        <button class="btn add-new btn-primary mb-3 mb-md-0 mr-3" tabindex="0" style="   
+                 background-color: #efa85b;
+                 border-color: #f5bf79;" aria-controls="DataTables_Table_0" type="button" [disabled]="isButtonsDisabled" (click)="sampleCollection()"><span>Sample Collection Update
+          </span></button>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+</div>

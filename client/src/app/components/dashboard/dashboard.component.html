@@ -1,0 +1,221 @@
+<div class="container-xxl flex-grow-1 container-p-y">
+
+
+  <!-- Card Border Shadow -->
+  <div class="row">
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+      <div class="dash-widget">
+        <span class="dash-widget-bg1"><i class="fa fa-stethoscope" aria-hidden="true"></i></span>
+        <div class="dash-widget-info text-right">
+          <h3 class="ms-1 mb-0">42</h3>
+
+          <span class="widget-title1">Registered Hospitals <i class="fa fa-check" aria-hidden="true"></i></span>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+      <div class="dash-widget">
+        <span class="dash-widget-bg2"><i class="fa fa-stethoscope" aria-hidden="true"></i></span>
+        <div class="dash-widget-info text-right">
+          <h3 class="ms-1 mb-0">42</h3>
+
+          <span class="widget-title2">Registered Hospitals <i class="fa fa-check" aria-hidden="true"></i></span>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+      <div class="dash-widget">
+        <span class="dash-widget-bg3"><i class="fa fa-stethoscope" aria-hidden="true"></i></span>
+        <div class="dash-widget-info text-right">
+          <h3 class="ms-1 mb-0">42</h3>
+
+          <span class="widget-title3">Registered Hospitals <i class="fa fa-check" aria-hidden="true"></i></span>
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
+      <div class="dash-widget">
+        <span class="dash-widget-bg4"><i class="fa fa-stethoscope" aria-hidden="true"></i></span>
+        <div class="dash-widget-info text-right">
+          <h3 class="ms-1 mb-0">42</h3>
+
+          <span class="widget-title4">Registered Hospitals <i class="fa fa-check" aria-hidden="true"></i></span>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="chartjs-size-monitor"
+            style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+            <div class="chartjs-size-monitor-expand"
+              style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+              <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+            </div>
+            <div class="chartjs-size-monitor-shrink"
+              style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+              <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+            </div>
+          </div>
+          <div class="chart-title">
+            <h4>SOS Case Statistics</h4>
+            <span class="float-right"><i class="fa fa-caret-up" aria-hidden="true"></i> 15% Higher than Last
+              Month</span>
+          </div>
+          <canvas id="linegraph" width="700" height="350" style="display: block; height: 280px; width: 560px;"
+            class="chartjs-render-monitor"></canvas>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+      <div class="card">
+        <div class="card-body">
+          <div class="chartjs-size-monitor"
+            style="position: absolute; inset: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+            <div class="chartjs-size-monitor-expand"
+              style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+              <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0"></div>
+            </div>
+            <div class="chartjs-size-monitor-shrink"
+              style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+              <div style="position:absolute;width:200%;height:200%;left:0; top:0"></div>
+            </div>
+          </div>
+          <div class="chart-title">
+            <h4>ECG Statistics</h4>
+            <div class="float-right">
+              <ul class="chat-user-total">
+                <li><i class="fa fa-circle current-users" aria-hidden="true"></i>ICU</li>
+                <li><i class="fa fa-circle old-users" aria-hidden="true"></i>OPD</li>
+              </ul>
+            </div>
+          </div>
+          <canvas id="bargraph" width="700" height="350" style="display: block; height: 280px; width: 560px;"
+            class="chartjs-render-monitor"></canvas>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-lg-12 col-xxl-12 mb-4 order-3 order-xxl-1">
+      <div class="card h-100">
+        <div class="card-header d-flex align-items-center justify-content-between">
+
+          <h5 class="card-title d-inline-block">Active SOS Cases</h5><br>
+
+          <!-- 
+          <div
+            style="display: flex; border: 1px solid; border-radius: 0.375rem; color: #b6b6b6; padding: 2px; width: 40rem;">
+            <input type="date" id="mobile_no" class="form-control form-control-sm floating datetimepicker"
+              [(ngModel)]="report_from_date" autocomplete="false" />
+            <input type="date" id="mobile_no" class="form-control form-control-sm floating datetimepicke"
+              [(ngModel)]="report_to_date" autocomplete="false" />
+            <button style="width: 32rem;" class='btn btn btn-primary btn-rounded' (click)="loasSosData()">Generate
+              Report</button>
+          </div> -->
+
+        </div>
+        <div class="table-responsive">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th scope="col">SOS Id</th>
+                <th scope="col">SOS Date</th>
+                <th scope="col">Patient Name </th>
+                <th scope="col">Doctor Details</th>
+                <th scope="col">Hospital Details</th>
+                <th scope="col">Ambulance Details</th>
+                <th scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for (sos of sosData; track sos;) {
+              <tr>
+                <th scope="row">{{ sos.id }}</th>
+                <td>{{ sos.sos_date | date }}</td>
+                <td>
+                  <h5 class="time-title p-0">{{ sos.patient_name }}</h5>
+                  <p>{{ sos.patient_mobile_no }}</p>
+
+                </td>
+
+                <td >
+                  <h5 class="time-title p-0">{{ sos.doctor_name }}</h5>
+                  <p>{{ sos.doctor_mobile_no }} </p>
+                </td>
+                <td *ngIf="sos.hospital_id == 0 || sos.hospital_id == null">
+                  <h5 style="color: red;" class="time-title p-0">Not Yet Assigned</h5>
+
+                </td>
+                <td *ngIf="sos.hospital_id>0">
+                  <h5 class="time-title p-0">{{ sos.hosptial_name }}</h5>
+                  <p>{{ sos.hosptial_contact_name }} : {{ sos.hospital_contact_no }}</p>
+                </td>
+
+
+                <td *ngIf="sos.ambulance_id>0">
+                  <h5 class="time-title p-0">{{ sos.ambulance_number }}</h5>
+                  <p>{{ sos.ambulance_driver_name }} : {{ sos.ambulance_contact_no }}</p>
+                  <small style="color: blue;">Current Status : {{sos.ambulance_status}}</small>
+                </td>
+                <td *ngIf="sos.ambulance_id == 0 || sos.ambulance_id == null">
+                  <h5 style="color: red;" class="time-title p-0">Not Yet Assigned</h5>
+
+                </td>
+                <td>
+                  <div style="display: flex;">
+                    <!-- <a href="javascript:void(0);" (click)="showSOSData(sos.sos_id)" class="dropdown-item-no-text"><i
+                        class="fa fa-eye"></i></a> -->
+                    <a href="javascript:void(0);" class="custom-badge status-green"
+                      (click)="showSOSData(sos.id)">View</a> &nbsp;
+                      <a href="javascript:void(0);" class="custom-badge status-green"
+                     (click)="onJoinCall(sos)">Join Call</a>
+                       
+                  </div>
+                </td>
+                <!-- <td><a  (click)="showSOSData(sos.sos_id)"><i
+                      class="bx bx-calendar-edit me-1"></i></a></td> -->
+              </tr>
+              }
+            </tbody>
+          </table>
+
+          <div class="d-flex justify-content-between p-2">
+            <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize"
+              (pageChange)="changePage()">
+            </ngb-pagination>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+
+    <div class="col-lg-12 col-xxl-12 mb-4 order-3 order-xxl-1">
+      <div class="card h-100">
+        <div class="card-header d-flex align-items-center justify-content-between">
+          <div class="card-title mb-0">
+            <h5 class="m-0 me-2">ECG statistics</h5>
+            <small class="text-muted">List ECG Requests as On </small>
+          </div>
+
+        </div>
+        <div class="card-body" style="position: relative;">
+
+
+        </div>
+      </div>
+    </div>
+  </div>

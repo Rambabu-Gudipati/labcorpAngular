@@ -1,0 +1,89 @@
+<div class="modal-top" id="modalTop" tabindex="-1"  role="dialog">
+    <div>
+      <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+        <div class="modal-header">
+          <h4 class="modal-title" id="modalTopTitle">{{modalHeaderTitle}}</h4>
+          <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal" 
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+          <div class="row">
+            <div class="col-md-6 mb-3">
+              <label class="form-label" for="lab_name">Lab Name</label>
+        
+              <select id="lab_name" class="form-control" formControlName="lab_name" 
+              [class.is-invalid]="form.get('lab_name')?.invalid && form.get('lab_name')?.touched" >
+  
+                <option *ngFor="let item of lab_list;" value="{{item.id}}">{{item.lab_name}}</option>
+              </select>
+           
+              <div *ngIf="form.get('lab_name')?.invalid && form.get('lab_name')?.touched" class="text-danger">
+              Please Select Lab Name
+              </div>
+              </div>
+            <div class="col-md-6 mb-3">
+                    <label class="form-label" >Select Sample Collection Date</label>
+                   
+                    <input type="date" id="booking_date" class="form-control form-control-sm" autocomplete="false"
+                      formControlName="booking_date" (change)="validateAssignLabDate()" min="{{currentDate | date:'yyyy-MM-dd'}}"
+                      [class.is-invalid]="form.get('booking_date')?.invalid && form.get('booking_date')?.touched" />
+                      <div *ngIf="form.get('booking_date')?.invalid && form.get('booking_date')?.touched" class="text-danger">
+                      Booking Date is required.
+                     </div>
+                    </div>
+            
+            
+                <div class="col-md-6 mb-3">
+                    <label class="form-label" >Sample Collection Person Name</label>
+                    <input type="text" id="technician_name" class="form-control form-control-sm" autocomplete="false"
+                      formControlName="technician_name"
+                      [class.is-invalid]="form.get('technician_name')?.invalid && form.get('technician_name')?.touched" />
+                  <div *ngIf="form.get('technician_name')?.invalid && form.get('technician_name')?.touched" class="text-danger">
+                Person Name is required.
+                 </div>
+                </div>
+              <div class="col-md-6 mb-3">
+                <label class="form-label" for="basic-default-phone">Person Contact No</label>
+                <input type="text" id="technician_contact_no" class="form-control form-control-sm" autocomplete="false"
+                    formControlName="technician_contact_no" [maxlength]="10"
+                    [class.is-invalid]="form.get('technician_contact_no')?.invalid && form.get('technician_contact_no')?.touched" />
+                  <div *ngIf="form.get('technician_contact_no')?.invalid && form.get('technician_contact_no')?.touched" class="text-danger">
+                   Contact Number is required.
+                 </div>
+                </div>
+             
+              
+                <div class="col-md-12 mb-3">
+                <label class="form-label">Selected Time Slot</label>
+             
+                  
+                   <div class="time-slots">
+                  
+                     <button type="button"
+                     
+                       *ngFor="let time of time_list"
+                       [ngClass]="{ 'selected': time.id === selectedTime }"
+                       (click)="selectTime(time)" value="{{time.id}}"
+                     >
+                       {{ time.slot_time}}
+                     </button>
+                   </div>
+                   <div *ngIf="errorMessage" class="error-message" style="color: red;">
+                    {{ errorMessage }}
+                    </div>
+                </div>
+               
+               </div>
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+        <button type="submit" class="btn btn-primary">{{buttonTitle}}</button>
+      </div>
+    </form>
+  </div>
+</div>
+   
+  
+      

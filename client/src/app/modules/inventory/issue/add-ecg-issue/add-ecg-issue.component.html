@@ -1,0 +1,167 @@
+<div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog">
+  <div>
+    <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTopTitle">{{modalHeaderTitle}}</h5>
+        <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="issue_date">Issue Date</label>
+            <input type="date" id="issue_date" class="form-control form-control-sm" autocomplete="false"
+              formControlName="issue_date"  [class.is-invalid]="form.get('issue_date')?.invalid && form.get('issue_date')?.touched" />
+              <div *ngIf="form.get('issue_date')?.invalid && form.get('issue_date')?.touched" class="text-danger">
+              Issue Date is required.
+              </div>
+          </div>
+
+          <div class="col-md-6 mb-3">
+            <label class="form-label" for="issue_to">Issue To</label>
+
+            <select id="issue_to" class="form-control" formControlName="issue_to"
+              (ngModelChange)="onStateChanged($event)"  [class.is-invalid]="form.get('issue_to')?.invalid && form.get('issue_to')?.touched">
+
+              <option *ngFor="let item of group_users_list;" value="{{item.id}}">{{item.company_name}}</option>
+            </select>
+            <div *ngIf="form.get('issue_to')?.invalid && form.get('issue_to')?.touched" class="text-danger">
+               Issue To is required.
+              </div>
+
+          </div>
+        </div>
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label" for="numof_devices">No Of Devices</label>
+              <input type="text" id="numof_devices" class="form-control form-control-sm" autocomplete="false"
+                formControlName="numof_devices" [maxlength]="150"
+                [class.is-invalid]="form.get('numof_devices')?.invalid && form.get('numof_devices')?.touched" />
+              <div *ngIf="form.get('numof_devices')?.invalid && form.get('numof_devices')?.touched" class="text-danger">
+                Number Of Devices is required.
+              </div>
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label" for="from_no">From No</label>
+              <input type="text" id="from_no" class="form-control form-control-sm" autocomplete="false"
+                formControlName="from_no" maxlength="10" minlength="10"
+                [ngClass]="{ 'is-invalid': submitted && f['from_no'].errors }" />
+              @if (submitted && f['from_no'].errors) {
+              <div class="invalid-feedback">
+                <!-- @if (f['from_no'].errors['required']) {
+                <div>Model No is required</div>
+                } -->
+              </div>
+              }
+
+            </div>
+            <div class="col-md-4 mb-3">
+              <label class="form-label" for="to_no">To No</label>
+              <input type="text" id="to_no" class="form-control form-control-sm" autocomplete="false"
+                formControlName="to_no" maxlength="10" minlength="10"
+                [ngClass]="{ 'is-invalid': submitted && f['to_no'].errors }" />
+              @if (submitted && f['to_no'].errors) {
+              <div class="invalid-feedback">
+                <!-- @if (f['to_no'].errors['required']) {
+                  <div>Model No is required</div>
+                  } -->
+              </div>
+              }
+
+            </div>
+          </div>
+
+
+          <div class="table-responsive text-nowrap">
+            <p-table class="table table-bordered" #dt1 [value]="items" dataKey="id" [rowHover]="true" [rows]="10"
+      [showCurrentPageReport]="true"  [loading]="loading" [paginator]="true"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+      [globalFilterFields]="['device_id', 'device_model_by', 'manufacturer_by']">
+      <ng-template pTemplate="caption">
+        <div class="flex justify-content-between">
+          <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" (onClick)="clear()" />
+          <p-iconField iconPosition="left" style="float: right;">
+            <p-inputIcon>
+              <i class="pi pi-search"></i>
+            </p-inputIcon>
+            <input pInputText type="text" [(ngModel)]="searchValue" (input)="filterGlobal($event)"
+              placeholder="Keyboard Search" />
+          </p-iconField>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="device_id">
+           Device Id<p-sortIcon field="device_id" />
+          </th>
+          <th pSortableColumn="device_model_by">
+            Model Name <p-sortIcon field="device_model_by" />
+          </th>
+          
+          <th pSortableColumn="manufacturer_by">
+            Manufacturer Name<p-sortIcon field="manufacturer_by" />
+          </th>
+        
+          <th>
+            Action
+          </th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-row>
+        <tr [pSelectableRow]="row">
+          <td>
+            <span class="p-column-title">Device Id</span>
+            {{ row.device_id }}
+          </td>
+          <td>
+            <span class="p-column-title">Model Name</span>
+            <span class="ml-1 vertical-align-middle">{{ row.device_model_by}}</span>
+          </td>
+          <td>
+            <span class="p-column-title">Manufacturere Name</span>
+            <span class="ml-1 vertical-align-middle">{{ row.manufacturer_by}}</span>
+          </td>
+       
+            
+          <!-- <td>
+            <span class="p-column-title">Status</span>
+            <p-tag [value]="customer.status" [severity]="getSeverity(customer.status)" />
+          </td> -->
+          <td>
+            <div class="dropdown">
+                <label>
+                  <input type="checkbox" />
+                 
+                </label>
+              </div>
+          </td>
+         
+         
+        </tr>
+          <!-- <tr *ngIf="loading">
+            <td colspan="5" class="text-center py-5">
+              <span class="spinner-border spinner-border-lg align-center"></span>
+            </td>
+          </tr> -->
+       
+      </ng-template>
+   
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="4">No customers found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+     
+          </div>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+          <button type="submit" class="btn btn-primary">{{buttonTitle}}</button>
+        </div>
+  
+    </form>
+
+
+  </div>

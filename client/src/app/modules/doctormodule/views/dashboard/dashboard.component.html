@@ -1,0 +1,29 @@
+<div>
+  <!-- <div class="navigator">
+      <daypilot-navigator [config]="configNavigator" [events]="events" [(date)]="date" (dateChange)="changeDate($event)" #navigator></daypilot-navigator>
+    </div>  -->
+ <div>
+      <div class="buttons">
+      <button (click)="viewDay()"  [class]="this.configNavigator.selectMode == 'Day' ? 'selected' : ''"  [class.p-button-primary]="currentView === 'day'" 
+      (click)="changeView('day')">Day</button>
+      <button (click)="viewWeek()"  [class]="this.configNavigator.selectMode == 'Week' ? 'selected' : ''"   [class.p-button-primary]="currentView === 'week'" 
+      (click)="changeView('week')">Week</button>
+      <button (click)="viewMonth()" [class]="this.configNavigator.selectMode == 'Month' ? 'selected' : ''" [class.p-button-primary]="currentView === 'month'" 
+      (click)="changeView('month')">Month</button> &nbsp;
+      <div style="display: flex; align-items: center;">
+        <button type="button" pButton icon="pi pi-angle-left"   class="p-button-rounded p-button-text" (click)="navigateDate(-1)"></button>
+        <p-calendar  [(ngModel)]="currentDate" 
+        [dateFormat]="currentDateFormat" 
+        [view]="currentView === 'month' ? 'month' : 'date'" 
+        [disabled]="currentView === 'week'"
+        (onSelect)="onDateChange()"
+        placeholder="Select a date"
+        [inputStyle]="{'text-align': 'center'}"></p-calendar>
+        <button type="button" pButton icon="pi pi-angle-right" class="p-button-rounded p-button-text"    (click)="navigateDate(1)"></button>
+      </div>
+    </div>
+      <daypilot-calendar [config]="configDay" [events]="events" #day ></daypilot-calendar>
+      <daypilot-calendar [config]="configWeek" [events]="events" #week></daypilot-calendar>
+      <daypilot-month [config]="configMonth" [events]="events" #month></daypilot-month>
+    </div>
+</div>

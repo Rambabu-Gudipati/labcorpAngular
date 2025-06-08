@@ -1,0 +1,66 @@
+<!-- <p>add-care-mentor works!</p> -->
+
+<div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog">
+    <div>
+      <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalTopTitle">{{modalHeaderTitle}}</h5>
+          <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+            aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+  
+          <div class="row">
+            <div class="col-md-4 mb-3">
+              <label class="form-label" for="username">Mentor Name</label>
+              <input type="text" id="username" class="form-control form-control-sm" autocomplete="false"
+                formControlName="username"  [class.is-invalid]="form.get('username')?.invalid && form.get('username')?.touched" />
+                <div *ngIf="form.get('username')?.invalid && form.get('username')?.touched" class="text-danger">
+                  Username is required.
+                </div>
+  
+            </div>
+            <div class="col-md-4 mb-3">
+                <label class="form-label" for="email">Email</label>
+                <input type="text" id="email" class="form-control form-control-sm" autocomplete="false"
+                    formControlName="email" [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched" />
+                    <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-danger">
+                      Email is required.
+                    </div>
+
+            </div>
+  
+            <div class="col-md-4 mb-3">
+                <label class="form-label" for="basic-default-phone">Mobile No</label>
+                <input type="text" id="mobile_no" class="form-control form-control-sm" autocomplete="false"
+                    formControlName="mobile_no" [maxlength]="10"
+                    [class.is-invalid]="form.get('mobile_no')?.invalid && form.get('mobile_no')?.touched" />
+                          <div *ngIf="form.get('mobile_no')?.invalid && form.get('mobile_no')?.touched" class="text-danger">
+                           Mobile No is required.
+                          </div>
+            </div>
+            <!-- <div class="col-md-4 mb-3">
+              <label class="form-label" for="basic-default-phone">Mobile No</label>
+              <input type="text" id="password" class="form-control form-control-sm" autocomplete="false"
+                  formControlName="password" [maxlength]="10"
+                  [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+              @if (submitted && f['password'].errors) {
+              <div class="invalid-feedback">
+                  @if (f['password'].errors['required']) {
+                  <div>Mobile Number is required</div>
+                  } @if (f['password'].errors['password']) {
+                  <div>Mobile Number should be 10 digits</div>
+                  }
+              </div>
+              }
+          </div> -->
+  
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+          <button type="submit" class="btn btn-primary">{{buttonTitle}}</button>
+        </div>
+      </form>
+    </div>
+  </div>

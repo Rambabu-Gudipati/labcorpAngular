@@ -1,0 +1,768 @@
+
+<div class="card">
+  <div class="card-body">
+    <h4>Patient Details:</h4>
+    <div class="row">
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Patient Name : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{patient_data?.username}}</span>
+
+      </div>
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Age : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{patient_data?.age}}</span>
+
+      </div>
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Gender: &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{patient_data?.gender}}</span>
+
+      </div>
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Mobile No : &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{patient_data?.mobile_no}}</span>
+
+      </div>
+      <div class="col-md-3 mb-2 mb-2">
+        <span style="color: rgb(66, 65, 65);">Address: &nbsp;</span>
+        <span style="font-weight: bold; color: #272626;">{{patient_data?.address}}</span>
+
+      </div>
+     
+    </div>
+  </div>
+</div>
+<div class="card">
+  <h5 class="card-header">Basic Health Details</h5>
+  <div class="card-body">
+    <div class="row">
+      <!-- <div class="col-md-2 mb-3">
+        <label class="form-label">Blood Group</label>
+
+        <input
+          type="text"
+          id="diagnostic_booking_date"
+          class="form-control form-control-sm"
+          autocomplete="false"
+         
+          [ngClass]="{ 'is-invalid': submitted && f['booking_date'].errors }"
+        />
+        @if (submitted && f['diagnostic_booking_date'].errors) {
+        <div class="invalid-feedback">
+          @if (f['diagnostic_booking_date'].errors['required']) {
+          <div>Date is required</div>
+          }
+        </div>
+        }
+      </div>
+
+      <div class="col-md-2 mb-3">
+        <label class="form-label">Blood Pressure</label>
+        <input
+          type="text"
+          id="technician_name"
+          class="form-control form-control-sm"
+          autocomplete="false"
+        
+          [ngClass]="{ 'is-invalid': submitted && f['technician_name'].errors }"
+        />
+        @if (submitted && f['technician_name'].errors) {
+        <div class="invalid-feedback">
+          @if (f['technician_name'].errors['required']) {
+          <div>Name is required</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="col-md-2 mb-3">
+        <label class="form-label" for="basic-default-phone">Heart Rate</label>
+        <input
+          type="text"
+          id="technician_contact_no"
+          class="form-control form-control-sm"
+          autocomplete="false"
+        
+         
+          [ngClass]="{
+            'is-invalid': submitted && f['technician_contact_no'].errors
+          }"
+        />
+        @if (submitted && f['technician_contact_no'].errors) {
+        <div class="invalid-feedback">
+          @if (f['technician_contact_no'].errors['required']) {
+          <div>Mobile Number is required</div>
+          } @if (f['technician_contact_no'].errors['technician_contact_no']) {
+          <div>Mobile Number should be 10 digits</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="col-md-2 mb-3">
+        <label class="form-label" for="basic-default-phone">Blood Sugar</label>
+        <input
+          type="text"
+          id="technician_contact_no"
+          class="form-control form-control-sm"
+          autocomplete="false"
+          
+         
+          [ngClass]="{
+            'is-invalid': submitted && f['technician_contact_no'].errors
+          }"
+        />
+        @if (submitted && f['technician_contact_no'].errors) {
+        <div class="invalid-feedback">
+          @if (f['technician_contact_no'].errors['required']) {
+          <div>Mobile Number is required</div>
+          } @if (f['technician_contact_no'].errors['technician_contact_no']) {
+          <div>Mobile Number should be 10 digits</div>
+          }
+        </div>
+        }
+      </div>
+      <div class="col-md-2 mb-3">
+        <label class="form-label" for="basic-default-phone">Weight</label>
+        <input
+          type="text"
+          id="technician_contact_no"
+          class="form-control form-control-sm"
+          autocomplete="false"
+         
+          [ngClass]="{
+            'is-invalid': submitted && f['technician_contact_no'].errors
+          }"
+        />
+        @if (submitted && f['technician_contact_no'].errors) {
+        <div class="invalid-feedback">
+          @if (f['technician_contact_no'].errors['required']) {
+          <div>Mobile Number is required</div>
+          } @if (f['technician_contact_no'].errors['technician_contact_no']) {
+          <div>Mobile Number should be 10 digits</div>
+          }
+        </div>
+        }
+      </div> -->
+    </div> 
+  </div>
+</div>
+
+<div class="row" style="padding: 13px;">
+  <div class="card" *ngFor="let section of medicalHistory?.sections!">
+    <h5 class="card-header">{{ section.section_name }}</h5>
+    <div class="card-body">
+      <div class="row">
+        <div
+          class="col-md-2 mb-2 mb-2"
+          *ngFor="let sectiondata of section.section_data"
+        >
+          <h5>{{ sectiondata.category }}</h5>
+          <div
+            class="field-checkbox"
+            *ngFor="let subitem of sectiondata.subitems"
+          >
+            <input
+              class="form-checked-input"
+              style="margin-left: 10px"
+              type="checkbox"
+              [(ngModel)]="subitem.selected" 
+              (change)="onCheckboxChange(subitem)"
+          [ngModelOptions]="{standalone: true}"
+              [value]="subitem.name"
+              name="{{ subitem.name }}"
+              title="{{ subitem.name }}"
+            /><label>{{ subitem.name }}</label>
+           
+          </div>
+        </div>
+
+        <div class="col-md-2 mb-2 mb-2">
+          <h5>None</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="card">
+        <h5 class="card-header">History of Past Illness</h5>
+        <div class="card-body">
+      
+            <div class="row">
+           
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>labcorp</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Endocrine</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Neurological</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Cancer</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Respiratory</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Gastrointestinal</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Bones, Joints, Muscles
+                    </h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Kidney</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+               
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Urinary</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Liver</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Autoimmune</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Infectious Diseases</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Skin, Hair, Nails
+                    </h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Eye Disease
+                    </h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>ENT</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Reproductive System
+                    </h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Mental Health</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Genetic or Congenital
+                    </h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>None
+                    </h5>
+                    
+                </div>
+           </div>
+        </div>
+    </div>
+    <div class="card">
+        <h5 class="card-header">History of Previous Surgeries</h5>
+        <div class="card-body">
+      
+            <div class="row">
+           
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5></h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Orthopedic</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Abdominal</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Gynecological</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Urological Surgeries</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Neurological</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Eye</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>ENT</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Lung</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Vascular</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Plastic & Reconstructive
+                    </h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>None
+                    </h5>
+                   
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label" >Others</label>
+                    <input type="text" class="form-control form-control-sm" autocomplete="false"
+                     
+                       />
+                    @if (submitted && f['technician_name'].errors) {
+                    <div class="invalid-feedback">
+                      @if (f['technician_name'].errors['required']) {
+                      <div>Name is required</div>
+                      }
+                    </div>
+                    }
+               </div>
+           </div>
+        </div>
+    </div>
+    <div class="card">
+        <h5 class="card-header">History of Allergies</h5>
+        <div class="card-body">
+      
+            <div class="row">
+           
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Food Allergies</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Environmental Allergies
+                    </h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Medication Allergies</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Chemical Allergies</h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Insect Allergies
+                    </h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>Skin Contact Allergy
+                    </h5>
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-checkbox 
+                            [(ngModel)]="selectedCategories"
+                            [label]="category.name" 
+                            name="group" 
+                            [value]="category" />
+                    </div>
+                </div>
+                <div class="col-md-2 mb-2 mb-2">
+                    <h5>None
+                    </h5>
+                    <p-checkbox 
+                    [(ngModel)]="checked" 
+                    [binary]="true" 
+                    inputId="binary" />
+                </div>
+               
+                <div class="col-md-3 mb-3">
+                    <label class="form-label" >Others</label>
+                    <input type="text" class="form-control form-control-sm" autocomplete="false"
+                     
+                       />
+                    @if (submitted && f['technician_name'].errors) {
+                    <div class="invalid-feedback">
+                      @if (f['technician_name'].errors['required']) {
+                      <div>Name is required</div>
+                      }
+                    </div>
+                    }
+               </div>
+           </div>
+        </div>
+    </div> -->
+<div class="card">
+  <h5 class="card-header">Present Medications</h5>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-2 mb-3">
+        <label class="form-label">Medication Name</label>
+        <input
+          type="text"
+          [(ngModel)]="newMedication.medication"
+          placeholder="Medication name"
+          required
+        />
+      </div>
+
+      <div class="col-md-2 mb-3">
+        <label class="form-label">Form </label>
+
+        <select [(ngModel)]="newMedication.form" required>
+          <option *ngFor="let item of form" value="{{ item.id }}">
+            {{ item.name }}
+          </option>
+        </select>
+      </div>
+
+      <div class="col-md-2 mb-3">
+        <label class="form-label" for="basic-default-phone"
+          >Strength/Unit</label
+        >
+        <input
+          type="text"
+          [(ngModel)]="newMedication.unit"
+          placeholder="Unit"
+          required
+        />
+      </div>
+      <div class="col-md-2 mb-3">
+        <label class="form-label" for="basic-default-phone">Frequency </label>
+        <input
+          type="text"
+          [(ngModel)]="newMedication.frequency"
+          placeholder="Frequency"
+          required
+        />
+      </div>
+      <div class="col-md-2 mb-2 mb-2">
+        <h5>None</h5>
+        <p-checkbox [(ngModel)]="check" [binary]="true" inputId="binary" />
+      </div>
+
+      <div class="col-md-2 mb-2 mb-2">
+        <div>
+          <div class="dt-buttons btn-group flex-wrap">
+            <button
+              class="btn add-new btn-primary mb-3 mb-md-0"
+              tabindex="0"
+              aria-controls="DataTables_Table_0"
+              type="button"
+              (click)="addMedication()"
+            >
+              <span>Add Medication</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th>#</th>
+
+            <th scope="col">Medication</th>
+            <th scope="col">Form</th>
+            <th scope="col">Strength/Unit</th>
+            <th scope="col">Frequency</th>
+
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let medication of medications">
+            <td>{{ medication.id }}</td>
+            <td>{{ medication.medication }}</td>
+            <td>{{ medication.form }}</td>
+            <td>{{ medication.unit }}</td>
+            <td>{{ medication.frequency }}</td>
+
+            <td>
+              <div style="display: flex">
+                <a
+                  href="javascript:void(0);"
+                  (click)="editMedication(medication)"
+                  class="dropdown-item-no-text"
+                  ><i class="fa fa-edit"></i
+                ></a>
+                &nbsp;
+                <a
+                  href="javascript:void(0);"
+                  (click)="deleteMedication(medication.id)"
+                  class="dropdown-item-no-text"
+                  ><i class="fa fa-trash"></i
+                ></a>
+              </div>
+            </td>
+          </tr>
+          
+        </tbody>
+      </table>
+      <!-- <div>
+                <h3>Add User</h3>
+                <input [(ngModel)]="newMedication.medication" placeholder="Name" required />
+               
+                <select [(ngModel)]="newMedication.form" required>
+                  <option *ngFor="let item of form" [value]="item">{{ item }}</option>
+                </select>
+                <input [(ngModel)]="newMedication.unit" placeholder="Email" type="email" required />
+                <input [(ngModel)]="newMedication.frequency" placeholder="Email" type="email" required />
+                <button (click)="addMedication()">Add User</button>
+              </div> -->
+
+      <!-- Edit User Form -->
+      <div *ngIf="editingMedication">
+        <h3>Edit User</h3>
+        <input
+          [(ngModel)]="editingMedication.medication"
+          placeholder="Medication name"
+          required
+        />
+        <select [(ngModel)]="newMedication.form" required>
+          <option *ngFor="let item of form" value="{{ item.id }}">
+            {{ item.name }}
+          </option>
+        </select>
+        <input
+          [(ngModel)]="editingMedication.unit"
+          placeholder="unit"
+          required
+        />
+        <input
+          [(ngModel)]="editingMedication.frequency"
+          placeholder="frequency"
+          required
+        />
+        <button (click)="updateMedication()">Save Changes</button>
+        <button (click)="editingMedication = null">Cancel</button>
+      </div>
+    </div>
+  </div>
+  <button (click)="onSubmit()">Submit</button>
+</div>

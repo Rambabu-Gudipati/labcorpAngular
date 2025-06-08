@@ -1,0 +1,46 @@
+<div>
+  <div class="card-header">
+    <h4 class="middle">Patient Details</h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+
+
+      <div class="col-md-6 mb-3">
+        <h4 class="card-title"> Patient Name : {{bookAppointment?.booking_for?.username}}
+        </h4>
+      </div>
+      <div class="col-md-6 mb-3">
+
+        <h4 class="card-title">Age : {{bookAppointment?.age }}
+        </h4>
+      </div>
+
+      <div class="col-md-6 mb-3">
+        <h4 class="card-title"> Mobile No : {{bookAppointment?.booking_for?.mobile_no }}
+        </h4>
+      </div>
+      <div class="col-md-6 mb-3">
+        <h4 class="card-title"> Gender : {{bookAppointment?.gender }}
+        </h4>
+      </div>
+      <div class="col-md-6 ">
+        <h4 class="card-title"> Appointment Date : {{bookAppointment?.appointment_date |date:'dd-MM-yyyy' }}
+        </h4>
+      </div>
+      <div class="col-md-6 ">
+        <h4 class="card-title"> Appointment Time : {{bookAppointment?.appointment_time_slot_name }}
+        </h4>
+      </div>
+    </div>
+  </div>
+  <div class="card-footer" style="align-content: baseline;">
+    <div style="display: flex; float: right;">
+      <button type="button" class="btn btn-sm btn-outline-secondary" style="margin-right: 20px;" (click)="dismissModal()">Close</button>
+      <!-- <button type="button" class="btn btn-sm btn-primary" (click)="launchVideoCall()">Join Call</button> -->
+
+      <button type="button" class="btn btn-sm btn-primary"[disabled]="!isJoinCallButtonEnabled(bookAppointment?.appointment_date,bookAppointment?.appointment_time_slot_name)" (click)="launchVideoCall()">Join Call</button>
+      <button type="button" class="btn btn-sm btn-primary"  style="margin-left: 20px;" (click)="uploadPrecription()">Upload Prescription</button>
+    </div>
+  </div>
+</div>

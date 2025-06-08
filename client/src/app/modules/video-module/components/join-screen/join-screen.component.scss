@@ -1,0 +1,32 @@
+ 
+.join-screen-btn {
+  margin-top: 8px;
+  width: 100%;
+  background: #5977fb;
+  border: 0px;
+  color: white;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  border-radius: 8px;
+  font-size: 16px;
+  padding-left: 50px;
+  padding-right: 50px;
+  cursor: pointer;
+}
+
+ 
+
+.call-content-wrap {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+.voice-call-avatar .call-avatar {
+  margin: 15px;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 3px;
+  background-color: #fff;
+}

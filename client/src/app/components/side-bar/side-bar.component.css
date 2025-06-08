@@ -1,0 +1,130 @@
+.selected-class-name {
+  color: red;
+}
+/* General sidebar styling */
+.sidebar {
+  width: 250px;
+  background-color: #ffffff; /* White background */
+  color: #6c757d; /* Neutral gray for text */
+  height: 100vh;
+  padding: 15px 0;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+}
+
+/* General menu styling */
+.menu {
+  list-style: none;
+  padding: 0;
+}
+
+.menu-item {
+  margin: 0;
+}
+
+.menu-link.active-link,
+.submenu-link.active-link {
+  color: #007bff; /* Blue text for active links */
+  font-weight: bold; /* Make active items bold */
+  background-color: #e9ecef; /* Optional: Add a subtle background for clarity */
+}
+
+/* Main menu item active state */
+.menu-link {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  color: #6c757d; /* Neutral gray for default text */
+  text-decoration: none;
+  font-size: 15px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.menu-link:hover {
+  background-color: #e9ecef; /* Light gray background on hover */
+  color: #007bff; /* Blue color on hover */
+}
+
+.menu-link i {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+/* Submenu styling */
+.submenu {
+  list-style: none;
+  padding-left: 20px;
+}
+
+.submenu-item {
+  margin: 0;
+}
+.submenu-link span.active-link {
+  color: #007bff; /* Blue text */
+  font-weight: bold; /* Optional: Make it bold */
+}
+
+.submenu-link {
+  display: block;
+  padding: 8px 20px;
+  color: #6c757d; /* Neutral gray for default text */
+  text-decoration: none;
+  font-size: 14px;
+  margin-left: 22px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.submenu-link:hover {
+  background-color: #e9ecef; /* Light gray on hover */
+  color: #007bff; /* Blue color on hover */
+}
+
+
+/* Expandable submenu title */
+.submenu-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #6c757d;
+  font-size: 15px;
+  transition: background 0.3s, color 0.3s;
+}
+
+.submenu-title:hover {
+  background-color: #e9ecef; /* Light gray hover effect for submenu titles */
+  color: #343a40;
+}
+
+/* Menu arrow indicator */
+.menu-arrow {
+  font-size: 14px;
+  transform: rotate(0deg);
+  transition: transform 0.3s;
+  margin-left: auto;
+}
+
+.menu-arrow.expanded {
+  transform: rotate(90deg);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 200px;
+  }
+
+  .menu-link,
+  .submenu-title {
+    padding: 8px 15px;
+  }
+
+  .menu-link i {
+    font-size: 14px;
+  }
+
+  .menu-arrow {
+    font-size: 12px;
+  }
+}

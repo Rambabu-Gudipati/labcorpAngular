@@ -1,0 +1,73 @@
+<!--  
+
+<div class="container">
+  <div class="fixed-header">
+    <div class="navbar">
+      <div class="user-details">
+        <span class="app-brand-text demo menu-text fw-bolder ms-2">SOS Request</span>
+      </div>
+
+    </div>
+  </div>
+  <div class="call-main-wrapper">
+    <div class="call-view">
+      <div class="call-window">
+
+        <div class="call-contents">
+          <div class="call-content-wrap">
+            <div class="voice-call-avatar">
+              <img src="https://ui-avatars.com/api/?name=DR" alt="User Image" class="call-avatar">
+              <span class="username">{{sos_data?.patient_name}}</span>
+              <span class="call-timing-count">{{sos_data?.gender}} / {{sos_data?.age}}</span>
+              <span class="call-timing-count">{{sos_data?.location}}</span>
+              <span class="call-timing-count">{{sos_data?.city}}</span> 
+            </div>
+
+          </div>
+        </div>
+        <div class="call-footer" style="padding-top: 20px; padding-bottom: 20px; margin-top: 40px;">
+          <div class="call-icons">
+            <ul class="call-items">
+              <li class="call-item">
+                <button (click)="joinCall()" class="join-screen-btn">
+                  Join Call
+                </button>
+              </li>
+
+            </ul>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+</div> -->
+
+<!-- <div id="incoming_call" class="modal custom-modal fade show" role="dialog" aria-modal="true"
+  style="padding-right: 17px; display: block;">
+  <div class="modal-dialog modal-dialog-centered"> -->
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="profile-widget">
+          <div class="profile-img">
+            <a href="profile.html" class="avatar"><img src="https://ui-avatars.com/api/?name=DR" alt=""></a>
+          </div>
+          <h4 class="user-name m-t-10 mb-0 text-ellipsis"><a href="profile.html">{{sos_data?.patient_name}}</a></h4>
+          <p class="small text-muted">{{sos_data?.gender}} / {{sos_data?.age}}</p>
+          <p class="small text-muted">{{sos_data?.location}}</p>
+          <p class="small text-muted">{{sos_data?.city}}</p>
+          <div class="small text-muted">calling ...</div>
+          <div class="incoming-btns">
+            <button (click)="joinCall()" class="btn btn-danger">Answer</button> &nbsp;
+            <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+<!--     
+  </div>
+</div> -->

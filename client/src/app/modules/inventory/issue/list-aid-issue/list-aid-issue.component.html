@@ -1,0 +1,167 @@
+<div class="card">
+  <div class="row">
+    <div class="col-md-6">
+      <h5 class="card-header">Aid Issue List</h5>
+    </div>
+    
+    <div class="col-md-6 right-align">
+      
+      <button style="float: right;" class="btn add-new btn-primary mb-3 mb-md-0" tabindex="0" aria-controls="DataTables_Table_0" type="button" (click)="addUser()"><span>Add
+           Aid Issue</span></button>
+    </div>
+  </div>
+<!-- <div class="card">
+    <h5 class="card-header">Aid's List Issue</h5>
+    <div class="card-body">
+  
+      
+        <div class="col-sm-12 col-md-12">
+          <div
+            class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-md-end justify-content-center flex-wrap me-1">
+  
+            <div class="dt-buttons btn-group flex-wrap"><button class="btn add-new btn-primary mb-3 mb-md-0" tabindex="0"
+                aria-controls="DataTables_Table_0" type="button" (click)="addUser()"><span>Add
+                Aid Issues</span></button> </div>
+          </div>
+        </div>
+      </div> -->
+      <div class="table-responsive text-nowrap">
+       
+        <p-table class="table table-bordered" #dt1 [value]="items" dataKey="id" [rowHover]="true" [rows]="10"
+        [showCurrentPageReport]="true" [loading]="loading" [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0"
+        [globalFilterFields]="['issue_date', 'issue_date', 'issue_no', 'numof_devices', 'issue_by']">
+        <ng-template pTemplate="caption">
+          <div class="flex justify-content-between">
+            <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" (onClick)="clear()" />
+            <p-iconField iconPosition="left" style="float: right;">
+              <p-inputIcon>
+                <i class="pi pi-search"></i>
+              </p-inputIcon>
+              <input pInputText type="text" [(ngModel)]="searchValue" (input)="filterGlobal($event)"
+                placeholder="Keyboard Search" />
+            </p-iconField>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr>
+            <th pSortableColumn="issue_date">
+              Issue Date<p-sortIcon field="issue_date" />
+            </th>
+            <th pSortableColumn="issue_no">
+             Issue No <p-sortIcon field="issue_no" />
+            </th>
+            <th pSortableColumn="issue_to">
+              Issue To <p-sortIcon field="issue_to" />
+            </th>
+            <th pSortableColumn="numof_devices">
+             No of Devices <p-sortIcon field="numof_devices" />
+            </th>
+            <th pSortableColumn="issue_by">
+             Issue By<p-sortIcon field="issue_by" />
+            </th>
+            
+            <th>
+              Action
+            </th>
+          </tr>
+          <!-- <tr>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="issue_date"
+                placeholder="Search by Number"
+                ariaLabel="Filter Name"
+              />
+            </th>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="issue_no"
+                placeholder="Search by Name"
+                ariaLabel="Filter Country"
+              />
+            </th>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="issue_to"
+                placeholder="Search by Id"
+                ariaLabel="Filter Country"
+              />
+            </th>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="numof_devices"
+                placeholder="Search by Number"
+                ariaLabel="Filter Country"
+              />
+            </th>
+            <th>
+              <p-columnFilter
+                type="text"
+                field="issue_by"
+                placeholder="Search by Name"
+                ariaLabel="Filter Country"
+              />
+            </th>
+           
+            
+            
+           </tr> -->
+        </ng-template>
+        <ng-template pTemplate="body" let-row>
+          <tr [pSelectableRow]="row">
+            <td>
+              <span class="p-column-title">Issue Date</span>
+              {{ row.issue_date }}
+            </td>
+            <td>
+              <span class="p-column-title">Issue No</span>
+              <span class="ml-1 vertical-align-middle">{{ row.issue_no}}</span>
+            </td>
+            <td>
+              <span class="p-column-title">Issue To</span>
+              <span class="ml-1 vertical-align-middle">{{ row.issue_to}}</span>
+            </td>
+            <td>
+              <span class="p-column-title">No of Devices</span>
+              <span class="ml-1 vertical-align-middle">{{ row.numof_devices}}</span>
+            </td>
+            <td>
+              <span class="p-column-title">Issue By</span>
+              <span class="ml-1 vertical-align-middle">{{ row.issue_by}}</span>
+            </td>
+           
+            <!-- <td>
+              <span class="p-column-title">Status</span>
+              <p-tag [value]="customer.status" [severity]="getSeverity(customer.status)" />
+            </td> -->
+            <td>
+              <div style="display: flex;">
+                <a href="javascript:void(0);" (click)="onEditClick(row)" class="dropdown-item-no-text"><i class="fa fa-edit"></i></a>&nbsp;
+                <a href="javascript:void(0);"  (click)="removeData(row)"class="dropdown-item-no-text"><i class="fa fa-trash"></i></a>
+              </div>
+            </td>
+           
+          </tr>
+            <!-- <tr *ngIf="loading">
+              <td colspan="5" class="text-center py-5">
+                <span class="spinner-border spinner-border-lg align-center"></span>
+              </td>
+            </tr> -->
+         
+        </ng-template>
+     
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4">No customers found.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+       
+           
+             
+      </div>
+    </div>

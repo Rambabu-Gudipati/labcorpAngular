@@ -1,0 +1,223 @@
+<div class="card">
+
+  <div class="row">
+    <div class="col-md-6">
+      <h5 class="card-header">Group Center Users List</h5>
+    </div>
+    <div class="col-md-6 right-align">
+      <button class="btn add-new btn-primary mb-3 mb-md-0" tabindex="0" aria-controls="DataTables_Table_0" style="float: right;
+    margin-left: 20px;" type="button" (click)="bulkUpload()"><span>Add
+          Bulk</span></button>
+      <button style="float: right;" class="btn add-new btn-primary mb-3 mb-md-0" tabindex="0" aria-controls="DataTables_Table_0" type="button" (click)="addUser()"><span>Add
+          Add Group Center User</span></button>
+    </div>
+  </div>
+  <!-- <div class="card-body">
+
+
+    <div class="col-sm-12 col-md-12">
+      <div
+        class="dt-action-buttons text-xl-end text-lg-start text-md-end text-start d-flex align-items-center justify-content-md-end justify-content-center flex-wrap me-1">
+        <div class="dt-buttons btn-group flex-wrap"><button class="btn add-new btn-primary mb-3 mb-md-0" tabindex="0"
+            aria-controls="DataTables_Table_0" type="button" (click)="bulkUpload()"><span>Add
+              Bulk</span></button>
+        </div>
+        <div class="dt-buttons btn-group flex-wrap"><button class="btn add-new btn-primary mb-3 mb-md-0" tabindex="0"
+            aria-controls="DataTables_Table_0" type="button" (click)="addUser()"><span>Add
+              User</span></button> </div>
+      </div>
+    </div>
+  </div> -->
+  <div class="table-responsive text-nowrap">
+    <!-- <div class="card" style="width: 1200px">
+            <h3>User's List</h3>
+            
+            <div class="card-header">
+                <div class="dt-buttons btn-group flex-wrap"><button class="btn add-new btn-primary mb-3 mb-md-0" tabindex="0"
+                    aria-controls="DataTables_Table_0" type="button" (click)="bulkUpload()"><span>Add 
+                      Bulk</span></button> 
+                </div>
+                <div class="dt-buttons btn-group flex-wrap"><button class="btn add-new btn-primary mb-3 mb-md-0" tabindex="0"
+                    aria-controls="DataTables_Table_0" type="button" (click)="addUser()"><span>Add
+                      User</span></button> </div>
+              </div>
+            </div>
+            <div class="card" style="width: 1200px">
+            <div class="card-body">
+              <div class="panel panel-default"> -->
+    <!-- <div class="panel-heading">
+                    <b>Advance Search</b>
+                    <span class="pull-right show-hide" (click)="panelShow = !panelShow" ><i class="fa " [class.fa-plus]="!panelShow" [class.fa-minus]="panelShow"></i></span>
+                </div> -->
+    <!-- <div class="panel-body" *ngIf="panelShow">
+                    <div class="row">
+                      <div class="col-md-2">
+                        <label for="user_name">UserName:</label>
+                        <input type="text" [(ngModel)]="user_name" class="form-control form-control-sm"/>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="email">Email:</label>
+                        <input type="text" [(ngModel)]="email" class="form-control form-control-sm"/>
+                      </div>
+                      <div class="col-md-2">
+                        <label for="phone_no">Phone No:</label>
+                        <input type="text" [(ngModel)]="phone_no" class="form-control form-control-sm"/>
+                      </div>
+                        <div class="col-md-2">
+                            <div class="form-group">
+                              <label for="basic-default-fullname" >User Type:</label>
+                                <select id="defaultSelect" class="form-control" formControlName="user_type" [(ngModel)]="user_type"
+                        [ngClass]="{ 'is-invalid': submitted && f['user_type'].errors }" >
+          
+                        <option *ngFor="let item of user_types;" value="{{item.id}}">{{item.name}}</option>
+                      </select>
+                                
+                            </div>
+                        </div>
+                        <div class="col-md-3 align-self-end">
+                         <button type="button" (click)="onSearch()" class="btn btn-primary">Search</button>
+                        </div>  
+                        
+                    </div>
+                </div>
+              </div>
+          
+              </div> -->
+    <p-table class="table table-bordered" #dt1 [value]="items" dataKey="id"  [showCurrentPageReport]="true" [loading]="loading" [paginator]="true" [rows]="limit" 
+    [totalRecords]="totalPages" [lazy]="true" (onLazyLoad)="onPageChange($event)"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [filterDelay]="0" [globalFilterFields]="['user_name', 'email', 'phone_no', 'user_type']">
+      <ng-template pTemplate="caption">
+        <div class="flex justify-content-between">
+          <div class="container">
+            <button type="button"  class="btn btn-primary mb-3"  (click)="toggleFilter()">Advanced Search</button>
+          
+            <div *ngIf="showFilters" class="row">
+              <div class="col-md-2">
+                <label for="username">Customer Name</label>
+                <input type="text" [(ngModel)]="searchUsername" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <label for="email">Email</label>
+                <input type="text" [(ngModel)]="searchEmail" class="form-control" />
+              </div>
+              <div class="col-md-2">
+                <label for="mobile_no">Mobile No</label>
+                <input type="text" [(ngModel)]="searchPhoneno" class="form-control" />
+              </div>
+              <!-- <div class="col-md-2">
+                <label for="status">Status</label>
+                <select [(ngModel)]="searchStatus" class="form-control" id="status">
+                  <option *ngFor="let item of statuses;" [value]="item.id">{{ item.label }}</option>
+                </select>
+              </div> -->
+              <div class="col-md-2">
+                <label for="user_type">User Type</label>
+                <select [(ngModel)]="searchUsertype" class="form-control" id="user_type">
+                  <option *ngFor="let item of user_types;" [value]="item.id">{{ item.name }}</option>
+                </select>
+              </div>
+              <div class="col-md-2 align-self-end">
+                <button type="button" (click)="onSearch()" class="btn btn-primary">Search</button> &nbsp;
+                <button type="button" class="btn btn-primary" (click)="clear()">Clear</button>
+              </div>
+            </div>
+          </div>
+          <!-- <p-button [outlined]="true" icon="pi pi-filter-slash" label="Clear" (onClick)="clear()" />
+          <p-iconField iconPosition="left" style="float: right;">
+            <p-inputIcon>
+              <i class="pi pi-search"></i>
+            </p-inputIcon>
+            <input pInputText type="text" [(ngModel)]="searchValue" (input)="filterGlobal($event)" placeholder="Keyboard Search" />
+          </p-iconField> -->
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <!-- <tr>
+          <th pSortableColumn="user_name">
+            Customer Name <p-sortIcon field="user_name" />
+          </th>
+          <th pSortableColumn="email">
+            Email Id <p-sortIcon field="email" />
+          </th>
+          <th pSortableColumn="phone_no">
+            Phone No <p-sortIcon field="phone_no" />
+          </th>
+
+          <th pSortableColumn="user_type">
+            User Type <p-sortIcon field="user_type" />
+          </th>
+          <th>Action</th>
+        </tr> -->
+        <tr>
+          <th (click)="onSort('user_name')">
+            Customer Name <i [ngClass]="getSortIcon('user_name')"></i>
+          </th>
+          <th (click)="onSort('email')">
+            Email Id <i [ngClass]="getSortIcon('email')"></i>
+          </th>
+          <th (click)="onSort('phone_no')">
+            Mobile No. <i [ngClass]="getSortIcon('phone_no')"></i>
+          </th>
+    
+          <th (click)="onSort('user_type')">
+            User Type <i [ngClass]="getSortIcon('user_type')"></i>
+          </th>
+          <th>Action</th>
+          <!-- <th (click)="onSort('status')">
+            Status <i [ngClass]="getSortIcon('status')"></i>
+          </th> -->
+        </tr>
+        <!-- <tr>
+          <th>
+            <p-columnFilter type="text" field="user_name" placeholder="Search by Name" ariaLabel="Filter Name" />
+          </th>
+          <th>
+            <p-columnFilter type="text" field="email" placeholder="Search by Email" ariaLabel="Filter Email" />
+          </th>
+          <th>
+            <p-columnFilter type="text" field="phone_no" placeholder="Search by Mobile No" ariaLabel="Filter MobileNo" />
+          </th>
+
+          <th>
+            <p-columnFilter type="text" field="user_type" placeholder="Search by Usertype" ariaLabel="Filter User Type" />
+          </th>
+
+        </tr> -->
+      </ng-template>
+      <ng-template pTemplate="body" let-customer>
+        <tr [pSelectableRow]="customer">
+          <td>
+            <span class="p-column-title">User Name</span>
+            {{ customer.user_name }}
+          </td>
+          <td>
+            <span class="p-column-title">Email</span>
+            <span class="ml-1 vertical-align-middle">{{ customer.email}}</span>
+          </td>
+          <td>
+            <span class="p-column-title">Phone No</span>
+            <span class="ml-1 vertical-align-middle">{{ customer.phone_no}}</span>
+          </td>
+
+          <td>
+            <span class="p-column-title">User Type</span>
+            <span class="ml-1 vertical-align-middle">{{ customer.user_type}}</span>
+          </td>
+          <td>
+            <div style="display: flex;">
+              <a href="javascript:void(0);" (click)="onEditClick(customer)" class="dropdown-item-no-text"><i class="fa fa-edit"></i></a>&nbsp;
+              <!-- <a href="javascript:void(0);" (click)="removeData(customer)" class="dropdown-item-no-text"><i class="fa fa-trash"></i></a> -->
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="4">No customers found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
+
+</div>

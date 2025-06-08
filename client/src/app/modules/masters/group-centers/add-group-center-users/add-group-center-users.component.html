@@ -1,0 +1,55 @@
+<!-- <div class="modal modal-top fade show" id="modalTop" tabindex="-1" aria-modal="true" role="dialog"
+ > -->
+  <div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog" >
+    <div>
+    <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTopTitle">{{modalHeaderTitle}}</h5>
+        <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class=" mb-3">
+          <label class="form-label" for="user_type_id">Select Role</label>
+          <input type="text" id="user_type_id" class="form-control form-control-sm" autocomplete="false"
+            formControlName="user_type_id" [maxlength]="150"
+            [class.is-invalid]="form.get('user_type_id')?.invalid && form.get('user_type_id')?.touched" />
+            <div *ngIf="form.get('user_type_id')?.invalid && form.get('user_type_id')?.touched" class="text-danger">
+            Please Select a Role.
+            </div>
+        </div>
+        <div class="mb-3">
+          <label class="form-label" for="user_name">Full Name</label>
+          <input type="text" id="user_name" class="form-control form-control-sm" autocomplete="false"
+            formControlName="user_name"[class.is-invalid]="form.get('user_name')?.invalid && form.get('user_name')?.touched" />
+            <div *ngIf="form.get('user_name')?.invalid && form.get('user_name')?.touched" class="text-danger">
+          Username is Required
+            </div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="email">Email</label>
+        <input type="text" id="email" class="form-control form-control-sm" autocomplete="false" formControlName="email"
+        [class.is-invalid]="form.get('email')?.invalid && form.get('email')?.touched" />
+        <div *ngIf="form.get('email')?.invalid && form.get('email')?.touched" class="text-danger">
+          Email is Required
+        </div>
+
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="basic-default-phone">Phone No</label>
+        <input type="text" id="phone_no" class="form-control form-control-sm" autocomplete="false"
+          formControlName="phone_no" [maxlength]="10"
+          [class.is-invalid]="form.get('phone_no')?.invalid && form.get('phone_no')?.touched" />
+          <div *ngIf="form.get('phone_no')?.invalid && form.get('phone_no')?.touched" class="text-danger">
+           Phone No is Required
+          </div>
+      </div>
+ 
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+    <button type="submit" class="btn btn-primary">{{buttonTitle}}</button>
+  </div>
+  </form>
+</div>

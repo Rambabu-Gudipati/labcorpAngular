@@ -1,0 +1,41 @@
+/* Styling for status text */
+.status-completed {
+    color: white;
+    background-color: #89fcb3;
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
+  .status-failed {
+    color: white;
+    background-color: rgb(241, 102, 102);
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
+  .status-initiated, .status-pending {
+    color: white;
+    background-color: rgb(245, 191, 91);
+    padding: 5px 10px;
+    border-radius: 4px;
+  }
+  
+  /* Styling for View button */
+  .button-completed {
+    background-color: rgb(156, 245, 156) !important;
+    color: white !important;
+    border: none;
+  }
+  
+  .button-failed {
+    background-color: rgb(245, 112, 112) !important;
+    color: white !important;
+    border: none;
+  }
+  
+  .button-pending {
+    background-color: rgb(209, 163, 77) !important;
+    color: white !important;
+    border: none;
+  }
+  

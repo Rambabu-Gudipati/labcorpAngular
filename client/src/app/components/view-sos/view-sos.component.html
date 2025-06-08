@@ -1,0 +1,176 @@
+<div class="content">
+
+  <div class="card-box">
+    <div class="col-sm-12">
+      <h4 class="card-title">SOS Information # {{sosData.sos_id}} Dated : {{sosData.sos_date |date:'dd-MM-yyyy hh:mm'}}
+      </h4>
+    </div>
+
+
+    <div class="row">
+      <div class="col-md-3 p-box grid-blog">
+        <h5 class="card-title">Patient Information</h5>
+        <div class="row">
+          <div class="col-md-2">
+            <img src="https://ui-avatars.com/api/?name=Devaraju+Ratnala" alt="">
+          </div>
+          <div class="col-md-10">
+            <div class="profile-box-left m-l-1">
+              <h5 class="user-name m-t-0 mb-0">{{sosData?.patient_info?.patient_name}}</h5>
+              <div class="staff-id">AGE :{{sosData?.patient_info?.age}} &nbsp; &nbsp; GENDER : {{sosData.patient_info?.gender}}</div>
+              <div class="staff-id"> {{sosData?.patient_info?.mobile_no}}</div>
+
+            </div>
+
+          </div>
+          <div class="co-md-12" style="margin-left: 15px;">
+            <small class="staff-id">Address <br> {{sosData?.patient_info?.address}}
+            </small>
+          </div>
+          <div class="co-md-12" style="margin-left: 15px;">
+            <a  style="cursor: pointer;" class="btn btn-primary"(click)="loadPatientMap()">View Location
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 p-box grid-blog">
+        <h5 class="card-title">Hospital Information</h5>
+        <div class="row">
+
+          <div class="profile-box-left m-l-1">
+            <h5 class="user-name m-t-0 mb-0">{{sosData?.hospital_info?.name}}</h5>
+            <div class="staff-id"> {{sosData?.hospital_info?.contact_no}}</div>
+            <div class="staff-id"> {{sosData?.hospital_info?.contact_person}}</div>
+            <div class="staff-id"> {{sosData?.hospital_info?.address}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-2 p-box grid-blog">
+        <h5 class="card-title">Ambulance Information</h5>
+        <div class="row">
+
+          <div class="profile-box-left m-l-1">
+            <h5 class="user-name m-t-0 mb-0">{{sosData?.ambulance_info?.ambulance_no}}</h5>
+            <div class="staff-id"> {{sosData?.ambulance_info?.driver_name}}</div>
+            <div class="staff-id"> {{sosData?.ambulance_info?.mobile_no}}</div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="col-md-3 p-box grid-blog">
+        <h5 class="card-title">Care Doctor Details</h5>
+        <div class="row">
+
+          <div class="profile-box-left m-l-1">
+        
+            <div class="title" ><strong> Doctor Name </strong>:{{sosData?.emergency_doctor_name}}</div>
+            <div class="title" ><strong> Care Physician</strong>:{{sosData?.emergency_physician_name}}</div>
+            <!-- <div class="staff-id"> Care Physician</div>
+            <h5 class="user-name m-t-0 mb-0">{{sosData?.emergency_physician_name
+             }}</h5> -->
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="row">
+      <div class="profile-tabs">
+        <ul class="nav nav-tabs nav-tabs-bottom">
+          <li class="nav-item"><a class="nav-link" href="#bottom-tab2" data-toggle="tab">ECG Reports</a></li>
+          <li class="nav-item"><a class="nav-link active" href="#about-cont" data-toggle="tab">Past SOS Cases</a></li>
+          <li class="nav-item"><a class="nav-link" href="#bottom-tab3" data-toggle="tab">All Orders</a></li>
+        </ul>
+
+        <div class="tab-content">
+          <div class="tab-pane show active" id="about-cont">
+            Tab content 1
+            <!-- <div class="row">
+              <div class="col-md-12">
+                <div class="card-box">
+                  <h3 class="card-title">Education Informations</h3>
+                  <div class="experience-box">
+                    <ul class="experience-list">
+                      <li>
+                        <div class="experience-user">
+                          <div class="before-circle"></div>
+                        </div>
+                        <div class="experience-content">
+                          <div class="timeline-content">
+                            <a href="#/" class="name">International College of Medical Science (UG)</a>
+                            <div>MBBS</div>
+                            <span class="time">2001 - 2003</span>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="experience-user">
+                          <div class="before-circle"></div>
+                        </div>
+                        <div class="experience-content">
+                          <div class="timeline-content">
+                            <a href="#/" class="name">International College of Medical Science (PG)</a>
+                            <div>MD - Obstetrics &amp; Gynaecology</div>
+                            <span class="time">1997 - 2001</span>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-box mb-0">
+                  <h3 class="card-title">Experience</h3>
+                  <div class="experience-box">
+                    <ul class="experience-list">
+                      <li>
+                        <div class="experience-user">
+                          <div class="before-circle"></div>
+                        </div>
+                        <div class="experience-content">
+                          <div class="timeline-content">
+                            <a href="#/" class="name">Consultant Gynecologist</a>
+                            <span class="time">Jan 2014 - Present (4 years 8 months)</span>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="experience-user">
+                          <div class="before-circle"></div>
+                        </div>
+                        <div class="experience-content">
+                          <div class="timeline-content">
+                            <a href="#/" class="name">Consultant Gynecologist</a>
+                            <span class="time">Jan 2009 - Present (6 years 1 month)</span>
+                          </div>
+                        </div>
+                      </li>
+                      <li>
+                        <div class="experience-user">
+                          <div class="before-circle"></div>
+                        </div>
+                        <div class="experience-content">
+                          <div class="timeline-content">
+                            <a href="#/" class="name">Consultant Gynecologist</a>
+                            <span class="time">Jan 2004 - Present (5 years 2 months)</span>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+          <div class="tab-pane" id="bottom-tab2">
+            Tab content 2
+          </div>
+          <div class="tab-pane" id="bottom-tab3">
+            Tab content 3
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

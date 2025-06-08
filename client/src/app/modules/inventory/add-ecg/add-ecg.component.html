@@ -1,0 +1,56 @@
+<div class="modal-top" id="modalTop" tabindex="-1" aria-modal="true" role="dialog">
+  <div>
+    <form [formGroup]="form" class="modal-content" (ngSubmit)="onSubmit()">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTopTitle">{{modalHeaderTitle}}</h5>
+        <button type="button" (click)="dismissModal()" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="manufacturer_id">Manufacturer Name</label>
+            <select id="manufacturer_id" class="form-control" formControlName="manufacturer_id"
+            [class.is-invalid]="form.get('manufacturer_id')?.invalid && form.get('manufacturer_id')?.touched">
+
+              <option *ngFor="let item of manufacturer_list;" value="{{item.id}}">{{item.name}}</option>
+            </select>
+            <div *ngIf="form.get('manufacturer_id')?.invalid && form.get('manufacturer_id')?.touched" class="text-danger">
+           Manufacturer Name  is required.
+            </div>
+          </div>
+
+          
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="device_model_id">Model Name</label>
+            <select id="device_model_id" class="form-control" formControlName="device_model_id"
+              (ngModelChange)="onStateChanged($event)"
+              [class.is-invalid]="form.get('device_model_id')?.invalid && form.get('device_model_id')?.touched">
+
+              <option *ngFor="let item of models_list;" value="{{item.id}}">{{item.name}}</option>
+            </select>
+            <div *ngIf="form.get('device_model_id')?.invalid && form.get('device_model_id')?.touched" class="text-danger">
+              Model Name  is required.
+               </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <label class="form-label" for="device_id">Device Id</label>
+            <input type="text" id="device_id" class="form-control form-control-sm" autocomplete="false"
+              formControlName="device_id"  [class.is-invalid]="form.get('device_id')?.invalid && form.get('device_id')?.touched" />
+              <div *ngIf="form.get('device_id')?.invalid && form.get('device_id')?.touched" class="text-danger">
+            Device Id is required.
+              </div>
+
+          </div>
+          
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" (click)="dismissModal()">Close</button>
+        <button type="submit" class="btn btn-primary">{{buttonTitle}}</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,13 @@
+.btn-primary {
+    background-color: #002855; /* Adjust this color to match your blue button */
+    color: white; /* Text color */
+    border: none; /* Remove borders */
+    padding: 10px 20px; /* Adjust padding */
+    font-size: 14px; /* Adjust font size */
+    border-radius: 5px; /* Add rounded corners if needed */
+    cursor: pointer; /* Pointer cursor for hover */
+  }
+  
+  .btn-primary:hover {
+    background-color: #004080; /* Darker shade for hover effect */
+  }

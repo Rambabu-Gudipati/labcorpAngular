@@ -1,0 +1,167 @@
+<div class="main-wrapper account-wrapper">
+  <div class="account-page">
+    <div class="account-center">
+
+      <div class="container" id="join-div" style="margin-top: 5%;margin-left: 5%;">
+        <div class="video-container">
+          <video #videoElement autoplay style=" margin-top: 20px;
+                width: 100%;
+                height: 100%;
+                border-radius: 10px;
+                transform: rotate('90');
+                object-fit: cover;
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19),
+                  0 6px 6px rgba(0, 0, 0, 0.23);
+              "></video>
+          <div class="controls">
+
+            <button style="
+                            border-radius: 50%;
+                            height: 49px;
+                            width: 49px;
+                            background-color: rgb(190, 23, 23);
+                            border: 0;
+                            margin-top: 5px;
+                            outline: none;
+                          " id="micButton" (click)="toggleAudio()">
+              <i class="bi bi-mic-mute-fill" style="color: white; " id="muteMic" *ngIf="!isAudioEnabled"></i>
+              <i class="bi bi-mic-fill" style="color: black;" id="unmuteMic" *ngIf="isAudioEnabled"></i>
+            </button>
+            <button style="border-radius: 50%; height: 49px; width: 49px; background-color: rgb(190, 23, 23); border: 0; margin-left: 20px; outline: none; margin-top: 5px;" id="camButton" (click)="toggleVideo()">
+              <i class="bi bi-camera-video-fill" style="color: black;" id="onCamera" *ngIf="isVideoEnabled"></i>
+              <i class="bi bi-camera-video-off-fill" style="color: white;" id="offCamera" *ngIf="!isVideoEnabled"></i>
+            </button>
+            <button style="border-radius: 50%; height: 49px; width: 49px; background-color: rgb(190, 23, 23); border: 0; margin-left: 20px; outline: none; margin-top: 5px;" id="camButton" (click)="exitMeeting()">
+              <span class="material-icons"> call_end </span>
+            </button>
+          </div>
+          <div style="align-content: center;">
+
+            <div class="row" style="justify-content: center; margin-top: 10px; color: white;">Powered By Labcorp</div>
+
+          </div>
+        </div>
+        <div class="form-container">
+
+          <form>
+            <button class="btn btn-primary" (click)="onCreateMeeting()" style="border-radius: 10px; padding: 10px 60px; background-color: rgb(33, 12, 95);  
+                     border: 0.1px solid rgb(122, 122, 122) ; outline: none; margin-top: 15px; margin-left: 5%; width: 325px;" id="createMeetingButton" *ngIf="isCreatedMeetingClicked == false">
+              Creating Meeting</button>
+            <div *ngIf="isCreatedMeetingClicked == true">
+              <div class="form-group">
+                <label for="meetingCode">Meeting Code:</label>
+                <input type="text" class="form-control" id="meetingCode" name="meetingCode" required [(ngModel)]="meeting_room_id" [ngModelOptions]="{standalone: true}">
+              </div>
+              <div class="form-group">
+                <label for="name">Your Name:</label>
+                <input type="text" class="form-control" id="name" name="name" [(ngModel)]="participantName" [ngModelOptions]="{standalone: true}" required>
+              </div>
+            </div>
+
+            <button class="btn btn-primary" (click)="joinMeeting()" style="border-radius: 10px; padding: 10px 60px; background-color: rgb(190, 23, 23);  
+       border: 0.1px solid rgb(122, 122, 122) ; outline: none; margin-top: 15px; margin-left: 5%;width: 325px" id="meetingJoinButton" type="submit">
+              Join Meeting</button>
+
+
+          </form>
+        </div>
+
+      </div>
+      <div *ngIf="isValidMeeting">
+        <div class="grid-page flex-container" id="gridPpage" style="height: 100vh;">
+          <div class="row" style="height: 70px; width: 100%; border-bottom: 1px solid grey">
+            <div class="col-3 d-flex justify-content-start" style="margin-top: 19px">
+              <input #inputBox type="text" style="background-color: #212032" class="form-control navbar-brand" id="meetingid" [(ngModel)]="meeting_url" [ngModelOptions]="{standalone: true}" />
+
+              <button id=" btnCopy" type="button" class="btn btn-outline-light" style="height: fit-content; position: relative" (click)="copyToClipboard(inputBox)">
+                <span class="material-icons"> content_copy </span>
+                <div class="copyContent">Copy Meeting Code</div>
+              </button>
+            </div>
+
+            <div class="col-9" style="margin-top: 13px; position: static; align-content: right">
+
+              <div class="d-flex justify-content-end">
+                <span class="vertical-line"><span class="call-duration">Duration : {{ minutes }}:{{ seconds | number: '2.0' }}</span></span>
+                <span class="vertical-line"></span>
+                <span class="vertical-line"></span>
+                <span class="vertical-line"></span>
+
+                <button type="button" id="btnStartRecording" class="btn btn-outline-light">
+                  <span class="material-icons"> radio_button_checked </span>
+                </button>
+                <button type="button" style="display: none" id="btnStopRecording" class="btn btn-light">
+                  <span class="material-icons"> radio_button_checked </span>
+                </button>
+
+
+                <!-- main page toggle mic-->
+                <div class="btn-group" id="main-pg-mute-mic" style="display: inline-block" *ngIf="disableMicBtn">
+                  <button type="button" class="btn btn-outline-light" aria-haspopup="true" aria-expanded="false" (click)="muteMic($event)">
+                    <span class="material-icons"> mic_off </span>
+                  </button>
+                </div>
+                <div class="btn-group" id="main-pg-unmute-mic" style="display: inline-block" *ngIf="enableMicBtn">
+                  <button type="button" class="btn btn-outline-light ms-1" aria-haspopup="true" aria-expanded="false" (click)="unmuteMic($event)">
+                    <span class="material-icons"> mic </span>
+                  </button>
+
+                </div>
+                <!--main page toggle web-cam-->
+                <div class="btn-group" id="main-pg-cam-off" style="display: inline-block" *ngIf="disableWebcamBtn">
+                  <button type="button" class="btn btn-outline-light ms-1" aria-haspopup="true" aria-expanded="false" (click)="disableWebcam($event)">
+                    <span class="material-icons"> videocam_off</span>
+                  </button>
+                </div>
+                <div class="btn-group" id="main-pg-cam-on" style="display: inline-block" *ngIf="enableWebcamBtn">
+                  <button type="button" class="btn btn-outline-light ms-1" aria-haspopup="true" aria-expanded="false" id="videoCamOn" (click)="enableWebcam($event)">
+                    <span class="material-icons"> videocam </span>
+                  </button>
+                </div>
+
+                <!-- <span class="vertical-line"></span> -->
+
+                <!--participants-->
+                <!-- <button type="button" class="btn btn-outline-light ms-1" (click)="openParticipantWrapper()">
+                  <span class="material-icons"> people </span>
+                </button> -->
+                <!--chat-->
+                <!-- <button type="button" class="btn btn-outline-light ms-1" onclick="openChatWrapper()">
+                  <span class="material-icons"> chat </span>
+                </button> -->
+                <span class="vertical-line"></span>
+                <!--call end-->
+                <div class="btn-group">
+                  <button type="button" class="btn btn-danger ms-1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" (click)="leaveMeeting()">
+                    <span class="material-icons"> call_end </span>
+                  </button>
+                  <!-- <div class="dropdown-menu" style="
+                  background-color: #212032;
+                  color: white;
+                  margin-left: -80px;
+                ">
+              <a class="dropdown-item" id="endCall">End Call</a>
+              <a class="dropdown-item" id="leaveCall">Leave Meeting</a>
+            </div> -->
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="row" #participantGridContainer id="participant-grid-container"></div>
+        </div>
+        <!--participant wrapper-->
+        <div class="participant-wrapper" id="participants">
+          <div class="participant-wrapper-header text-light">
+            <span class="closebtn" id="ParticipantsCloseBtn" (click)="closeParticipantWrapper()">&times;</span>
+            <h5 id="totalParticipants"></h5>
+          </div>
+          <hr class="border-light rounded 3" />
+          <div id="participantsList" class="participant-wrapper-content text-light"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
