@@ -9,13 +9,13 @@ const routes: Routes = [
         path:'view-patients/:user_id',
         data: { title: 'Doctor', roles: ['Admin','Care Mentor'] },
         component: ViewPatientsComponent,
-         canActivate: [AuthGuard]
+        //  canActivate: [AuthGuard]
       },
       {
         path:'health-details/:user_id',
         data: { title: 'Details', roles: ['Admin','Care Mentor'] },
         component: AddHealthRecordsComponent,
-         canActivate: [AuthGuard]
+        //  canActivate: [AuthGuard]
       },
 ];
 @NgModule({

@@ -39,8 +39,8 @@ export class HeaderComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         localStorage.clear();
-        this.router.navigate(['/'])
-        window.location.reload();
+        // this.router.navigate(['/login'])
+        window.location.href = '/login';
       }
     })
 

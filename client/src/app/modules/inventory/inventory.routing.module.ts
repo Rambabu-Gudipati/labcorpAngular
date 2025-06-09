@@ -15,49 +15,49 @@ const routes: Routes = [
     path: 'list-aid-device',
     data: { title: 'aid Master', roles: ['Admin'] },
     component: ListAidDevicesComponent,
-     canActivate: [AuthGuard]
+    //  canActivate: [AuthGuard]
   },
   {
     path: 'add-aid device',
     data: { title: 'Aid device Master', roles: ['Admin'] },
     component: AddAidDevicesComponent,
-     canActivate: [AuthGuard]
+    //  canActivate: [AuthGuard]
   },
-  { 
+  {
     path: 'list-ecg',
     data: { title: 'ecg Master', roles: ['Admin'] },
     component: ListEcgComponent,
-     canActivate: [AuthGuard]
+    //  canActivate: [AuthGuard]
   },
   {
     path: 'add-ecg',
     data: { title: 'ecg Master', roles: ['Admin'] },
     component: AddEcgComponent,
-     canActivate: [AuthGuard]
+    //  canActivate: [AuthGuard]
   },
   {
     path: 'list-aid-issue',
     data: { title: 'aid Master', roles: ['Admin'] },
     component: ListAidIssueComponent,
-     canActivate: [AuthGuard]
+    //  canActivate: [AuthGuard]
   },
   {
     path: 'add-aid-issue',
     data: { title: 'aid Master', roles: ['Admin'] },
     component: AddAidIssueComponent,
-     canActivate: [AuthGuard]
+    //  canActivate: [AuthGuard]
   },
   {
     path: 'list-ecg-issue',
     data: { title: 'ecg Master', roles: ['Admin'] },
     component: ListEcgIssueComponent,
-     canActivate: [AuthGuard]
+    //  canActivate: [AuthGuard]
   },
   {
     path: 'add-ecg-issue',
     data: { title: 'ecg Master', roles: ['Admin'] },
     component: AddEcgIssueComponent,
-     canActivate: [AuthGuard]
+    //  canActivate: [AuthGuard]
   }
 ];
 @NgModule({

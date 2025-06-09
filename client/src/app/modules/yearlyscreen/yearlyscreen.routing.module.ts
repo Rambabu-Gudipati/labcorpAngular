@@ -8,9 +8,9 @@ const routes: Routes = [
         path:'list-yearlyscreen',
         data: { title: 'Dashboard', roles: ['Admin','Care Mentor'] },
         component: ListYearlyScreenComponent,
-         canActivate: [AuthGuard]
+        //  canActivate: [AuthGuard]
       },
-     
+
 ];
 @NgModule({
     imports: [RouterModule.forChild(routes)],

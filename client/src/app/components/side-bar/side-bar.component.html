@@ -2,29 +2,29 @@
   <div class="sidebar-inner slimscroll">
     <div id="sidebar-menu" class="sidebar-menu">
       <ul class="menu">
-        
+
         <li *ngFor="let menu of menus" class="menu-item">
-          <a 
-            *ngIf="!menu.subMenus" 
-            [routerLink]="menu.route" 
-            routerLinkActive="active-link" 
+          <a
+            *ngIf="!menu.subMenus"
+            [routerLink]="menu.route"
+            routerLinkActive="active-link"
             class="menu-link">
             <i [class]="menu.icon"></i>
             <span>{{ menu.label }}</span>
           </a>
-    
+
           <div *ngIf="menu.subMenus" (click)="toggleSubMenu(menu)" class="menu-link submenu-title">
             <i [class]="menu.icon"></i>
             <span>{{ menu.label }}</span>
             <span class="menu-arrow">{{ menu.isExpanded ? '-' : '+' }}</span>
           </div>
-    
-          
+
+
           <ul *ngIf="menu.isExpanded" class="submenu">
             <li *ngFor="let subMenu of menu.subMenus" class="submenu-item">
-              <a 
-                [routerLink]="subMenu.route" 
-                routerLinkActive="active-link" 
+              <a
+                [routerLink]="subMenu.route"
+                routerLinkActive="active-link"
                 class="submenu-link">
                 {{ subMenu.label }}
               </a>
@@ -33,7 +33,7 @@
         </li>
       </ul> -->
 <!-- <ul>
-   
+
         <li>
           <a href="/" class="menu-link" *ngIf="userRole=='Admin'">
             <i class="fa fa-dashboard"></i>
@@ -223,14 +223,14 @@
         <li *ngIf="userRole=='Care Mentor'">
           <a [routerLink]="['/mentormodule/health-details']" href="javascript.void(0)"  class="menu-link"
           >
-           
+
             <span data-i18n="Analytics">Health Details</span>
           </a>
         </li>
         <li *ngIf="userRole=='Care Mentor'">
           <a [routerLink]="['/mentormodule/mappingusers']" href="javascript.void(0)"  class="menu-link"
           >
-           
+
             <span data-i18n="Analytics">Mapping Users</span>
           </a>
         </li>
@@ -239,10 +239,10 @@
   </div>
 </div> -->
 
-<div class="sidebar">
+<div class="sidebar" *ngIf="userProfile!=null">
   <!-- Optional Header -->
 
-  <ul class="menu" *ngIf="userRole === 'Admin'">
+  <ul class="menu">
     <li *ngFor="let menu of menus" class="menu-item">
       <!-- Link for menus without submenus -->
       <a *ngIf="!menu.subMenus" [routerLink]="menu.route" routerLinkActive="active-link" class="menu-link" [ngClass]="{'active-link': activeMenu === menu.route}" (click)="setActiveMenu(menu)">
@@ -267,7 +267,7 @@
       </ul>
     </li>
   </ul>
-  <ul class="menu" *ngIf="userRole=='Care Mentor'">
+  <ul class="menu" >
     <!-- Top-level menu -->
     <li *ngFor="let menu of mentors" class="menu-item">
       <!-- Link for menus without submenus -->
@@ -286,9 +286,9 @@
       <!-- Submenus -->
       <!-- <ul *ngIf="menu.isExpanded" class="submenu">
         <li *ngFor="let subMenu of menu.subMenus" class="submenu-item">
-          <a 
-            [routerLink]="subMenu.route" 
-            routerLinkActive="active-link" 
+          <a
+            [routerLink]="subMenu.route"
+            routerLinkActive="active-link"
             class="submenu-link">
             {{ subMenu.label }}
           </a>
@@ -296,7 +296,7 @@
       </ul> -->
     </li>
   </ul>
-  <ul class="menu" *ngIf="userRole=='Doctor'">
+  <ul class="menu" >
     <!-- Top-level menu -->
     <li *ngFor="let menu of doctors" class="menu-item">
       <!-- Link for menus without submenus -->
@@ -304,7 +304,7 @@
         <i [class]="menu.icon"></i>
         <span>{{ menu.label }}</span>
       </a>
-  
+
 
       <!-- Expandable Submenu -->
       <!-- <div *ngIf="menu.subMenus" (click)="toggleSubMenu(menu)" class="menu-link submenu-title">
@@ -316,9 +316,9 @@
       <!-- Submenus -->
       <!-- <ul *ngIf="menu.isExpanded" class="submenu">
         <li *ngFor="let subMenu of menu.subMenus" class="submenu-item">
-          <a 
-            [routerLink]="subMenu.route" 
-            routerLinkActive="active-link" 
+          <a
+            [routerLink]="subMenu.route"
+            routerLinkActive="active-link"
             class="submenu-link">
             {{ subMenu.label }}
           </a>
@@ -326,14 +326,14 @@
       </ul> -->
     </li>
   </ul>
-  <ul class="menu" *ngIf="userRole=='Care Team'">
+  <ul class="menu" >
     <!-- Top-level menu -->
     <li *ngFor="let menu of careteam" class="menu-item">
       <!-- Link for menus without submenus -->
-      <a 
-      *ngIf="!menu.subMenus" 
-      [routerLink]="menu.route" 
-      routerLinkActive="active-link" 
+      <a
+      *ngIf="!menu.subMenus"
+      [routerLink]="menu.route"
+      routerLinkActive="active-link"
       class="menu-link"
       [ngClass]="{'active-link': isActive(menu.route)}"
       (click)="setActiveMenu(menu.route)">

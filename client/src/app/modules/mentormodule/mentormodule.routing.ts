@@ -15,44 +15,44 @@ const routes: Routes = [
         path:'dashboard',
         data: { title: 'Dashboard', roles: ['Admin','Care Mentor'] },
         component: MentorDashboardComponent,
-         canActivate: [AuthGuard]
+        //  canActivate: [AuthGuard]
       },
       {
         path:'orders',
         data: { title: 'Orders', roles: ['Admin','Care Mentor'] },
         component: ListMentorOrdersComponent,
-         canActivate: [AuthGuard]
+        //  canActivate: [AuthGuard]
       },
       {
         path:'view-orders/:id',
         data: { title: 'Orders', roles: ['Admin','Care Mentor'] },
         component: ViewOrdersComponent,
-         canActivate: [AuthGuard]
+        //  canActivate: [AuthGuard]
       },
       {
         path:'doctorconsultation',
         data: { title: 'Doctor', roles: ['Admin','Care Mentor'] },
         component: ListDoctorConsultationComponent,
-         canActivate: [AuthGuard]
+        //  canActivate: [AuthGuard]
       },
       {
         path:'view-doctors/:id',
         data: { title: 'Doctor', roles: ['Admin','Care Mentor'] },
         component: ViewDoctorConsultationComponent,
-         canActivate: [AuthGuard]
+        //  canActivate: [AuthGuard]
       },
       {
         path:'health-details/:user_id',
         data: { title: 'Details', roles: ['Admin','Care Mentor'] },
         component: CreateHealthDetailsComponent,
-         canActivate: [AuthGuard]
+        //  canActivate: [AuthGuard]
       },
 
       {
         path:'mappingusers',
         data: { title: 'Mentor', roles: ['Admin','Care Mentor'] },
         component: ListMappingUsersComponent,
-         canActivate: [AuthGuard]
+        //  canActivate: [AuthGuard]
       },
 ];
 @NgModule({

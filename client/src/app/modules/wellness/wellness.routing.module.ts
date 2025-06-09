@@ -8,9 +8,9 @@ const routes: Routes = [
         path:'list-wellness',
         data: { title: 'Dashboard', roles: ['Admin','Care Mentor'] },
         component: ListWellnessPackageComponent,
-         canActivate: [AuthGuard]
+        //  canActivate: [AuthGuard]
       },
-     
+
 ];
 @NgModule({
     imports: [RouterModule.forChild(routes)],

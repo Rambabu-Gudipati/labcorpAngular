@@ -68,8 +68,9 @@ export class AuthService {
   }
   logout() {
     localStorage.clear();
+     this.router.navigate(['/login']);
     if (localStorage.removeItem('access_token') == null) {
-      this.router.navigate(['/login']);
+
     }
   }
   public isAuthorized(allowedRoles: string[]): boolean {

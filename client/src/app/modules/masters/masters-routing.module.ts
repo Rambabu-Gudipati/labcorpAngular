@@ -22,91 +22,77 @@ const routes: Routes = [
     path: 'users',
     data: { title: 'User Master', roles: ['Admin'] },
     component: ListUserComponent,
-    canActivate: [AuthGuard]
+
   },
   {
     path: 'add-user',
     data: { title: 'User Master', roles: ['Admin'] },
     component: AddUserComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'hospitals',
     data: { title: 'User Master', roles: ['Admin'] },
     component: ListHospitalsComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'doctors',
     data: { title: 'User Master', roles: ['Admin'] },
     component: ListDoctorsComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'ambulance',
     data: { title: 'User Master', roles: ['Admin'] },
     component: ListAmbulanceComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'sos-calls',
     data: { title: 'User Master', roles: ['Admin'] },
     component: ActiveSosCallsComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'careTeam',
     data: { title: 'User Master', roles: ['Admin'] },
     component: ListCareTeamComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'careDoctor',
     data: { title: 'User Master', roles: ['Admin'] },
     component: ListCareDoctorComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'group-users',
     data: { title: 'Group Users', roles: ['Admin',] },
     component: ListGroupUsersComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'group-centers',
     data: { title: 'Group Users', roles: ['Admin', 'Group User Admin'] },
     component: ListGroupCentersComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'group-center-users',
     data: { title: 'Group Users', roles: ['Admin',] },
     component: ListGroupCenterUsersComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'careMentor',
     data: { title: 'Care Mentor', roles: ['Admin'] },
     component: ListCareMentorComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'mentorMapping',
     data: { title: 'Care Mentor', roles: ['Admin'] },
     component: ListMentorMappingUsersComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'lab',
     data: { title: 'Lab', roles: ['Admin'] },
     component: ListLabComponent,
-    canActivate: [AuthGuard]
   },
   {
     path: 'config',
     data: { title: 'Lab', roles: ['Admin'] },
     component: ListConfigComponent,
-    canActivate: [AuthGuard]
   },
 ];
 

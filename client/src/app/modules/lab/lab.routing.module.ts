@@ -10,7 +10,7 @@ const routes: Routes = [
     path: 'lab-test',
     data: { title: 'Lab test', roles: ['Admin'] },
     component: ListTestComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
 ];
 @NgModule({

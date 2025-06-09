@@ -10,7 +10,7 @@ const routes: Routes = [
         path:'dashboard',
         data: { title: 'Dashboard', roles: ['Admin','Doctor'] },
         component: DashboardComponent,
-         canActivate: [AuthGuard]
+        //  canActivate: [AuthGuard]
       },
       // {
       //   path:'calenderdashboard',
@@ -18,7 +18,7 @@ const routes: Routes = [
       //   component: CalendarComponent,
       //    canActivate: [AuthGuard]
       // },
-     
+
 ];
 @NgModule({
     imports: [RouterModule.forChild(routes)],

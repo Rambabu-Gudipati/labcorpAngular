@@ -9,13 +9,13 @@ const routes: Routes = [
     path: 'list-advertiser',
     data: { title: 'User Master', roles: ['Admin'] },
     component: ListAdvertisersComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   },
   {
     path: 'add-advertiser',
     data: { title: 'Advertiser Master', roles: ['Admin'] },
     component: AddAdvertiserComponent,
-    canActivate: [AuthGuard]
+    // canActivate: [AuthGuard]
   }
 ];
 

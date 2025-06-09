@@ -32,7 +32,7 @@ import { MeetingLayoutComponent } from './components/meeting-layout/meeting-layo
 export const routes: Routes = [
   { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
   {
-    path: "", component: DefaultComponent, children: [{ path: '', component: DashboardComponent, canActivate: [AuthGuard], data: { title: 'User Master', roles: ['Admin', 'Care Team', 'Care Doctor', 'Group User Admin', 'Care Mentor', 'Doctor'] }, },
+    path: "", component: DefaultComponent, children: [{ path: '', component: DashboardComponent,  data: { title: 'User Master', roles: ['Admin', 'Care Team', 'Care Doctor', 'Group User Admin', 'Care Mentor', 'Doctor'] }, },
     { path: 'sos', loadChildren: () => import('./modules/sos/sos-module.module').then(m => m.SosModule) },
     { path: 'video', loadChildren: () => import('./modules/video-module/video-module.module').then(m => m.VideoModuleModule) },
     { path: 'masters', loadChildren: () => import('./modules/masters/masters.module').then(m => m.MastersModule) },
